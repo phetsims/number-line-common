@@ -9,7 +9,7 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import PaintColorProperty from '../../../../scenery/js/util/PaintColorProperty.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
+import numberLineCommon from '../../numberLineCommon.js';
 
 class NumberLinePoint {
 
@@ -64,5 +64,5 @@ class NumberLinePoint {
   }
 }
 
-numberLineIntegers.register( 'NumberLinePoint', NumberLinePoint );
+numberLineCommon.register( 'NumberLinePoint', NumberLinePoint );
 export default NumberLinePoint;
