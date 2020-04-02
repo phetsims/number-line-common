@@ -16,7 +16,7 @@ import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
+import numberLineCommon from '../../numberLineCommon.js';
 import NumberLine from '../../../../number-line-common/js/common/model/NumberLine.js';
 
 // constants
@@ -238,5 +238,5 @@ class SpatializedNumberLine extends NumberLine {
   }
 }
 
-numberLineIntegers.register( 'SpatializedNumberLine', SpatializedNumberLine );
+numberLineCommon.register( 'SpatializedNumberLine', SpatializedNumberLine );
 export default SpatializedNumberLine;

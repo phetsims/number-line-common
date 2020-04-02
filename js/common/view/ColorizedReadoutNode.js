@@ -11,8 +11,8 @@ import merge from '../../../../phet-core/js/merge.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
-import NLIConstants from '../NLIConstants.js';
+import numberLineCommon from '../../numberLineCommon.js';
+import NLCConstants from '../NLCConstants.js';
 
 // constants
 const DEFAULT_FONT = new PhetFont( 18 );
@@ -35,7 +35,7 @@ class ColorizedReadoutNode extends BackgroundNode {
         colorizeBackground: true,
         colorizeText: false
       },
-      NLIConstants.LABEL_BACKGROUND_OPTIONS,
+      NLCConstants.LABEL_BACKGROUND_OPTIONS,
       options
     );
 
@@ -79,5 +79,5 @@ class ColorizedReadoutNode extends BackgroundNode {
   }
 }
 
-numberLineIntegers.register( 'ColorizedReadoutNode', ColorizedReadoutNode );
+numberLineCommon.register( 'ColorizedReadoutNode', ColorizedReadoutNode );
 export default ColorizedReadoutNode;

@@ -16,8 +16,7 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
-import NLIConstants from '../NLIConstants.js';
+import numberLineCommon from '../../numberLineCommon.js';
 import AbsoluteValueSpanNode from './AbsoluteValueSpanNode.js';
 import PointNode from './PointNode.js';
 
@@ -64,8 +63,9 @@ class SpatializedNumberLineNode extends Node {
       // line itself, are portrayed
       showAbsoluteValueSpans: false,
 
-      // {number} - the distance between the edge of the display bounds and the ends of the displayed range
-      displayedRangeInset: NLIConstants.GENERIC_SCREEN_DISPLAYED_RANGE_INSET,
+      // {number} - the distance between the edge of the display bounds and the ends of the displayed range, in model
+      // coordinates
+      displayedRangeInset: 25,
 
       // options for the point nodes
       pointNodeOptions: {
@@ -427,5 +427,5 @@ class SpatializedNumberLineNode extends Node {
   }
 }
 
-numberLineIntegers.register( 'SpatializedNumberLineNode', SpatializedNumberLineNode );
+numberLineCommon.register( 'SpatializedNumberLineNode', SpatializedNumberLineNode );
 export default SpatializedNumberLineNode;

@@ -19,8 +19,8 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
-import NLIConstants from '../NLIConstants.js';
+import numberLineCommon from '../../numberLineCommon.js';
+import NLCConstants from '../NLCConstants.js';
 
 // constants
 const CAP_LENGTH = 10; // the "cap" is the end portion of the span, value is in screen coords
@@ -60,7 +60,7 @@ class AbsoluteValueSpanNode extends Node {
 
     // add the equation text
     const equationNode = new Node();
-    const equationBackground = new BackgroundNode( equationNode, NLIConstants.LABEL_BACKGROUND_OPTIONS );
+    const equationBackground = new BackgroundNode( equationNode, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( equationBackground );
 
     // add the span indicator shape
@@ -248,5 +248,5 @@ class AbsoluteValueLine extends Line {
   }
 }
 
-numberLineIntegers.register( 'AbsoluteValueSpanNode', AbsoluteValueSpanNode );
+numberLineCommon.register( 'AbsoluteValueSpanNode', AbsoluteValueSpanNode );
 export default AbsoluteValueSpanNode;

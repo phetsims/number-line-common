@@ -14,7 +14,7 @@ import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
+import numberLineCommon from '../../numberLineCommon.js';
 import ColorizedReadoutNode from './ColorizedReadoutNode.js';
 
 // constants
@@ -136,5 +136,5 @@ class PointNode extends Node {
   }
 }
 
-numberLineIntegers.register( 'PointNode', PointNode );
+numberLineCommon.register( 'PointNode', PointNode );
 export default PointNode;
