@@ -18,7 +18,7 @@ import numberLineCommon from '../../numberLineCommon.js';
 import ColorizedReadoutNode from './ColorizedReadoutNode.js';
 
 // constants
-const POINT_NODE_RADIUS = 4.5; // in screen coordinates
+const DEFAULT_POINT_NODE_RADIUS = 4.5; // in screen coordinates
 
 class PointNode extends Node {
 
@@ -31,6 +31,8 @@ class PointNode extends Node {
   constructor( numberLinePoint, numberLine, options ) {
 
     options = merge( {
+
+      radius: DEFAULT_POINT_NODE_RADIUS,
 
       // {boolean} - if true, the label text will match the color of the point, if false the label text will be black
       usePointColorForLabelText: true,
@@ -52,7 +54,7 @@ class PointNode extends Node {
     super();
 
     // add the small circle that will represent the point
-    const circle = new Circle( POINT_NODE_RADIUS, {
+    const circle = new Circle( options.radius, {
       fill: numberLinePoint.colorProperty,
       stroke: options.isDoppelganger ? 'gray' : numberLinePoint.colorProperty
     } );

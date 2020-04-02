@@ -323,8 +323,8 @@ class SpatializedNumberLineNode extends Node {
         middleTickMarksRootNode.removeAllChildren();
         endTickMarksRootNode.removeAllChildren();
 
-        // Derive the tick mark spacing from the range.  This mapping was taken from the Number Line Integers design
-        // spec, and could be made into a optional mapping function if more flexibility is needed.
+        // Derive the tick mark spacing from the range.  This mapping was taken from the various Number Line Suite
+        // design specs, and could be made into a optional mapping function if more flexibility is needed.
         let tickMarkSpacing;
         switch( numberLine.displayedRangeProperty.value.getLength() ) {
           case 20:
@@ -335,6 +335,9 @@ class SpatializedNumberLineNode extends Node {
             break;
           case 200:
             tickMarkSpacing = 25;
+            break;
+          case 2000:
+            tickMarkSpacing = 100;
             break;
           default:
             tickMarkSpacing = 1;
