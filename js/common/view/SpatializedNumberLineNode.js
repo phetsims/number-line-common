@@ -344,17 +344,39 @@ class SpatializedNumberLineNode extends Node {
             break;
         }
 
+        // Derive the tick mark label spacing from the range.  As with the tick mark spacing, this mapping was taken
+        // from the various Number Line Suite design specs, and could be made into a optional mapping function if more
+        // flexibility is needed.
+        let tickMarkLabelSpacing;
+        switch( numberLine.displayedRangeProperty.value.getLength() ) {
+          case 20:
+            tickMarkLabelSpacing = 1;
+            break;
+          case 60:
+            tickMarkLabelSpacing = 5;
+            break;
+          case 200:
+            tickMarkLabelSpacing = 25;
+            break;
+          case 2000:
+            tickMarkLabelSpacing = 500;
+            break;
+          default:
+            tickMarkLabelSpacing = 1;
+            break;
+        }
+
         // Draw the tick marks.  These could be optimized to be a single Path node for the ticks if a performance
         // improvement is ever needed.
         const minTickMarkValue = numberLine.displayedRangeProperty.value.min + tickMarkSpacing;
         const maxTickMarkValue = numberLine.displayedRangeProperty.value.max - tickMarkSpacing;
 
-        this.addTickMark( endTickMarksRootNode, displayedRange.min );
-        this.addTickMark( endTickMarksRootNode, displayedRange.max );
+        this.addTickMark( endTickMarksRootNode, displayedRange.min, true );
+        this.addTickMark( endTickMarksRootNode, displayedRange.max, true );
 
         for ( let tmValue = minTickMarkValue; tmValue <= maxTickMarkValue; tmValue += tickMarkSpacing ) {
           if ( tmValue !== 0 ) {
-            this.addTickMark( middleTickMarksRootNode, tmValue );
+            this.addTickMark( middleTickMarksRootNode, tmValue, tmValue % tickMarkLabelSpacing === 0 );
           }
         }
 
@@ -369,9 +391,10 @@ class SpatializedNumberLineNode extends Node {
    * the provided value
    * @param {Node} parentNode
    * @param {number} value
+   * @param {boolean} addLabel
    * @private
    */
-  addTickMark( parentNode, value ) {
+  addTickMark( parentNode, value, addLabel ) {
 
     // the value for zero is a special case, and uses a longer and thicker tick mark
     const length = value === 0 ? this.options.zeroTickMarkLength : this.options.tickMarkLength;
@@ -385,9 +408,12 @@ class SpatializedNumberLineNode extends Node {
     const tmCenter = this.numberLine.valueToModelPosition( value );
 
     // create label
-    let stringValue = StringUtils.fillIn( this.options.numericalLabelTemplate, { value: Math.abs( value ) } );
-    if ( value < 0 ) {
-      stringValue = MathSymbols.UNARY_MINUS + stringValue;
+    let labelNode;
+    if ( addLabel ) {
+      labelNode = StringUtils.fillIn( this.options.numericalLabelTemplate, { value: Math.abs( value ) } );
+      if ( value < 0 ) {
+        labelNode = MathSymbols.UNARY_MINUS + labelNode;
+      }
     }
 
     let tickMark;
@@ -423,8 +449,8 @@ class SpatializedNumberLineNode extends Node {
       }
     }
     parentNode.addChild( tickMark );
-    parentNode.addChild( new Text(
-      stringValue,
+    labelNode && parentNode.addChild( new Text(
+      labelNode,
       merge( tickLabelOptions, this.options.tickMarkLabelOptions )
     ) );
   }
