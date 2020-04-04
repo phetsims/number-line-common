@@ -9,7 +9,7 @@
 import Matrix3 from '../../../../dot/js/Matrix3.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import Shape from '../../../../kite/js/Shape.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
+import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
 const NLI_LAYOUT_BOUNDS = ScreenView.DEFAULT_LAYOUT_BOUNDS;
@@ -46,5 +46,5 @@ class PiggyBankShapes {
 }
 
 const piggyBankShapes = new PiggyBankShapes();
-numberLineIntegers.register( 'piggyBankShapes', piggyBankShapes );
+numberLineCommon.register( 'piggyBankShapes', piggyBankShapes );
 export default piggyBankShapes;

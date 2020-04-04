@@ -14,7 +14,7 @@ import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import piggyBankWithFlowers from '../../../images/piggy-bank-with-flowers_png.js';
 import piggyBankWithLightning from '../../../images/piggy-bank-with-lightning_png.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
+import numberLineCommon from '../../numberLineCommon.js';
 import PiggyBankDecoration from '../model/PiggyBankDecoration.js';
 import piggyBankShapes from './piggyBankShapes.js';
 
@@ -72,5 +72,5 @@ class PiggyBankNode extends Node {
 
 }
 
-numberLineIntegers.register( 'PiggyBankNode', PiggyBankNode );
+numberLineCommon.register( 'PiggyBankNode', PiggyBankNode );
 export default PiggyBankNode;
