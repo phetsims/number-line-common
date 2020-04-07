@@ -9,4 +9,4 @@
 import Enumeration from '../../../../phet-core/js/Enumeration.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
-export default numberLineCommon.register( 'PiggyBankDecoration', Enumeration.byKeys( [ 'LIGHTNING', 'FLOWERS' ] ) );
+export default numberLineCommon.register( 'PiggyBankDecoration', Enumeration.byKeys( [ 'NONE', 'LIGHTNING', 'FLOWERS' ] ) );

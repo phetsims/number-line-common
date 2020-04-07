@@ -12,11 +12,18 @@ import merge from '../../../../phet-core/js/merge.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
+import piggyBankNoDecoration from '../../../images/piggy-bank-no-decoration_png.js';
 import piggyBankWithFlowers from '../../../images/piggy-bank-with-flowers_png.js';
 import piggyBankWithLightning from '../../../images/piggy-bank-with-lightning_png.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import PiggyBankDecoration from '../model/PiggyBankDecoration.js';
 import piggyBankShapes from './piggyBankShapes.js';
+
+// constants
+const MAP_DECORATION_TYPE_TO_IMAGE_INFO = new Map();
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.NONE, piggyBankNoDecoration );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.FLOWERS, piggyBankWithFlowers );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.LIGHTNING, piggyBankWithLightning );
 
 class PiggyBankNode extends Node {
 
@@ -38,7 +45,7 @@ class PiggyBankNode extends Node {
       center: Vector2.ZERO
     } );
     const overlayImage = new Image(
-      options.decorationType === PiggyBankDecoration.FLOWERS ? piggyBankWithFlowers : piggyBankWithLightning,
+      MAP_DECORATION_TYPE_TO_IMAGE_INFO.get( options.decorationType ),
       { opacity: 0.9 }
     );
     overlayImage.setScaleMagnitude( piggyBankOutlineNode.width / overlayImage.width );
