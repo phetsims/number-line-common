@@ -297,6 +297,7 @@ class SpatializedNumberLineNode extends Node {
           }
           updateAbsoluteValueIndicators( true );
           point.valueProperty.unlink( updateAbsoluteValueIndicators );
+          point.colorProperty.unlink( updateAbsoluteValueIndicatorColors );
           numberLine.residentPoints.removeItemRemovedListener( removeItemListener );
         }
       };
