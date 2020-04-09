@@ -28,8 +28,9 @@ class NumberLine {
 
       // {Object{initialValue, color}[]} - array of point specifications that describe what points should exist on
       // the number line when constructed and after a reset
-      initialPointSpecs: []
+      initialPointSpecs: [],
 
+      preventOverlap: true
     }, options );
 
     // @private {Object{ initialValue, color}[]} - array of point specifications that describe what points should
@@ -45,8 +46,8 @@ class NumberLine {
       // listener to make sure point lands in a good point when released
       const pointIsDraggingListener = dragging => {
 
-        // do nothing if dragging or we are the only point here/there are no points here
-        if ( dragging || this.getPointsAt( addedPoint.valueProperty.value ).length <= 1 ) {
+        // do nothing if dragging, if this is the only point at this location, or if overlap is allowed
+        if ( dragging || !options.preventOverlap || this.getPointsAt( addedPoint.valueProperty.value ).length <= 1 ) {
           return;
         }
 
