@@ -80,7 +80,7 @@ class SpatializedNumberLine extends NumberLine {
     this.displayedRangeProperty = new Property( options.initialDisplayedRange, { valueType: Range } );
 
     // @public {BooleanProperty} - controls whether point labels are displayed to the user
-    this.showLabelsProperty = new BooleanProperty( options.labelsInitiallyVisible );
+    this.showPointLabelsProperty = new BooleanProperty( options.labelsInitiallyVisible );
 
     // @public {BooleanProperty} - controls whether tick marks should be displayed to the user
     this.showTickMarksProperty = new BooleanProperty( options.tickMarksInitiallyVisible );
@@ -232,7 +232,7 @@ class SpatializedNumberLine extends NumberLine {
     this.showAbsoluteValuesProperty.reset();
     this.orientationProperty.reset();
     this.displayedRangeProperty.reset();
-    this.showLabelsProperty.reset();
+    this.showPointLabelsProperty.reset();
     this.showTickMarksProperty.reset();
     this.showOppositesProperty.reset();
   }

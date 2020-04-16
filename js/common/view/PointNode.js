@@ -84,7 +84,7 @@ class PointNode extends Node {
 
     // add the label and link a listener for visibility
     this.addChild( pointLabelNode );
-    const labelVisibilityListener = numberLine.showLabelsProperty.linkAttribute( pointLabelNode, 'visible' );
+    const labelVisibilityListener = numberLine.showPointLabelsProperty.linkAttribute( pointLabelNode, 'visible' );
 
     // move in front of other points when being dragged or when the point value is being changed by other means
     const moveToFrontMultilink = Property.multilink(
@@ -124,7 +124,7 @@ class PointNode extends Node {
      * @private
      */
     this.disposePointNode = () => {
-      numberLine.showLabelsProperty.unlinkAttribute( labelVisibilityListener );
+      numberLine.showPointLabelsProperty.unlinkAttribute( labelVisibilityListener );
       updatePointRepresentationMultilink.dispose();
       moveToFrontMultilink.dispose();
       pointLabelNode.dispose();
