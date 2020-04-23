@@ -1,0 +1,5 @@
+{
+  "range": {
+    "value": "{{lowValue}} to {{highValue}}"
+  }
+}
