@@ -104,7 +104,6 @@ class SpatializedNumberLineNode extends Node {
 
     // add the number line, and update it if the orientation changes
     const numberLineNode = new Node();
-    // TODO: Can we remove this layer (numberLineRootNode)?
     numberLineRootNode.addChild( numberLineNode );
     numberLine.orientationProperty.link( orientation => {
 
