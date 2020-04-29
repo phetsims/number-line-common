@@ -77,37 +77,37 @@ class AbsoluteValueSpanNode extends Node {
       const pointPosition = numberLinePoint.getPositionInModelSpace();
       if ( numberLine.isHorizontal ) {
         spanIndicatorShape.moveTo(
-          numberLine.centerPosition.x,
-          numberLine.centerPosition.y - distanceFromNumberLine - CAP_LENGTH / 2
+          numberLine.centerPositionProperty.value.x,
+          numberLine.centerPositionProperty.value.y - distanceFromNumberLine - CAP_LENGTH / 2
         );
         spanIndicatorShape.lineTo(
-          numberLine.centerPosition.x,
-          numberLine.centerPosition.y - distanceFromNumberLine + CAP_LENGTH / 2
+          numberLine.centerPositionProperty.value.x,
+          numberLine.centerPositionProperty.value.y - distanceFromNumberLine + CAP_LENGTH / 2
         );
         spanIndicatorShape.moveTo(
-          numberLine.centerPosition.x,
-          numberLine.centerPosition.y - distanceFromNumberLine
+          numberLine.centerPositionProperty.value.x,
+          numberLine.centerPositionProperty.value.y - distanceFromNumberLine
         );
         spanIndicatorShape.lineTo( pointPosition.x, pointPosition.y - distanceFromNumberLine );
         spanIndicatorShape.moveTo(
           pointPosition.x,
-          numberLine.centerPosition.y - distanceFromNumberLine - CAP_LENGTH / 2
+          numberLine.centerPositionProperty.value.y - distanceFromNumberLine - CAP_LENGTH / 2
         );
         spanIndicatorShape.lineTo(
           pointPosition.x,
-          numberLine.centerPosition.y - distanceFromNumberLine + CAP_LENGTH / 2
+          numberLine.centerPositionProperty.value.y - distanceFromNumberLine + CAP_LENGTH / 2
         );
       }
       else {
         spanIndicatorShape.moveTo(
-          numberLine.centerPosition.x - distanceFromNumberLine - CAP_LENGTH / 2,
-          numberLine.centerPosition.y
+          numberLine.centerPositionProperty.value.x - distanceFromNumberLine - CAP_LENGTH / 2,
+          numberLine.centerPositionProperty.value.y
         );
         spanIndicatorShape.lineTo(
-          numberLine.centerPosition.x - distanceFromNumberLine + CAP_LENGTH / 2,
-          numberLine.centerPosition.y
+          numberLine.centerPositionProperty.value.x - distanceFromNumberLine + CAP_LENGTH / 2,
+          numberLine.centerPositionProperty.value.y
         );
-        spanIndicatorShape.moveTo( numberLine.centerPosition.x - distanceFromNumberLine, numberLine.centerPosition.y );
+        spanIndicatorShape.moveTo( numberLine.centerPositionProperty.value.x - distanceFromNumberLine, numberLine.centerPositionProperty.value.y );
         spanIndicatorShape.lineTo( pointPosition.x - distanceFromNumberLine, pointPosition.y );
         spanIndicatorShape.moveTo(
           pointPosition.x - distanceFromNumberLine - CAP_LENGTH / 2,
@@ -145,8 +145,8 @@ class AbsoluteValueSpanNode extends Node {
       const distanceFromNumberLine = this.distanceFromNumberLineProperty.value;
       const pointPosition = numberLinePoint.getPositionInModelSpace();
       if ( numberLine.isHorizontal ) {
-        equationBackground.centerX = ( numberLine.centerPosition.x + pointPosition.x ) / 2;
-        equationBackground.bottom = numberLine.centerPosition.y - distanceFromNumberLine - CAP_LENGTH / 2;
+        equationBackground.centerX = ( numberLine.centerPositionProperty.value.x + pointPosition.x ) / 2;
+        equationBackground.bottom = numberLine.centerPositionProperty.value.y - distanceFromNumberLine - CAP_LENGTH / 2;
       }
       else {
         equationBackground.centerX = pointPosition.x - distanceFromNumberLine;

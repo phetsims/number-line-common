@@ -8,12 +8,15 @@
  * @author Chris Klusendorf (PhET Interactive Simulations)
  */
 
+import Line from '../../../../kite/js/segments/Line.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import Vector2Property from '../../../../dot/js/Vector2Property.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import numberLineCommon from '../../numberLineCommon.js';
@@ -36,11 +39,11 @@ const POINT_REMOVAL_END_DISTANCE = 25;
 class SpatializedNumberLine extends NumberLine {
 
   /**
-   * {Vector2} zeroPosition - the location in model space of the zero point on the number line
+   * {Vector2} initialZeroPosition - the location in model space of the zero point on the number line
    * {Object} [options]
    * @public
    */
-  constructor( zeroPosition, options ) {
+  constructor( initialZeroPosition, options ) {
 
     super( options );
 
@@ -70,8 +73,8 @@ class SpatializedNumberLine extends NumberLine {
 
     }, options );
 
-    // @public (read-only) {Vector2} - center in model space where this number line exists
-    this.centerPosition = zeroPosition;
+    // @public {Vector2Property} - center in model space where this number line exists
+    this.centerPositionProperty = new Vector2Property( initialZeroPosition );
 
     // @public {Property} - the value used to scale from model coordinates to number line distance
     this.orientationProperty = new EnumerationProperty( Orientation, options.initialOrientation );
@@ -100,13 +103,29 @@ class SpatializedNumberLine extends NumberLine {
       );
     } );
 
-    // @public (read-only) {Bounds2} - The bounds into which the number line display range is projected when being
-    // displayed in the view.
-    this.modelProjectionBounds = new Bounds2(
-      this.displayedRangeProperty.value.min / this.modelToPositonScale.x + zeroPosition.x,
-      this.displayedRangeProperty.value.max / -this.modelToPositonScale.y + zeroPosition.y,
-      this.displayedRangeProperty.value.max / this.modelToPositonScale.x + zeroPosition.x,
-      this.displayedRangeProperty.value.min / -this.modelToPositonScale.y + zeroPosition.y
+    // @public (read-only) {Property<Line>} - The line into which the number line is projected in model space. This only
+    // includes the displayed range and nothing beyond that.
+    this.modelProjectedLineProperty = new DerivedProperty(
+      [ this.centerPositionProperty, this.orientationProperty, this.displayedRangeProperty ],
+      ( centerPosition, orientation, displayedRange ) => {
+        let x1;
+        let y1;
+        let x2;
+        let y2;
+        if ( orientation === Orientation.HORIZONTAL ) {
+          x1 = centerPosition.x + displayedRange.min / this.modelToPositonScale.x;
+          x2 = centerPosition.x + displayedRange.max / this.modelToPositonScale.x;
+          y1 = centerPosition.y;
+          y2 = centerPosition.y;
+        }
+        else {
+          x1 = centerPosition.x;
+          x2 = centerPosition.x;
+          y1 = centerPosition.y + displayedRange.min / this.modelToPositonScale.x;
+          y2 = centerPosition.y + displayedRange.max / this.modelToPositonScale.x;
+        }
+        return new Line( new Vector2( x1, y1 ), new Vector2( x2, y2 ) );
+      }
     );
   }
 
@@ -141,10 +160,10 @@ class SpatializedNumberLine extends NumberLine {
     );
     let numberLineValue;
     if ( this.isHorizontal ) {
-      numberLineValue = ( modelPosition.x - this.centerPosition.x ) * this.modelToPositonScale.x;
+      numberLineValue = ( modelPosition.x - this.centerPositionProperty.value.x ) * this.modelToPositonScale.x;
     }
     else {
-      numberLineValue = ( modelPosition.y - this.centerPosition.y ) * -this.modelToPositonScale.y;
+      numberLineValue = ( modelPosition.y - this.centerPositionProperty.value.y ) * -this.modelToPositonScale.y;
     }
 
     return numberLineValue;
@@ -161,14 +180,14 @@ class SpatializedNumberLine extends NumberLine {
     let modelPosition;
     if ( this.isHorizontal ) {
       modelPosition = new Vector2(
-        numberLineValue / this.modelToPositonScale.x + this.centerPosition.x,
-        this.centerPosition.y
+        numberLineValue / this.modelToPositonScale.x + this.centerPositionProperty.value.x,
+        this.centerPositionProperty.value.y
       );
     }
     else {
       modelPosition = new Vector2(
-        this.centerPosition.x,
-        numberLineValue / -this.modelToPositonScale.y + this.centerPosition.y
+        this.centerPositionProperty.value.x,
+        numberLineValue / -this.modelToPositonScale.y + this.centerPositionProperty.value.y
       );
     }
     return modelPosition;
@@ -204,20 +223,25 @@ class SpatializedNumberLine extends NumberLine {
    */
   isWithinDistance( pointControllerPosition, perpendicularDistance, endDistance ) {
     let testBounds;
+    const projectedLine = this.modelProjectedLineProperty.value;
+    const lineStart = projectedLine.getStart();
+    const lineEnd = projectedLine.getEnd();
     if ( this.isHorizontal ) {
+      assert && assert( lineStart.x < lineEnd.x && lineStart.y === lineEnd.y, 'line not as expected' );
       testBounds = new Bounds2(
-        this.modelProjectionBounds.minX - endDistance,
-        this.centerPosition.y - perpendicularDistance,
-        this.modelProjectionBounds.maxX + endDistance,
-        this.centerPosition.y + perpendicularDistance
+        lineStart.x - endDistance,
+        lineStart.y - perpendicularDistance,
+        lineEnd.x + endDistance,
+        lineStart.y - perpendicularDistance
       );
     }
     else {
+      assert && assert( lineStart.y < lineEnd.y && lineStart.x === lineEnd.x, 'line not as expected' );
       testBounds = new Bounds2(
-        this.centerPosition.x - perpendicularDistance,
-        this.modelProjectionBounds.minY - endDistance,
-        this.centerPosition.x + perpendicularDistance,
-        this.modelProjectionBounds.maxY + endDistance
+        lineStart.x - perpendicularDistance,
+        lineStart.y - endDistance,
+        lineEnd.x + perpendicularDistance,
+        lineEnd.y + endDistance
       );
     }
     return testBounds.containsPoint( pointControllerPosition );

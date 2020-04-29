@@ -78,8 +78,6 @@ class SpatializedNumberLineNode extends Node {
     // since the position is set based on the model, don't pass options through to parent class
     super();
 
-    const displayBounds = numberLine.modelProjectionBounds.dilated( options.displayedRangeInset );
-
     // @private {Object} - make options available to methods
     this.options = _.cloneDeep( options );
 
@@ -97,10 +95,21 @@ class SpatializedNumberLineNode extends Node {
       fill: options.color
     };
 
+    // Create the layer where everything that moves if the number line's center position changes will reside.  This
+    // will be the parent node for most sub-nodes, but will exclude things like points, which are responsible for
+    // positioning themselves in space.  Everything on this node will be added as though the number line is centered at
+    // the local point (0,0), and then it will be translated into the right location.
+    const numberLineRootNode = new Node();
+    this.addChild( numberLineRootNode );
+
     // add the number line, and update it if the orientation changes
     const numberLineNode = new Node();
-    this.addChild( numberLineNode );
+    // TODO: Can we remove this layer (numberLineRootNode)?
+    numberLineRootNode.addChild( numberLineNode );
     numberLine.orientationProperty.link( orientation => {
+
+      const projectedLine = numberLine.modelProjectedLineProperty.value;
+      const length = projectedLine.getArcLength();
 
       // remove the previous representation
       numberLineNode.removeAllChildren();
@@ -109,42 +118,39 @@ class SpatializedNumberLineNode extends Node {
 
         // add the arrow node that represents the number line
         numberLineNode.addChild( new ArrowNode(
-          displayBounds.minX,
-          numberLine.centerPosition.y,
-          displayBounds.maxX,
-          numberLine.centerPosition.y,
+          -length / 2 - options.displayedRangeInset,
+          0,
+          length / 2 + options.displayedRangeInset,
+          0,
           numberLineNodeOptions
         ) );
-
-        // add the tick mark for the 0 position, which is always visible
-        this.addTickMark( numberLineNode, 0 );
       }
       else {
 
         // add the arrow node that represents the number line
         numberLineNode.addChild( new ArrowNode(
-          numberLine.centerPosition.x,
-          displayBounds.minY,
-          numberLine.centerPosition.x,
-          displayBounds.maxY,
+          0,
+          -length / 2 - options.displayedRangeInset,
+          0,
+          length / 2 + options.displayedRangeInset,
           numberLineNodeOptions
         ) );
-
-        // add the tick mark for the 0 position, which is always visible
-        this.addTickMark( numberLineNode, 0 );
       }
+
+      // add the tick mark for the 0 position, which is always visible
+      this.addTickMark( numberLineNode, 0 );
     } );
 
     // handle the tick marks at the ends of the display range
     const endTickMarksRootNode = new Node();
-    this.addChild( endTickMarksRootNode );
+    numberLineRootNode.addChild( endTickMarksRootNode );
 
     // add the root node for the tick marks that exist between the middle and the end
     const middleTickMarksRootNode = new Node();
     numberLine.showTickMarksProperty.linkAttribute( middleTickMarksRootNode, 'visible' );
-    this.addChild( middleTickMarksRootNode );
+    numberLineRootNode.addChild( middleTickMarksRootNode );
 
-    // add the layer where the lines the are used to indicate the absolute value of a point will be displayed
+    // add the layer where the lines that are used to indicate the absolute value of a point will be displayed
     const absoluteValueLineLayer = new Node();
     this.addChild( absoluteValueLineLayer );
     numberLine.showAbsoluteValuesProperty.linkAttribute( absoluteValueLineLayer, 'visible' );
@@ -182,7 +188,7 @@ class SpatializedNumberLineNode extends Node {
       // update the position, color, thickness, and layering of each of the lines and the spacing of the spans
       let pointsAboveZeroCount = 0;
       let pointsBelowZeroCount = 0;
-      const zeroPosition = numberLine.centerPosition;
+      const zeroPosition = numberLine.centerPositionProperty.value;
       pointsSortedByValue.forEach( ( point, index ) => {
 
         // get a line that will display the absolute value on the number line itself
@@ -385,6 +391,12 @@ class SpatializedNumberLineNode extends Node {
         updateAbsoluteValueIndicators();
       }
     );
+
+    // Monitor the center position of the spatialized number line model and make the necessary transformations when
+    // changes occur.
+    numberLine.centerPositionProperty.link( centerPosition => {
+      numberLineRootNode.translation = centerPosition;
+    } );
   }
 
   /**
@@ -405,8 +417,8 @@ class SpatializedNumberLineNode extends Node {
       lineWidth: lineWidth
     };
 
-    // get the center position of the tick mark
-    const tmCenter = this.numberLine.valueToModelPosition( value );
+    // calculate the center position of the tick mark, scaled but not translated
+    const tmCenter = this.numberLine.valueToModelPosition( value ).minus( this.numberLine.centerPositionProperty.value );
 
     // create label
     let labelNode;

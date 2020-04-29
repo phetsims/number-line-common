@@ -97,6 +97,7 @@ class PointNode extends Node {
       [
         numberLinePoint.valueProperty,
         numberLine.showOppositesProperty,
+        numberLine.centerPositionProperty,
         numberLine.orientationProperty,
         numberLine.displayedRangeProperty
       ],
