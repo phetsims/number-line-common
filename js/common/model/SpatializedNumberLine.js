@@ -121,8 +121,8 @@ class SpatializedNumberLine extends NumberLine {
         else {
           x1 = centerPosition.x;
           x2 = centerPosition.x;
-          y1 = centerPosition.y + displayedRange.min / this.modelToPositonScale.x;
-          y2 = centerPosition.y + displayedRange.max / this.modelToPositonScale.x;
+          y1 = centerPosition.y + displayedRange.min / this.modelToPositonScale.y;
+          y2 = centerPosition.y + displayedRange.max / this.modelToPositonScale.y;
         }
         return new Line( new Vector2( x1, y1 ), new Vector2( x2, y2 ) );
       }
@@ -191,6 +191,22 @@ class SpatializedNumberLine extends NumberLine {
       );
     }
     return modelPosition;
+  }
+
+  /**
+   * get the positive or negative distance in model space from the zero point on the number line to the provided value
+   * @param numberLineValue
+   * @returns {number}
+   */
+  getScaledOffsetFromZero( numberLineValue ) {
+    let scaledOffsetFromZero;
+    if ( this.isHorizontal ) {
+      scaledOffsetFromZero = numberLineValue / this.modelToPositonScale.x;
+    }
+    else {
+      scaledOffsetFromZero = numberLineValue / -this.modelToPositonScale.y;
+    }
+    return scaledOffsetFromZero;
   }
 
   /**

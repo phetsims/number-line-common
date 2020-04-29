@@ -108,8 +108,8 @@ class SpatializedNumberLineNode extends Node {
     numberLineRootNode.addChild( numberLineNode );
     numberLine.orientationProperty.link( orientation => {
 
-      const projectedLine = numberLine.modelProjectedLineProperty.value;
-      const length = projectedLine.getArcLength();
+      const minValueProjected = numberLine.getScaledOffsetFromZero( numberLine.displayedRangeProperty.value.min );
+      const maxValueProjected = numberLine.getScaledOffsetFromZero( numberLine.displayedRangeProperty.value.max );
 
       // remove the previous representation
       numberLineNode.removeAllChildren();
@@ -118,9 +118,9 @@ class SpatializedNumberLineNode extends Node {
 
         // add the arrow node that represents the number line
         numberLineNode.addChild( new ArrowNode(
-          -length / 2 - options.displayedRangeInset,
+          minValueProjected - options.displayedRangeInset,
           0,
-          length / 2 + options.displayedRangeInset,
+          maxValueProjected + options.displayedRangeInset,
           0,
           numberLineNodeOptions
         ) );
@@ -130,9 +130,9 @@ class SpatializedNumberLineNode extends Node {
         // add the arrow node that represents the number line
         numberLineNode.addChild( new ArrowNode(
           0,
-          -length / 2 - options.displayedRangeInset,
+          maxValueProjected - options.displayedRangeInset,
           0,
-          length / 2 + options.displayedRangeInset,
+          minValueProjected + options.displayedRangeInset,
           numberLineNodeOptions
         ) );
       }
@@ -159,11 +159,11 @@ class SpatializedNumberLineNode extends Node {
     const oppositePointDisplayLayer = new Node();
     this.addChild( oppositePointDisplayLayer );
 
-    // add the layer where the points on the number line will be displayed
+    // add the layer where the normal (non-opposite) points on the number line will be displayed
     const pointDisplayLayer = new Node();
     this.addChild( pointDisplayLayer );
 
-    // closure that updates the lines that indicate absolute value
+    // closure that updates the absolute value indicators
     const absoluteValueLines = [];
     const updateAbsoluteValueIndicators = ( doAnimation = false ) => {
 
