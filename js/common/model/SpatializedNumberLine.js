@@ -248,7 +248,7 @@ class SpatializedNumberLine extends NumberLine {
         lineStart.x - endDistance,
         lineStart.y - perpendicularDistance,
         lineEnd.x + endDistance,
-        lineStart.y - perpendicularDistance
+        lineStart.y + perpendicularDistance
       );
     }
     else {
