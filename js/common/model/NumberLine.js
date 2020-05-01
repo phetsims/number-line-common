@@ -81,7 +81,10 @@ class NumberLine {
   addInitialPoints() {
     this.initialPointSpecs.forEach( pointSpec => {
       assert && assert( !this.hasPointAt( pointSpec.initialValue ), 'a point already exists at the specified location' );
-      this.addPoint( new NumberLinePoint( pointSpec.initialValue, pointSpec.color, this ) );
+      this.addPoint( new NumberLinePoint( this, {
+        initialValue: pointSpec.initialValue,
+        initialColor: pointSpec.color
+      } ) );
     } );
   }
 

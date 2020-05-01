@@ -7,26 +7,66 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Emitter from '../../../../axon/js/Emitter.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import merge from '../../../../phet-core/js/merge.js';
+import Color from '../../../../scenery/js/util/Color.js';
 import PaintColorProperty from '../../../../scenery/js/util/PaintColorProperty.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
 class NumberLinePoint {
 
   /**
-   * {number} initialValue - the value on the number line
-   * {Color} color - the color that should be used to portray this point in the view
-   * {NumberLine} numberLine - the number line on which this point exists
-   * {PointController} [controller] - the controller that will move this point
+   * @param {NumberLine} numberLine - the number line on which this point exists
+   * @param {Object} [options]
    * @public
    */
-  constructor( initialValue, color, numberLine, controller = null ) {
+  constructor( numberLine, options ) {
 
-    // @public {NumberProperty} - portrayed value on the number line
-    this.valueProperty = new NumberProperty( initialValue );
+    options = merge( {
 
-    // @public {PaintColorProperty}
-    this.colorProperty = new PaintColorProperty( color );
+      // {NumberProperty} - a property containing the value for this point, created below if not provided
+      valueProperty: null,
+
+      // {number} - the initial value, only used if the value property is not provided
+      initialValue: null,
+
+      // {PaintColorProperty} - the color that will be used when portraying this point in the view
+      colorProperty: null,
+
+      // {Color} - initial color, only used if color property is not provided
+      initialColor: null,
+
+      // {PointController} - point controller to attach to this point
+      controller: null
+    }, options );
+
+    // options checking
+    assert && assert(
+      !this.valueProperty || this.initialValue === null,
+      'can\'t specify both an initial value and the value property'
+    );
+    assert && assert(
+      !this.colorProperty || this.initialColor === null,
+      'can\'t specify both an initial color and the color property'
+    );
+
+    // @private - emitter that is fired on dispose, add listeners as needed
+    this.disposeEmitterNumberLinePoint = new Emitter();
+
+    // @public {NumberProperty} - value of the point on the number line
+    this.valueProperty = options.valueProperty;
+    if ( !this.valueProperty ) {
+      this.valueProperty = new NumberProperty( options.initialValue === null ? 0 : options.initialValue );
+      this.disposeEmitterNumberLinePoint.addListener( () => { this.valueProperty.dispose(); } );
+    }
+
+    // @public {PaintColorProperty} - color used when portraying this point
+    this.colorProperty = options.colorProperty;
+    if ( !this.colorProperty ) {
+      this.colorProperty = new PaintColorProperty( options.initialColor === null ? Color.BLACK : options.initialColor );
+      this.disposeEmitterNumberLinePoint.addListener( () => { this.colorProperty.dispose(); } );
+    }
 
     // @public {BooleanProperty} - indicates whether this is being dragged by the user
     this.isDraggingProperty = new BooleanProperty( false );
@@ -35,7 +75,7 @@ class NumberLinePoint {
     this.numberLine = numberLine;
 
     // @private {PointController|null} - a "point controller" that controls where this point is, can be null
-    this.controller = controller;
+    this.controller = options.controller;
 
     // @public (read-only) {number|null} - the most recently proposed value, used when deciding where to land on number line
     this.mostRecentlyProposedValue = null;
@@ -61,6 +101,11 @@ class NumberLinePoint {
       this.valueProperty.value = constrainedValue;
     }
     this.mostRecentlyProposedValue = numberLineValue;
+  }
+
+  dispose() {
+    this.disposeEmitterNumberLinePoint.emit();
+    super.dispose();
   }
 }
 
