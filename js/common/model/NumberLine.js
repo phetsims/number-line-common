@@ -107,6 +107,16 @@ class NumberLine {
   }
 
   /**
+   * checks whether a specific instance of a number line point is on this number line
+   * @param {NumberLinePoint} numberLinePoint
+   * @returns {boolean}
+   * @public
+   */
+  hasPoint( numberLinePoint ) {
+    return this.residentPoints.contains( numberLinePoint );
+  }
+
+  /**
    * remove all points from the number line
    * @public
    */
