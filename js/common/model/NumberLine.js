@@ -142,7 +142,7 @@ class NumberLine {
    * @public
    */
   hasPointAt( value ) {
-    return _.some( this.residentPoints.getArray(), point => point.valueProperty.value === value );
+    return this.residentPoints.some( point => point.valueProperty.value === value );
   }
 
   /**
@@ -152,7 +152,7 @@ class NumberLine {
    * @private
    */
   getPointsAt( value ) {
-    return _.filter( this.residentPoints.getArray(), point => point.valueProperty.value === value );
+    return this.residentPoints.filter( point => point.valueProperty.value === value );
   }
 
   /**
