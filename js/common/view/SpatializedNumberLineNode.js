@@ -98,7 +98,7 @@ class SpatializedNumberLineNode extends Node {
     // Create the layer where everything that moves if the number line's center position changes will reside.  This
     // will be the parent node for most sub-nodes, but will exclude things like points, which are responsible for
     // positioning themselves in space.  Everything on this node will be added as though the number line is centered at
-    // the local point (0,0), and then it will be translated into the right location.
+    // the local point (0,0), and then it will be translated into the right position.
     const numberLineRootNode = new Node();
     this.addChild( numberLineRootNode );
 

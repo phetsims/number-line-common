@@ -8,7 +8,6 @@
  * @author Chris Klusendorf (PhET Interactive Simulations)
  */
 
-import Line from '../../../../kite/js/segments/Line.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
@@ -17,10 +16,11 @@ import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Range from '../../../../dot/js/Range.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Vector2Property from '../../../../dot/js/Vector2Property.js';
+import Line from '../../../../kite/js/segments/Line.js';
+import NumberLine from '../../../../number-line-common/js/common/model/NumberLine.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import numberLineCommon from '../../numberLineCommon.js';
-import NumberLine from '../../../../number-line-common/js/common/model/NumberLine.js';
 
 // constants
 
@@ -39,7 +39,7 @@ const POINT_REMOVAL_END_DISTANCE = 25;
 class SpatializedNumberLine extends NumberLine {
 
   /**
-   * {Vector2} initialZeroPosition - the location in model space of the zero point on the number line
+   * {Vector2} initialZeroPosition - the position in model space of the zero point on the number line
    * {Object} [options]
    * @public
    */

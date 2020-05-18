@@ -46,12 +46,12 @@ class NumberLine {
       // listener to make sure point lands in a good point when released
       const pointIsDraggingListener = dragging => {
 
-        // do nothing if dragging, if this is the only point at this location, or if overlap is allowed
+        // do nothing if dragging, if this is the only point at this position, or if overlap is allowed
         if ( dragging || !options.preventOverlap || this.getPointsAt( addedPoint.valueProperty.value ).length <= 1 ) {
           return;
         }
 
-        // there is already a point at this location, so we have to choose another
+        // there is already a point at this position, so we have to choose another
         let beginningValue = addedPoint.mostRecentlyProposedValue;
         if ( beginningValue === null ) {
           beginningValue = addedPoint.valueProperty.value;
