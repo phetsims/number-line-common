@@ -8,7 +8,7 @@ import HBox from '../../../../scenery/js/nodes/HBox.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
 import HSlider from '../../../../sun/js/HSlider.js';
-import numberLineOperations from '../../numberLineOperations.js';
+import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
 const LABEL_FONT = new PhetFont( 20 );
@@ -75,5 +75,5 @@ class MockupOpacityControl extends VBox {
 
 const mockupOpacityControl = new MockupOpacityControl();
 
-numberLineOperations.register( 'mockupOpacityControl', mockupOpacityControl );
+numberLineCommon.register( 'mockupOpacityControl', mockupOpacityControl );
 export default mockupOpacityControl;
