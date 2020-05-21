@@ -7,11 +7,9 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
-import PhetFont from '../../../scenery-phet/js/PhetFont.js';
 import numberLineCommon from '../numberLineCommon.js';
 
 // constants
-const CHECKBOX_BOX_WIDTH = 17;
 const LABEL_BACKGROUND_CORNER_RADIUS = 3;
 
 const NLCConstants = {
@@ -28,15 +26,6 @@ const NLCConstants = {
     xMargin: 3,
     yMargin: 3
   },
-
-  // checkbox options
-  CHECKBOX_OPTIONS: { boxWidth: CHECKBOX_BOX_WIDTH },
-  CHECKBOX_TEXT_OPTIONS: {
-    font: new PhetFont( 16 ),
-    maxWidth: 200
-  },
-  CHECKBOX_BOX_WIDTH: CHECKBOX_BOX_WIDTH,
-  CHECKBOX_DILATION: 6,
 
   RESET_BUTTON_INSET_FROM_EDGE: 20,
   ACCORDION_BOX_CORNER_RADIUS: 4
