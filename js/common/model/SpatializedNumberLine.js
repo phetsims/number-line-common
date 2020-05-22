@@ -49,7 +49,7 @@ class SpatializedNumberLine extends NumberLine {
 
     options = merge( {
 
-      // {string} - whether the number line is initially oriented in the horizontal or vertical direction
+      // {Orientation} - whether the number line is initially oriented in the horizontal or vertical direction
       initialOrientation: Orientation.HORIZONTAL,
 
       // {Range} - range of values to be displayed
