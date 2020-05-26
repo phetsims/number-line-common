@@ -230,6 +230,15 @@ class SpatializedNumberLine extends NumberLine {
   }
 
   /**
+   * Check whether the provided point is within the current displayed range of the number line.  The point does not have
+   * to be resident on the number line.
+   * @param {NumberLinePoint} point
+   */
+  isPointInDisplayedRange( point ) {
+    return this.displayedRangeProperty.value.contains( point.valueProperty.value );
+  }
+
+  /**
    * whether the provided position is within range of the provided distance
    * @param {Vector2} pointControllerPosition
    * @param {number} perpendicularDistance

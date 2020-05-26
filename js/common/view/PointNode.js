@@ -97,27 +97,37 @@ class PointNode extends Node {
       [
         numberLinePoint.valueProperty,
         numberLine.showOppositesProperty,
+        numberLine.displayedRangeProperty,
         numberLine.centerPositionProperty,
-        numberLine.orientationProperty,
-        numberLine.displayedRangeProperty
+        numberLine.orientationProperty
       ],
-      ( value, oppositesVisible ) => {
-        if ( options.isDoppelganger ) {
-          value = -value;
-          this.visible = oppositesVisible;
-        }
-        circle.center = numberLine.valueToModelPosition( value );
+      ( value, oppositesVisible, displayedRange ) => {
 
-        // update the point label text and position
-        updateLabelText( value );
-        if ( numberLine.isHorizontal ) {
-          pointLabelNode.centerX = circle.centerX;
-          pointLabelNode.bottom = circle.y - 20;
+        if ( displayedRange.contains( value ) ) {
+          this.visible = true;
+          if ( options.isDoppelganger ) {
+            value = -value;
+            this.visible = oppositesVisible;
+          }
+          circle.center = numberLine.valueToModelPosition( value );
+
+          // update the point label text and position
+          updateLabelText( value );
+          if ( numberLine.isHorizontal ) {
+            pointLabelNode.centerX = circle.centerX;
+            pointLabelNode.bottom = circle.y - 20;
+          }
+          else {
+            pointLabelNode.right = circle.x - 20;
+            pointLabelNode.centerY = circle.centerY;
+          }
         }
         else {
-          pointLabelNode.right = circle.x - 20;
-          pointLabelNode.centerY = circle.centerY;
+
+          // Don't show points that are on the number line but out of the displayed range.
+          this.visible = false;
         }
+
       }
     );
 
