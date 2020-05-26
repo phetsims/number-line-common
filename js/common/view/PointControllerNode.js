@@ -1,8 +1,8 @@
 // Copyright 2019-2020, University of Colorado Boulder
 
 /**
- * PointControllerNode is a Scenery node that represents the view magnification of a point controller.  Interactions with
- * point controllers enable the user to add, remove, and control points on a number line.
+ * PointControllerNode is a Scenery node that represents a point controller in the view.  Interactions with point
+ * controller nodes enable the user to add, remove, and manipulate points on a number line.
  *
  * @author John Blanco (PhET Interactive Simulations)
  */
