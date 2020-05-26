@@ -8,10 +8,10 @@
  */
 
 import Enumeration from '../../../../phet-core/js/Enumeration.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
+import numberLineCommon from '../../numberLineCommon.js';
 
 // @public
 const LockToNumberLine = Enumeration.byKeys( [ 'ALWAYS', 'NEVER', 'WHEN_CLOSE' ] );
 
-numberLineIntegers.register( 'LockToNumberLine', LockToNumberLine );
+numberLineCommon.register( 'LockToNumberLine', LockToNumberLine );
 export default LockToNumberLine;

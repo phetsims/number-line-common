@@ -20,7 +20,7 @@ import Vector2Property from '../../../../dot/js/Vector2Property.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
+import numberLineCommon from '../../numberLineCommon.js';
 import LockToNumberLine from './LockToNumberLine.js';
 import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
 
@@ -423,5 +423,5 @@ class PointController {
   }
 }
 
-numberLineIntegers.register( 'PointController', PointController );
+numberLineCommon.register( 'PointController', PointController );
 export default PointController;

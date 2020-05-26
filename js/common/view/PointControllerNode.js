@@ -15,8 +15,8 @@ import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import DragListener from '../../../../scenery/js/listeners/DragListener.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import numberLineIntegers from '../../numberLineIntegers.js';
-import LockToNumberLine from '../model/LockToNumberLine.js';
+import numberLineCommon from '../../numberLineCommon.js';
+import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 
 // constants
 const SPHERE_RADIUS = 10; // in screen coords, radius of sphere that is used if no controller node is provided
@@ -71,15 +71,22 @@ class PointControllerNode extends Node {
     // A point controller node is visible most of the time, but if it is controlling a point that goes outside of the
     // displayed range of the number line, it should be invisible.
     const updatePointControllerVisibility = () => {
-      let atLeastOnePointVisible = false;
-      pointController.numberLines.forEach( numberLine => {
-        pointController.numberLinePoints.forEach( point => {
-          if ( numberLine.isPointInDisplayedRange( point ) ) {
-            atLeastOnePointVisible = true;
-          }
+      if ( pointController.numberLinePoints.length >= 1 ) {
+        let atLeastOnePointVisible = false;
+        pointController.numberLines.forEach( numberLine => {
+          pointController.numberLinePoints.forEach( point => {
+            if ( numberLine.isPointInDisplayedRange( point ) ) {
+              atLeastOnePointVisible = true;
+            }
+          } );
         } );
-      } );
-      this.visible = atLeastOnePointVisible;
+        this.visible = atLeastOnePointVisible;
+      }
+      else {
+
+        // always visible if not controlling a point
+        this.visible = true;
+      }
     };
 
     // If this point controller is permanently attached to a number line, monitor that number line for changes to its
@@ -219,5 +226,5 @@ class PointControllerNode extends Node {
   }
 }
 
-numberLineIntegers.register( 'PointControllerNode', PointControllerNode );
+numberLineCommon.register( 'PointControllerNode', PointControllerNode );
 export default PointControllerNode;
