@@ -28,7 +28,7 @@ const NLCConstants = {
   },
 
   RESET_BUTTON_INSET_FROM_EDGE: 20,
-  ACCORDION_BOX_CORNER_RADIUS: 4
+  ACCORDION_BOX_CORNER_RADIUS: 5
 };
 
 numberLineCommon.register( 'NLCConstants', NLCConstants );
