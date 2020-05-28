@@ -349,7 +349,8 @@ class PointController {
             property: this.positionProperty,
             easing: Easing.CUBIC_IN_OUT,
             to: position
-          } ]
+          }
+        ]
       } );
       this.inProgressAnimationProperty.value = animation;
       animation.start();
