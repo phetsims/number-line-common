@@ -197,6 +197,7 @@ class SpatializedNumberLine extends NumberLine {
    * get the positive or negative distance in model space from the zero point on the number line to the provided value
    * @param numberLineValue
    * @returns {number}
+   * @public
    */
   getScaledOffsetFromZero( numberLineValue ) {
     let scaledOffsetFromZero;
@@ -233,6 +234,7 @@ class SpatializedNumberLine extends NumberLine {
    * Check whether the provided point is within the current displayed range of the number line.  The point does not have
    * to be resident on the number line.
    * @param {NumberLinePoint} point
+   * @public
    */
   isPointInDisplayedRange( point ) {
     return this.displayedRangeProperty.value.contains( point.valueProperty.value );

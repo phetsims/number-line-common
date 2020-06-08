@@ -103,6 +103,10 @@ class NumberLinePoint {
     this.mostRecentlyProposedValue = numberLineValue;
   }
 
+  /**
+   * release all memory to avoid leaks
+   * @public
+   */
   dispose() {
     this.disposeEmitterNumberLinePoint.emit();
     super.dispose();
