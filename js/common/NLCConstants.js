@@ -28,7 +28,19 @@ const NLCConstants = {
   },
 
   RESET_BUTTON_INSET_FROM_EDGE: 20,
-  ACCORDION_BOX_CORNER_RADIUS: 5
+  ACCORDION_BOX_COMMON_OPTIONS: {
+    fill: 'white',
+    showTitleWhenExpanded: false,
+    cornerRadius: 5,
+    buttonXMargin: 8,
+    buttonYMargin: 6,
+    expandCollapseButtonOptions: {
+      touchAreaXDilation: 15,
+      touchAreaYDilation: 15,
+      mouseAreaXDilation: 5,
+      mouseAreaYDilation: 5
+    }
+  }
 };
 
 numberLineCommon.register( 'NLCConstants', NLCConstants );
