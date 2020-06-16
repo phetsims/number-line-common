@@ -8,12 +8,9 @@
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import Shape from '../../../../kite/js/Shape.js';
-import merge from '../../../../phet-core/js/merge.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import Line from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
@@ -21,6 +18,7 @@ import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import NLCConstants from '../NLCConstants.js';
+import AbsoluteValueLine from './AbsoluteValueLine.js';
 
 // constants
 const CAP_LENGTH = 10; // the "cap" is the end portion of the span, value is in screen coords
@@ -28,8 +26,6 @@ const ANIMATION_SPEED = 160; // in screen coords per second
 const MAX_ANIMATION_DURATION = 0.5; // in seconds
 const EQUATION_NUMBER_FONT = new PhetFont( 18 );
 const EXAMPLE_EQUATION_NUMBER_NODE = new Text( 8, { font: EQUATION_NUMBER_FONT } );
-const ABSOLUTE_VALUE_LINE_TOP = new Vector2( 0, EXAMPLE_EQUATION_NUMBER_NODE.top );
-const ABSOLUTE_VALUE_LINE_BOTTOM = new Vector2( 0, EXAMPLE_EQUATION_NUMBER_NODE.bottom );
 const ABSOLUTE_VALUE_LINE_SPACING = 1;
 const EQUALS_SIGN_SPACING = 4;
 
@@ -125,12 +121,12 @@ class AbsoluteValueSpanNode extends Node {
     const updateEquation = () => {
       const value = numberLinePoint.valueProperty.value;
       equationNode.removeAllChildren();
-      equationNode.addChild( new AbsoluteValueLine() );
+      equationNode.addChild( new AbsoluteValueLine( EXAMPLE_EQUATION_NUMBER_NODE ) );
       equationNode.addChild( new Text( value, {
         font: EQUATION_NUMBER_FONT,
         left: equationNode.width + ABSOLUTE_VALUE_LINE_SPACING
       } ) );
-      equationNode.addChild( new AbsoluteValueLine( {
+      equationNode.addChild( new AbsoluteValueLine( EXAMPLE_EQUATION_NUMBER_NODE, {
         left: equationNode.width + ABSOLUTE_VALUE_LINE_SPACING
       } ) );
       equationNode.addChild( new Text( '=', {
@@ -229,22 +225,6 @@ class AbsoluteValueSpanNode extends Node {
   dispose() {
     this.disposeAbsoluteValueSpanNode();
     super.dispose();
-  }
-}
-
-/**
- * line used to indicate an absolute value indicator
- * @private
- */
-class AbsoluteValueLine extends Line {
-
-  /**
-   * @param {Object} [options] - options that will be pass to the constructor of the line node
-   * @public
-   */
-  constructor( options ) {
-    options = merge( { stroke: 'black' }, options );
-    super( ABSOLUTE_VALUE_LINE_TOP, ABSOLUTE_VALUE_LINE_BOTTOM, options );
   }
 }
 
