@@ -108,7 +108,7 @@ class PointControllerNode extends Node {
       if ( options.connectorLine && pointController.isControllingNumberLinePoint() ) {
 
         // As of this writing (Nov 2019), PointControllerNode only handles drawing connector lines to a single point.
-        // It would be possible to handle multiple points, but this has not been needed thus far and is therefor not
+        // It would be possible to handle multiple points, but this has not been needed thus far and is therefore not
         // handled. If you need it, feel free to add it.
         assert && assert( pointController.numberLinePoints.length === 1, 'incorrect number of points controlled' );
 
@@ -118,6 +118,7 @@ class PointControllerNode extends Node {
       }
       updateConnectorLineVisibility();
       this.draggableNode.translation = position;
+      //TODO: remove below and implement solution described in https://github.com/phetsims/number-line-common/issues/2
       this.moveToFront(); // make sure that the most recently moved point controller is at the front of the z-order
       updatePointControllerVisibility();
     };
