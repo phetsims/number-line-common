@@ -113,7 +113,7 @@ class PointControllerNode extends Node {
         assert && assert( pointController.numberLinePoints.length === 1, 'incorrect number of points controlled' );
 
         // update the connector line
-        const pointPosition = pointController.numberLinePoints[ 0 ].getPositionInModelSpace();
+        const pointPosition = pointController.numberLinePoints.get( 0 ).getPositionInModelSpace();
         connectorLine.setLine( position.x, position.y, pointPosition.x, pointPosition.y );
       }
       updateConnectorLineVisibility();

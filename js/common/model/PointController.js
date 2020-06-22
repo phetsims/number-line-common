@@ -23,6 +23,7 @@ import Easing from '../../../../twixt/js/Easing.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import LockToNumberLine from './LockToNumberLine.js';
 import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
+import ObservableArray from '../../../../axon/js/ObservableArray.js';
 
 // constants
 const AVERAGE_ANIMATION_SPEED = 1000; // screen coordinates per second
@@ -69,7 +70,7 @@ class PointController {
     // @private
     this.offsetFromHorizontalNumberLine = options.offsetFromHorizontalNumberLine;
     this.offsetFromVerticalNumberLine = options.offsetFromVerticalNumberLine;
-    this.pointToValueChangeHandlerMap = new Map();
+    this.pointToValueChangeHandlerMap = new Map(); //TODO: this may not be needed if closures are used with the new ObservableArray
     this.lockToNumberLine = options.lockToNumberLine;
     this.bidirectionalAssociation = options.bidirectionalAssociation;
 
@@ -95,8 +96,8 @@ class PointController {
     // @public (read-only) {Animation|null} - tracks any animation that is currently in progress
     this.inProgressAnimationProperty = new Property( null );
 
-    // @public (read-only) {NumberLinePoint[]} - points on the number line that this controls
-    this.numberLinePoints = [];
+    // @public (read-only) {ObservableArray<NumberLinePoint>} - points on the number line that this controls
+    this.numberLinePoints = new ObservableArray();
 
     // add the initial number line points
     options.numberLinePoints.forEach( point => { this.associateWithNumberLinePoint( point ); } );
@@ -112,7 +113,7 @@ class PointController {
         [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty ],
         () => {
           if ( this.lockToNumberLine !== LockToNumberLine.NEVER && this.numberLinePoints.length === 1 ) {
-            const relevantPoint = _.find( this.numberLinePoints, point => point.numberLine === numberLine );
+            const relevantPoint = this.numberLinePoints.find( point => point.numberLine === numberLine );
             relevantPoint && this.setPositionRelativeToPoint( relevantPoint );
           }
         }
@@ -160,7 +161,7 @@ class PointController {
    * @public
    */
   associateWithNumberLinePoint( numberLinePoint ) {
-    this.numberLinePoints.push( numberLinePoint );
+    this.numberLinePoints.add( numberLinePoint );
 
     if ( this.bidirectionalAssociation ) {
       const positionUpdater = () => {
@@ -209,7 +210,7 @@ class PointController {
     }
 
     // remove the point from the list of controlled points
-    this.numberLinePoints = _.without( this.numberLinePoints, numberLinePoint );
+    this.numberLinePoints.remove( numberLinePoint );
   }
 
   /**
