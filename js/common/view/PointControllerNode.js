@@ -118,11 +118,22 @@ class PointControllerNode extends Node {
       }
       updateConnectorLineVisibility();
       this.draggableNode.translation = position;
-      //TODO: remove below and implement solution described in https://github.com/phetsims/number-line-common/issues/2
-      this.moveToFront(); // make sure that the most recently moved point controller is at the front of the z-order
       updatePointControllerVisibility();
     };
     pointController.positionProperty.link( updateAppearanceOnPositionChange );
+
+    // move this point controller to the front of the z-order if it's PointController has a point that changes value
+    pointController.numberLinePoints.addItemAddedListener( numberLinePoint => {
+      const valueListener = () => { this.moveToFront(); };
+      numberLinePoint.valueProperty.link( valueListener );
+      const itemRemovedListener = removedNumberLinePoint => {
+        if ( numberLinePoint === removedNumberLinePoint ) {
+          numberLinePoint.valueProperty.unlink( valueListener );
+          pointController.numberLinePoints.removeItemRemovedListener( itemRemovedListener );
+        }
+      };
+      pointController.numberLinePoints.addItemRemovedListener( itemRemovedListener );
+    } );
 
     if ( options.connectorLineVisibleProperty !== ALWAYS_TRUE_PROPERTY ) {
       assert && assert( options.connectorLine, 'must have connector line turned on for the viz property to make sense' );
