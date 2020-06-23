@@ -122,7 +122,7 @@ class PointControllerNode extends Node {
     };
     pointController.positionProperty.link( updateAppearanceOnPositionChange );
 
-    // move this point controller to the front of the z-order if it's PointController has a point that changes value
+    // move this point controller to the front of the z-order if its PointController has a point that changes value
     pointController.numberLinePoints.addItemAddedListener( numberLinePoint => {
       const valueListener = () => { this.moveToFront(); };
       numberLinePoint.valueProperty.link( valueListener );

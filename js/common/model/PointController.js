@@ -70,7 +70,6 @@ class PointController {
     // @private
     this.offsetFromHorizontalNumberLine = options.offsetFromHorizontalNumberLine;
     this.offsetFromVerticalNumberLine = options.offsetFromVerticalNumberLine;
-    this.pointToValueChangeHandlerMap = new Map(); //TODO: this may not be needed if closures are used with the new ObservableArray
     this.lockToNumberLine = options.lockToNumberLine;
     this.bidirectionalAssociation = options.bidirectionalAssociation;
 
@@ -167,17 +166,19 @@ class PointController {
       const positionUpdater = () => {
         this.setPositionRelativeToPoint( numberLinePoint );
       };
-      this.pointToValueChangeHandlerMap.set( numberLinePoint, positionUpdater );
       numberLinePoint.valueProperty.link( positionUpdater );
+      const itemRemovedListener = removedNumberLinePoint => {
+        if ( removedNumberLinePoint === numberLinePoint ) {
+          this.numberLinePoints.removeItemRemovedListener( itemRemovedListener );
+          numberLinePoint.valueProperty.unlink( positionUpdater );
+        }
+      };
+      this.numberLinePoints.addItemRemovedListener( itemRemovedListener );
     }
 
     // set initial drag state, there is a link elsewhere that will make subsequent updates
     numberLinePoint.isDraggingProperty.value = this.isDraggingProperty.value;
 
-    assert && assert(
-      !this.bidirectionalAssociation || this.numberLinePoints.length === this.pointToValueChangeHandlerMap.size,
-      'There should be as many associated points as there are pointToValueChangeHandlerMap entries'
-    );
     assert && assert(
       this.numberLinePoints.length === _.uniq( this.numberLinePoints.map( point => point.numberLine ) ).length,
       'There shouldn\'t be more than one associated point from the same number line'
@@ -200,14 +201,6 @@ class PointController {
 
     // since the point will no longer be controlled, it can't be dragging
     numberLinePoint.isDraggingProperty.value = false;
-
-    // unhook any listeners that were added
-    if ( this.bidirectionalAssociation ) {
-      const valueChangeHandler = this.pointToValueChangeHandlerMap.get( numberLinePoint );
-      assert && assert( valueChangeHandler );
-      numberLinePoint.valueProperty.unlink( valueChangeHandler );
-      this.pointToValueChangeHandlerMap.delete( numberLinePoint );
-    }
 
     // remove the point from the list of controlled points
     this.numberLinePoints.remove( numberLinePoint );
