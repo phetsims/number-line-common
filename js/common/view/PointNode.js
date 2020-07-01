@@ -76,6 +76,7 @@ class PointNode extends Node {
     const pointLabelNode = new ColorizedReadoutNode( labelTextProperty, numberLinePoint.colorProperty, {
       colorizeBackground: options.colorizeLabelBackground,
       colorizeText: options.usePointColorForLabelText,
+      yMargin: 1,
       textOptions: {
         font: new PhetFont( 18 ),
         maxWidth: 60 // empirically determined to work in all currently needed cases
