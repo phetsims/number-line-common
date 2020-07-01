@@ -1,5 +1,8 @@
 {
   "range": {
     "value": "{{lowValue}} to {{highValue}}"
+  },
+  "pointsOffScale": {
+    "value": "Points<br>off scale!"
   }
 }

@@ -13,6 +13,12 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import AbsoluteValueSpanNode from './AbsoluteValueSpanNode.js';
 import PointNode from './PointNode.js';
+import Color from '../../../../scenery/js/util/Color.js';
+import NLCConstants from '../NLCConstants.js';
+import HBox from '../../../../scenery/js/nodes/HBox.js';
+import RichText from '../../../../scenery/js/nodes/RichText.js';
+import Panel from '../../../../sun/js/Panel.js';
+import numberLineCommonStrings from '../../numberLineCommonStrings.js';
 
 // constants
 const TICK_MARK_LABEL_DISTANCE = 5;
@@ -22,6 +28,20 @@ const ABSOLUTE_VALUE_SPAN_NL_DISTANCE_Y = 55;
 const ABSOLUTE_VALUE_SPAN_SPACING_Y = 40;
 const ABSOLUTE_VALUE_SPAN_NL_DISTANCE_X = 105;
 const ABSOLUTE_VALUE_SPAN_SPACING_X = 95;
+const OFF_SCALE_INDICATOR_FONT = new PhetFont( 14 );
+const COMMON_OFF_SCALE_PANEL_OPTIONS = {
+  fill: Color.WHITE,
+  stroke: Color.BLACK,
+  cornerRadius: NLCConstants.LABEL_BACKGROUND_CORNER_RADIUS
+};
+const OFF_SCALE_HBOX_SPACING = 5;
+const OFF_SCALE_ARROW_LENGTH = 25;
+const OFF_SCALE_ARROW_OPTIONS = {
+  tailWidth: 2
+};
+const OFF_SCALE_INDICATOR_HEIGHT_ABOVE_LINE = 25;
+
+const pointsOffScaleString = numberLineCommonStrings.pointsOffScale;
 
 // convenience function to calculate distance of an absolute value span node from the number line
 const getIndicatorDistanceFromNL = ( numberLine, count ) => {
@@ -70,7 +90,10 @@ class SpatializedNumberLineNode extends Node {
       pointNodeOptions: {
         usePointColorForLabelText: true,
         colorizeLabelBackground: false
-      }
+      },
+
+      // {boolean} whether to display a message indicating that points are off the number line's displayed range
+      warningForPointsOutsideRange: false
 
     }, options );
 
@@ -395,6 +418,76 @@ class SpatializedNumberLineNode extends Node {
     numberLine.centerPositionProperty.link( centerPosition => {
       numberLineRootNode.translation = centerPosition;
     } );
+
+    // Adds points off scale panels if necessary
+    if ( options.warningForPointsOutsideRange ) {
+      // indicators for when all points are off the scale
+      const offScaleToRightText = new RichText( pointsOffScaleString, {
+        font: OFF_SCALE_INDICATOR_FONT,
+        align: 'left'
+      } );
+      const offScaleToRightArrow = new ArrowNode( 0, 0, OFF_SCALE_ARROW_LENGTH, 0, OFF_SCALE_ARROW_OPTIONS );
+      const pointsOffScaleToRightIndicator = new Panel(
+        new HBox( {
+          children: [ offScaleToRightText, offScaleToRightArrow ],
+          spacing: OFF_SCALE_HBOX_SPACING
+        } ),
+        merge( {}, COMMON_OFF_SCALE_PANEL_OPTIONS )
+      );
+      this.addChild( pointsOffScaleToRightIndicator );
+
+      const offScaleToLeftText = new RichText( pointsOffScaleString, {
+        font: OFF_SCALE_INDICATOR_FONT,
+        align: 'right'
+      } );
+      const offScaleToLeftArrow = new ArrowNode( 0, 0, -OFF_SCALE_ARROW_LENGTH, 0, OFF_SCALE_ARROW_OPTIONS );
+      const pointsOffScaleToLeftIndicator = new Panel(
+        new HBox( {
+          children: [ offScaleToLeftArrow, offScaleToLeftText ],
+          spacing: OFF_SCALE_HBOX_SPACING
+        } ),
+        merge( {}, COMMON_OFF_SCALE_PANEL_OPTIONS )
+      );
+      this.addChild( pointsOffScaleToLeftIndicator );
+
+      // function closure to update the position and visibility of each of the points-off-scale indicators
+      const updatePointsOffScaleIndicators = () => {
+
+        const displayedRange = numberLine.displayedRangeProperty.value;
+
+        // positions
+        pointsOffScaleToLeftIndicator.centerX = numberLine.valueToModelPosition( displayedRange.min ).x;
+        pointsOffScaleToLeftIndicator.bottom = numberLine.centerPositionProperty.value.y -
+          OFF_SCALE_INDICATOR_HEIGHT_ABOVE_LINE;
+        pointsOffScaleToRightIndicator.centerX = numberLine.valueToModelPosition( displayedRange.max ).x;
+        pointsOffScaleToRightIndicator.bottom = pointsOffScaleToLeftIndicator.bottom;
+
+        // visibility TODO: determine whether this needs to be all points below or above instead of at least one point
+        pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.reduce(
+          true,
+          ( allPointsBelowMin, point ) => allPointsBelowMin && point.valueProperty.value < displayedRange.min
+        );
+        pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.reduce(
+          true,
+          ( allPointsAboveMax, point ) => allPointsAboveMax && point.valueProperty.value > displayedRange.max
+        );
+      };
+
+      // hook up the listener that will update the points-off-scale indicators
+      Property.multilink(
+        [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty ],
+        updatePointsOffScaleIndicators
+      );
+
+      numberLine.residentPoints.addItemAddedListener( addedPoint => {
+        addedPoint.valueProperty.link( updatePointsOffScaleIndicators );
+      } );
+      numberLine.residentPoints.addItemRemovedListener( removedPoint => {
+        if ( removedPoint.valueProperty.hasListener( updatePointsOffScaleIndicators ) ) {
+          removedPoint.valueProperty.unlink( updatePointsOffScaleIndicators );
+        }
+      } );
+    }
   }
 
   /**
