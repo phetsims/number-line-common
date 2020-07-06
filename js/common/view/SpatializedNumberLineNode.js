@@ -463,13 +463,11 @@ class SpatializedNumberLineNode extends Node {
         pointsOffScaleToRightIndicator.bottom = pointsOffScaleToLeftIndicator.bottom;
 
         // visibility TODO: determine whether this needs to be all points below or above instead of at least one point
-        pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.reduce(
-          true,
-          ( allPointsBelowMin, point ) => allPointsBelowMin && point.valueProperty.value < displayedRange.min
+        pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.length > 0 && !numberLine.residentPoints.some(
+          point => point.valueProperty.value >= displayedRange.min
         );
-        pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.reduce(
-          true,
-          ( allPointsAboveMax, point ) => allPointsAboveMax && point.valueProperty.value > displayedRange.max
+        pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.length > 0 && !numberLine.residentPoints.some(
+          point => point.valueProperty.value <= displayedRange.max
         );
       };
 
