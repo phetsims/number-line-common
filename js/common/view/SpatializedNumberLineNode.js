@@ -93,7 +93,7 @@ class SpatializedNumberLineNode extends Node {
       },
 
       // {boolean} whether to display a message indicating that points are off the number line's displayed range
-      warningForPointsOutsideRange: false
+      allowPointsOutsideRangeIndicator: false
 
     }, options );
 
@@ -420,7 +420,7 @@ class SpatializedNumberLineNode extends Node {
     } );
 
     // Adds points off scale panels if necessary
-    if ( options.warningForPointsOutsideRange ) {
+    if ( options.allowPointsOutsideRangeIndicator ) {
       // indicators for when all points are off the scale
       const offScaleToRightText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
