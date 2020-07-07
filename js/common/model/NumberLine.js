@@ -113,7 +113,7 @@ class NumberLine {
    * @public
    */
   hasPoint( numberLinePoint ) {
-    return this.residentPoints.contains( numberLinePoint );
+    return this.residentPoints.includes( numberLinePoint );
   }
 
   /**
