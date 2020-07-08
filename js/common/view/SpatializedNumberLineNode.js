@@ -358,6 +358,9 @@ class SpatializedNumberLineNode extends Node {
           case 20:
             tickMarkSpacing = 1;
             break;
+          case 30:
+            tickMarkSpacing = 5;
+            break;
           case 60:
             tickMarkSpacing = 5;
             break;
