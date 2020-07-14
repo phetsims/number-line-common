@@ -476,10 +476,10 @@ class SpatializedNumberLineNode extends Node {
           );
         }
         else {
-          pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.length > 0 && numberLine.residentPoints.some(
+          pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.some(
             point => point.valueProperty.value < displayedRange.min
           );
-          pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.length > 0 && numberLine.residentPoints.some(
+          pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.some(
             point => point.valueProperty.value > displayedRange.max
           );
         }
@@ -496,6 +496,7 @@ class SpatializedNumberLineNode extends Node {
       } );
       numberLine.residentPoints.addItemRemovedListener( removedPoint => {
         if ( removedPoint.valueProperty.hasListener( updatePointsOffScaleIndicators ) ) {
+          updatePointsOffScaleIndicators();
           removedPoint.valueProperty.unlink( updatePointsOffScaleIndicators );
         }
       } );
