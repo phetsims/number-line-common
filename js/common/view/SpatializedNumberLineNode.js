@@ -19,6 +19,7 @@ import HBox from '../../../../scenery/js/nodes/HBox.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Panel from '../../../../sun/js/Panel.js';
 import numberLineCommonStrings from '../../numberLineCommonStrings.js';
+import PointsOffScaleCondition from '../model/PointsOffScaleCondition.js';
 
 // constants
 const TICK_MARK_LABEL_DISTANCE = 5;
@@ -92,8 +93,8 @@ class SpatializedNumberLineNode extends Node {
         colorizeLabelBackground: false
       },
 
-      // {boolean} whether to display a message indicating that points are off the number line's displayed range
-      allowPointsOutsideRangeIndicator: false
+      // {PointsOffScaleCondition} when to show the points off scale indicator
+      pointsOffScaleCondition: PointsOffScaleCondition.NEVER
 
     }, options );
 
@@ -423,7 +424,7 @@ class SpatializedNumberLineNode extends Node {
     } );
 
     // Adds points off scale panels if necessary
-    if ( options.allowPointsOutsideRangeIndicator ) {
+    if ( options.pointsOffScaleCondition ) {
       // indicators for when all points are off the scale
       const offScaleToRightText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
@@ -465,13 +466,23 @@ class SpatializedNumberLineNode extends Node {
         pointsOffScaleToRightIndicator.centerX = numberLine.valueToModelPosition( displayedRange.max ).x;
         pointsOffScaleToRightIndicator.bottom = pointsOffScaleToLeftIndicator.bottom;
 
-        // visibility TODO: determine whether this needs to be all points below or above instead of at least one point
-        pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.length > 0 && !numberLine.residentPoints.some(
-          point => point.valueProperty.value >= displayedRange.min
-        );
-        pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.length > 0 && !numberLine.residentPoints.some(
-          point => point.valueProperty.value <= displayedRange.max
-        );
+        // visibility
+        if ( options.pointsOffScaleCondition === PointsOffScaleCondition.ALL ) {
+          pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.length > 0 && !numberLine.residentPoints.some(
+            point => point.valueProperty.value >= displayedRange.min
+          );
+          pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.length > 0 && !numberLine.residentPoints.some(
+            point => point.valueProperty.value <= displayedRange.max
+          );
+        }
+        else {
+          pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.length > 0 && numberLine.residentPoints.some(
+            point => point.valueProperty.value < displayedRange.min
+          );
+          pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.length > 0 && numberLine.residentPoints.some(
+            point => point.valueProperty.value > displayedRange.max
+          );
+        }
       };
 
       // hook up the listener that will update the points-off-scale indicators
