@@ -424,7 +424,7 @@ class SpatializedNumberLineNode extends Node {
     } );
 
     // Adds points off scale panels if necessary
-    if ( options.pointsOffScaleCondition ) {
+    if ( options.pointsOffScaleCondition !== PointsOffScaleCondition.NEVER ) {
       // indicators for when all points are off the scale
       const offScaleToRightText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
@@ -453,6 +453,8 @@ class SpatializedNumberLineNode extends Node {
         merge( {}, COMMON_OFF_SCALE_PANEL_OPTIONS )
       );
       this.addChild( pointsOffScaleToLeftIndicator );
+
+      // TODO: off scale up and off scale down for horizontal vs vertical number lines
 
       // function closure to update the position and visibility of each of the points-off-scale indicators
       const updatePointsOffScaleIndicators = () => {
