@@ -454,42 +454,86 @@ class SpatializedNumberLineNode extends Node {
       );
       this.addChild( pointsOffScaleToLeftIndicator );
 
-      // TODO: off scale up and off scale down for horizontal vs vertical number lines
+      const offScaleToTopText = new RichText( pointsOffScaleString, {
+        font: OFF_SCALE_INDICATOR_FONT,
+        align: 'center'
+      } );
+      const offScaleToTopArrow = new ArrowNode( 0, 0, 0, -OFF_SCALE_ARROW_LENGTH, OFF_SCALE_ARROW_OPTIONS );
+      const pointsOffScaleToTopIndicator = new Panel(
+        new HBox( {
+          children: [ offScaleToTopArrow, offScaleToTopText ],
+          spacing: OFF_SCALE_HBOX_SPACING
+        } ),
+        merge( {}, COMMON_OFF_SCALE_PANEL_OPTIONS )
+      );
+      this.addChild( pointsOffScaleToTopIndicator );
+
+      const offScaleToBottomText = new RichText( pointsOffScaleString, {
+        font: OFF_SCALE_INDICATOR_FONT,
+        align: 'center'
+      } );
+      const offScaleToBottomArrow = new ArrowNode( 0, 0, 0, OFF_SCALE_ARROW_LENGTH, OFF_SCALE_ARROW_OPTIONS );
+      const pointsOffScaleToBottomIndicator = new Panel(
+        new HBox( {
+          children: [ offScaleToBottomArrow, offScaleToBottomText ],
+          spacing: OFF_SCALE_HBOX_SPACING
+        } ),
+        merge( {}, COMMON_OFF_SCALE_PANEL_OPTIONS )
+      );
+      this.addChild( pointsOffScaleToBottomIndicator );
 
       // function closure to update the position and visibility of each of the points-off-scale indicators
       const updatePointsOffScaleIndicators = () => {
 
         const displayedRange = numberLine.displayedRangeProperty.value;
 
-        // positions
+        // positions TODO: rework
         pointsOffScaleToLeftIndicator.centerX = numberLine.valueToModelPosition( displayedRange.min ).x;
         pointsOffScaleToLeftIndicator.bottom = numberLine.centerPositionProperty.value.y -
           OFF_SCALE_INDICATOR_HEIGHT_ABOVE_LINE;
         pointsOffScaleToRightIndicator.centerX = numberLine.valueToModelPosition( displayedRange.max ).x;
         pointsOffScaleToRightIndicator.bottom = pointsOffScaleToLeftIndicator.bottom;
+        pointsOffScaleToTopIndicator.center = pointsOffScaleToRightIndicator.center; //TODO: this is temporary and wrong
+        pointsOffScaleToBottomIndicator.center = pointsOffScaleToLeftIndicator.center; //TODO: this is temporary and wrong
 
         // visibility
         if ( options.pointsOffScaleCondition === PointsOffScaleCondition.ALL ) {
-          pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.length > 0 && !numberLine.residentPoints.some(
+          const areAllPointsBelow = !numberLine.residentPoints.some(
             point => point.valueProperty.value >= displayedRange.min
           );
-          pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.length > 0 && !numberLine.residentPoints.some(
+          const areAllPointsAbove = !numberLine.residentPoints.some(
             point => point.valueProperty.value <= displayedRange.max
           );
+          pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.length > 0 && areAllPointsBelow
+            && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
+          pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.length > 0 && areAllPointsAbove
+            && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
+          pointsOffScaleToTopIndicator.visible = numberLine.residentPoints.length > 0 && areAllPointsAbove
+            && numberLine.orientationProperty.value === Orientation.VERTICAL;
+          pointsOffScaleToBottomIndicator.visible = numberLine.residentPoints.length > 0 && areAllPointsBelow
+            && numberLine.orientationProperty.value === Orientation.VERTICAL;
         }
         else {
-          pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.some(
+          const isPointBelow = numberLine.residentPoints.some(
             point => point.valueProperty.value < displayedRange.min
           );
-          pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.some(
+          const isPointAbove = numberLine.residentPoints.some(
             point => point.valueProperty.value > displayedRange.max
           );
+          pointsOffScaleToLeftIndicator.visible = isPointBelow
+            && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
+          pointsOffScaleToRightIndicator.visible = isPointAbove
+            && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
+          pointsOffScaleToTopIndicator.visible = isPointAbove
+            && numberLine.orientationProperty.value === Orientation.VERTICAL;
+          pointsOffScaleToBottomIndicator.visible = isPointBelow
+            && numberLine.orientationProperty.value === Orientation.VERTICAL;
         }
       };
 
       // hook up the listener that will update the points-off-scale indicators
       Property.multilink(
-        [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty ],
+        [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty, numberLine.orientationProperty ],
         updatePointsOffScaleIndicators
       );
 
