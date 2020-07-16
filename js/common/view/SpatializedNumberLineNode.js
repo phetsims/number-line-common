@@ -40,7 +40,7 @@ const OFF_SCALE_ARROW_LENGTH = 25;
 const OFF_SCALE_ARROW_OPTIONS = {
   tailWidth: 2
 };
-const OFF_SCALE_INDICATOR_HEIGHT_ABOVE_LINE = 25;
+const OFF_SCALE_INDICATOR_OFFSET = 25;
 
 const pointsOffScaleString = numberLineCommonStrings.pointsOffScale;
 
@@ -487,14 +487,16 @@ class SpatializedNumberLineNode extends Node {
 
         const displayedRange = numberLine.displayedRangeProperty.value;
 
-        // positions TODO: rework
-        pointsOffScaleToLeftIndicator.centerX = numberLine.valueToModelPosition( displayedRange.min ).x;
-        pointsOffScaleToLeftIndicator.bottom = numberLine.centerPositionProperty.value.y -
-          OFF_SCALE_INDICATOR_HEIGHT_ABOVE_LINE;
-        pointsOffScaleToRightIndicator.centerX = numberLine.valueToModelPosition( displayedRange.max ).x;
+        // positions
+        pointsOffScaleToLeftIndicator.left = numberLine.valueToModelPosition( displayedRange.min ).x - OFF_SCALE_INDICATOR_OFFSET;
+        pointsOffScaleToLeftIndicator.bottom = numberLine.centerPositionProperty.value.y - OFF_SCALE_INDICATOR_OFFSET;
+        pointsOffScaleToRightIndicator.right = numberLine.valueToModelPosition( displayedRange.max ).x + OFF_SCALE_INDICATOR_OFFSET;
         pointsOffScaleToRightIndicator.bottom = pointsOffScaleToLeftIndicator.bottom;
-        pointsOffScaleToTopIndicator.center = pointsOffScaleToRightIndicator.center; //TODO: this is temporary and wrong
-        pointsOffScaleToBottomIndicator.center = pointsOffScaleToLeftIndicator.center; //TODO: this is temporary and wrong
+        pointsOffScaleToTopIndicator.left = numberLine.centerPositionProperty.value.x + 2 * OFF_SCALE_INDICATOR_OFFSET;
+        pointsOffScaleToTopIndicator.top = numberLine.valueToModelPosition( displayedRange.max ).y - OFF_SCALE_INDICATOR_OFFSET;
+        pointsOffScaleToBottomIndicator.left = pointsOffScaleToTopIndicator.left;
+        pointsOffScaleToBottomIndicator.bottom = numberLine.valueToModelPosition( displayedRange.min ).y + OFF_SCALE_INDICATOR_OFFSET;
+
 
         // visibility
         if ( options.pointsOffScaleCondition === PointsOffScaleCondition.ALL ) {
