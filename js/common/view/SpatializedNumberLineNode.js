@@ -19,7 +19,9 @@ import HBox from '../../../../scenery/js/nodes/HBox.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
 import Panel from '../../../../sun/js/Panel.js';
 import numberLineCommonStrings from '../../numberLineCommonStrings.js';
-import PointsOffScaleCondition from '../model/PointsOffScaleCondition.js';
+import PointsOffScaleCondition from './PointsOffScaleCondition.js';
+
+const pointsOffScaleString = numberLineCommonStrings.pointsOffScale;
 
 // constants
 const TICK_MARK_LABEL_DISTANCE = 5;
@@ -41,8 +43,7 @@ const OFF_SCALE_ARROW_OPTIONS = {
   tailWidth: 2
 };
 const OFF_SCALE_INDICATOR_OFFSET = 25;
-
-const pointsOffScaleString = numberLineCommonStrings.pointsOffScale;
+const OFF_SCALE_TEXT_MAX_WIDTH = 100;
 
 // convenience function to calculate distance of an absolute value span node from the number line
 const getIndicatorDistanceFromNL = ( numberLine, count ) => {
@@ -428,6 +429,7 @@ class SpatializedNumberLineNode extends Node {
       // indicators for when all points are off the scale
       const offScaleToRightText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
+        maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
         align: 'left'
       } );
       const offScaleToRightArrow = new ArrowNode( 0, 0, OFF_SCALE_ARROW_LENGTH, 0, OFF_SCALE_ARROW_OPTIONS );
@@ -442,6 +444,7 @@ class SpatializedNumberLineNode extends Node {
 
       const offScaleToLeftText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
+        maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
         align: 'right'
       } );
       const offScaleToLeftArrow = new ArrowNode( 0, 0, -OFF_SCALE_ARROW_LENGTH, 0, OFF_SCALE_ARROW_OPTIONS );
@@ -456,6 +459,7 @@ class SpatializedNumberLineNode extends Node {
 
       const offScaleToTopText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
+        maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
         align: 'center'
       } );
       const offScaleToTopArrow = new ArrowNode( 0, 0, 0, -OFF_SCALE_ARROW_LENGTH, OFF_SCALE_ARROW_OPTIONS );
@@ -470,6 +474,7 @@ class SpatializedNumberLineNode extends Node {
 
       const offScaleToBottomText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
+        maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
         align: 'center'
       } );
       const offScaleToBottomArrow = new ArrowNode( 0, 0, 0, OFF_SCALE_ARROW_LENGTH, OFF_SCALE_ARROW_OPTIONS );
