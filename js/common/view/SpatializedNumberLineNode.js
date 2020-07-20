@@ -161,7 +161,7 @@ class SpatializedNumberLineNode extends Node {
       }
 
       // add the tick mark for the 0 position, which is always visible
-      this.addTickMark( numberLineNode, 0 );
+      this.addTickMark( numberLineNode, 0, true );
     } );
 
     // handle the tick marks at the ends of the display range
