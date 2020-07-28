@@ -494,10 +494,10 @@ class SpatializedNumberLineNode extends Node {
 
         // positions
         pointsOffScaleToLeftIndicator.left = numberLine.valueToModelPosition( displayedRange.min ).x - OFF_SCALE_INDICATOR_OFFSET;
-        pointsOffScaleToLeftIndicator.bottom = numberLine.centerPositionProperty.value.y - OFF_SCALE_INDICATOR_OFFSET;
+        pointsOffScaleToLeftIndicator.top = numberLine.centerPositionProperty.value.y + 3 * OFF_SCALE_INDICATOR_OFFSET;
         pointsOffScaleToRightIndicator.right = numberLine.valueToModelPosition( displayedRange.max ).x + OFF_SCALE_INDICATOR_OFFSET;
-        pointsOffScaleToRightIndicator.bottom = pointsOffScaleToLeftIndicator.bottom;
-        pointsOffScaleToTopIndicator.left = numberLine.centerPositionProperty.value.x + 2 * OFF_SCALE_INDICATOR_OFFSET;
+        pointsOffScaleToRightIndicator.top = pointsOffScaleToLeftIndicator.top;
+        pointsOffScaleToTopIndicator.left = numberLine.centerPositionProperty.value.x + 3 * OFF_SCALE_INDICATOR_OFFSET;
         pointsOffScaleToTopIndicator.top = numberLine.valueToModelPosition( displayedRange.max ).y - OFF_SCALE_INDICATOR_OFFSET;
         pointsOffScaleToBottomIndicator.left = pointsOffScaleToTopIndicator.left;
         pointsOffScaleToBottomIndicator.bottom = numberLine.valueToModelPosition( displayedRange.min ).y + OFF_SCALE_INDICATOR_OFFSET;
