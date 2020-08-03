@@ -42,7 +42,7 @@ const OFF_SCALE_ARROW_LENGTH = 25;
 const OFF_SCALE_ARROW_OPTIONS = {
   tailWidth: 2
 };
-const OFF_SCALE_INDICATOR_OFFSET = 25;
+const OFF_SCALE_INDICATOR_INSET = 25;
 const OFF_SCALE_TEXT_MAX_WIDTH = 100;
 
 // convenience function to calculate distance of an absolute value span node from the number line
@@ -98,7 +98,13 @@ class SpatializedNumberLineNode extends Node {
       },
 
       // {PointsOffScaleCondition} when to show the points off scale indicator
-      pointsOffScaleCondition: PointsOffScaleCondition.NEVER
+      pointsOffScaleCondition: PointsOffScaleCondition.NEVER,
+
+      // {number} - how far off from the number line the off scale indicator is
+      // a negative number will go below the number line
+      // horizontal offset applies when the numberline is vertical (because the offset is horizontal) and vice-versa
+      offScaleIndicatorHorizontalOffset: 50,
+      offScaleIndicatorVerticalOffset: 50
 
     }, options );
 
@@ -496,14 +502,14 @@ class SpatializedNumberLineNode extends Node {
         const displayedRange = numberLine.displayedRangeProperty.value;
 
         // positions
-        pointsOffScaleToLeftIndicator.left = numberLine.valueToModelPosition( displayedRange.min ).x - OFF_SCALE_INDICATOR_OFFSET;
-        pointsOffScaleToLeftIndicator.top = numberLine.centerPositionProperty.value.y + 3 * OFF_SCALE_INDICATOR_OFFSET;
-        pointsOffScaleToRightIndicator.right = numberLine.valueToModelPosition( displayedRange.max ).x + OFF_SCALE_INDICATOR_OFFSET;
-        pointsOffScaleToRightIndicator.top = pointsOffScaleToLeftIndicator.top;
-        pointsOffScaleToTopIndicator.left = numberLine.centerPositionProperty.value.x + 3 * OFF_SCALE_INDICATOR_OFFSET;
-        pointsOffScaleToTopIndicator.top = numberLine.valueToModelPosition( displayedRange.max ).y - OFF_SCALE_INDICATOR_OFFSET;
-        pointsOffScaleToBottomIndicator.left = pointsOffScaleToTopIndicator.left;
-        pointsOffScaleToBottomIndicator.bottom = numberLine.valueToModelPosition( displayedRange.min ).y + OFF_SCALE_INDICATOR_OFFSET;
+        pointsOffScaleToLeftIndicator.left = numberLine.valueToModelPosition( displayedRange.min ).x - OFF_SCALE_INDICATOR_INSET;
+        pointsOffScaleToLeftIndicator.centerY = numberLine.centerPositionProperty.value.y - options.offScaleIndicatorVerticalOffset;
+        pointsOffScaleToRightIndicator.right = numberLine.valueToModelPosition( displayedRange.max ).x + OFF_SCALE_INDICATOR_INSET;
+        pointsOffScaleToRightIndicator.centerY = pointsOffScaleToLeftIndicator.centerY;
+        pointsOffScaleToTopIndicator.centerX = numberLine.centerPositionProperty.value.x - options.offScaleIndicatorHorizontalOffset;
+        pointsOffScaleToTopIndicator.top = numberLine.valueToModelPosition( displayedRange.max ).y - OFF_SCALE_INDICATOR_INSET;
+        pointsOffScaleToBottomIndicator.centerX = pointsOffScaleToTopIndicator.centerX;
+        pointsOffScaleToBottomIndicator.bottom = numberLine.valueToModelPosition( displayedRange.min ).y + OFF_SCALE_INDICATOR_INSET;
 
 
         // visibility
