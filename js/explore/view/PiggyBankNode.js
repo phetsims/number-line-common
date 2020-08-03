@@ -76,7 +76,6 @@ class PiggyBankNode extends Node {
   }
 
   set fill( fill ) { this.setFill( fill ); }
-
 }
 
 numberLineCommon.register( 'PiggyBankNode', PiggyBankNode );
