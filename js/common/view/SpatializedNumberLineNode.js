@@ -88,6 +88,9 @@ class SpatializedNumberLineNode extends Node {
       // coordinates
       displayedRangeInset: 25,
 
+      // {number} - the width and the height of the arrows at the endpoints of the number line
+      arrowSize: 10,
+
       // options for the point nodes
       pointNodeOptions: {
         usePointColorForLabelText: true,
@@ -102,7 +105,7 @@ class SpatializedNumberLineNode extends Node {
     // since the position is set based on the model, don't pass options through to parent class
     super();
 
-    // @private {Object} - make options available to methods
+    // @protected (readonly) {Object} - make options available to methods
     this.options = _.cloneDeep( options );
 
     // @private {NumberLine} - make the number line model available to methods
@@ -113,8 +116,8 @@ class SpatializedNumberLineNode extends Node {
       doubleHead: true,
       lineWidth: options.numberLineWidth,
       tailWidth: options.numberLineWidth,
-      headHeight: 10,
-      headWidth: 10,
+      headHeight: options.arrowSize,
+      headWidth: options.arrowSize,
       stroke: options.color,
       fill: options.color
     };
