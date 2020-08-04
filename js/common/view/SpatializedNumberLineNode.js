@@ -566,8 +566,8 @@ class SpatializedNumberLineNode extends Node {
   }
 
   /**
-   * method to add a tick mark, which consists of a short line and a numerical label, to the provided parent node for
-   * the provided value
+   * Method to add a tick mark, which consists of a short line and a numerical label, to the provided parent node for
+   * the provided value.
    * @param {Node} parentNode
    * @param {number} value
    * @param {boolean} addLabel
