@@ -372,6 +372,7 @@ class SpatializedNumberLineNode extends Node {
           case 30:
             tickMarkSpacing = 5;
             break;
+          case 40:
           case 60:
             tickMarkSpacing = 5;
             break;
@@ -397,6 +398,7 @@ class SpatializedNumberLineNode extends Node {
           case 20:
             tickMarkLabelSpacing = 1;
             break;
+          case 40:
           case 60:
             tickMarkLabelSpacing = 5;
             break;
