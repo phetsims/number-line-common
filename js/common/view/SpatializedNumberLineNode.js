@@ -101,7 +101,7 @@ class SpatializedNumberLineNode extends Node {
       pointsOffScaleCondition: PointsOffScaleCondition.NEVER,
 
       // {number} - how far off from the number line the off scale indicator is
-      // a negative number will go below the number line
+      // a negative number will go below or to the left of the number line
       // horizontal offset applies when the numberline is vertical (because the offset is horizontal) and vice-versa
       offScaleIndicatorHorizontalOffset: 50,
       offScaleIndicatorVerticalOffset: 50
@@ -375,6 +375,9 @@ class SpatializedNumberLineNode extends Node {
           case 60:
             tickMarkSpacing = 5;
             break;
+          case 100:
+            tickMarkSpacing = 10;
+            break;
           case 200:
             tickMarkSpacing = 25;
             break;
@@ -396,6 +399,9 @@ class SpatializedNumberLineNode extends Node {
             break;
           case 60:
             tickMarkLabelSpacing = 5;
+            break;
+          case 100:
+            tickMarkLabelSpacing = 10;
             break;
           case 200:
             tickMarkLabelSpacing = 25;
