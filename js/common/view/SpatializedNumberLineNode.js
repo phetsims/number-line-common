@@ -370,8 +370,6 @@ class SpatializedNumberLineNode extends Node {
             tickMarkSpacing = 1;
             break;
           case 30:
-            tickMarkSpacing = 5;
-            break;
           case 40:
           case 60:
             tickMarkSpacing = 5;
@@ -393,6 +391,8 @@ class SpatializedNumberLineNode extends Node {
         // Derive the tick mark label spacing from the range.  As with the tick mark spacing, this mapping was taken
         // from the various Number Line Suite design specs, and could be made into a optional mapping function if more
         // flexibility is needed.
+        // tickMarkSpacing is for how far apart ticks are whereas tickMarkLabelSpacing is how far apart
+        // labels for the ticks are; labels only appear at the specified spacing if there is a tick mark there
         let tickMarkLabelSpacing;
         switch( numberLine.displayedRangeProperty.value.getLength() ) {
           case 20:
