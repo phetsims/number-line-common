@@ -16,6 +16,7 @@ import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import ColorizedReadoutNode from './ColorizedReadoutNode.js';
+import Utils from '../../../../dot/js/Utils.js';
 
 // constants
 const DEFAULT_POINT_NODE_RADIUS = 4.5; // in screen coordinates
@@ -65,7 +66,10 @@ class PointNode extends Node {
 
     // function for updating the label text
     const updateLabelText = value => {
-      let stringValue = StringUtils.fillIn( options.labelTemplate, { value: Math.abs( value ) } );
+      let stringValue = StringUtils.fillIn(
+        options.labelTemplate,
+        { value: Utils.roundSymmetric( Math.abs( value ) ) }
+      );
       if ( value < 0 ) {
         stringValue = MathSymbols.UNARY_MINUS + stringValue;
       }
