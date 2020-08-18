@@ -104,7 +104,10 @@ class SpatializedNumberLineNode extends Node {
       // a negative number will go below or to the left of the number line
       // horizontal offset applies when the numberline is vertical (because the offset is horizontal) and vice-versa
       offScaleIndicatorHorizontalOffset: 50,
-      offScaleIndicatorVerticalOffset: 50
+      offScaleIndicatorVerticalOffset: 50,
+
+      // {string} a string that represents the units of the number line
+      unitsString: ''
 
     }, options );
 
@@ -348,6 +351,9 @@ class SpatializedNumberLineNode extends Node {
     // handle comings and goings of number line points
     numberLine.residentPoints.addItemAddedListener( handlePointAdded );
 
+    const unitsText = new Text( options.unitsString, options.tickMarkLabelOptions );
+    this.addChild( unitsText );
+
     // update portions of the representation that change if the displayed range or orientation changes
     Property.multilink(
       [ numberLine.displayedRangeProperty, numberLine.orientationProperty ],
@@ -432,6 +438,17 @@ class SpatializedNumberLineNode extends Node {
 
         // update absolute value representations
         updateAbsoluteValueIndicators();
+
+        // positions the units text
+        if ( orientation === Orientation.HORIZONTAL ) {
+          const positionOfLastValue = this.numberLine.valueToModelPosition( displayedRange.max );
+          unitsText.left = positionOfLastValue.x + 18;
+          unitsText.top = positionOfLastValue.y + options.tickMarkLength + 5;
+        } else {
+          const positionOfFirstValue = this.numberLine.valueToModelPosition( displayedRange.min );
+          unitsText.top = positionOfFirstValue.y + 10;
+          unitsText.left = positionOfFirstValue.x + options.tickMarkLength + 13;
+        }
       }
     );
 
