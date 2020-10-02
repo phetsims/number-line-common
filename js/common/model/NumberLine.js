@@ -37,7 +37,7 @@ class NumberLine {
     // exist on the number line when constructed and after a reset
     this.initialPointSpecs = options.initialPointSpecs;
 
-    // @public (read-only) {ObservableArray<NumberLinePoint>} - array of points on this number line
+    // @public (read-only) {ObservableArrayDef<NumberLinePoint>} - array of points on this number line
     this.residentPoints = createObservableArray();
 
     // hook up a listener to make sure that the points don't land on top of one another
