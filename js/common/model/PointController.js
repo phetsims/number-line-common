@@ -23,7 +23,7 @@ import Easing from '../../../../twixt/js/Easing.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import LockToNumberLine from './LockToNumberLine.js';
 import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
-import ObservableArray from '../../../../axon/js/ObservableArray.js';
+import createObservableArray from '../../../../axon/js/createObservableArray.js';
 
 // constants
 const AVERAGE_ANIMATION_SPEED = 1000; // screen coordinates per second
@@ -96,7 +96,7 @@ class PointController {
     this.inProgressAnimationProperty = new Property( null );
 
     // @public (read-only) {ObservableArray<NumberLinePoint>} - points on the number line that this controls
-    this.numberLinePoints = new ObservableArray();
+    this.numberLinePoints = createObservableArray();
 
     // add the initial number line points
     options.numberLinePoints.forEach( point => { this.associateWithNumberLinePoint( point ); } );

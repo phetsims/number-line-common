@@ -10,7 +10,7 @@
  * @author Chris Klusendorf (PhET Interactive Simulations)
  */
 
-import ObservableArray from '../../../../axon/js/ObservableArray.js';
+import createObservableArray from '../../../../axon/js/createObservableArray.js';
 import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
 import numberLineCommon from '../../numberLineCommon.js';
@@ -38,7 +38,7 @@ class NumberLine {
     this.initialPointSpecs = options.initialPointSpecs;
 
     // @public (read-only) {ObservableArray<NumberLinePoint>} - array of points on this number line
-    this.residentPoints = new ObservableArray();
+    this.residentPoints = createObservableArray();
 
     // hook up a listener to make sure that the points don't land on top of one another
     this.residentPoints.addItemAddedListener( addedPoint => {
