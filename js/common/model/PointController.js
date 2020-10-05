@@ -212,7 +212,8 @@ class PointController {
    * @public
    */
   clearNumberLinePoints() {
-    this.numberLinePoints.forEach( point => {
+    const controlledPoints = [ ...this.numberLinePoints ];
+    controlledPoints.forEach( point => {
       this.dissociateFromNumberLinePoint( point );
     } );
   }
