@@ -216,7 +216,7 @@ class SpatializedNumberLineNode extends Node {
       }
 
       // create a list of the resident points on the number line sorted by absolute value
-      const pointsSortedByValue = _.sortBy( numberLine.residentPoints.getArray(), point => {
+      const pointsSortedByValue = _.sortBy( numberLine.residentPoints, point => {
         return Math.abs( point.valueProperty.value );
       } );
 
@@ -275,7 +275,7 @@ class SpatializedNumberLineNode extends Node {
     const updateAbsoluteValueIndicatorColors = () => {
 
       // create a list of the resident points on the number line sorted by absolute value
-      const pointsSortedByValue = _.sortBy( numberLine.residentPoints.getArray(), point => {
+      const pointsSortedByValue = _.sortBy( numberLine.residentPoints, point => {
         return Math.abs( point.valueProperty.value );
       } );
 
