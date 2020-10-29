@@ -1,5 +1,11 @@
 // Copyright 2020, University of Colorado Boulder
 
+/**
+ * NLCheckbox is a text-only checkbox that is used throughout the number-line suite of sims for consistency.
+ *
+ * @author John Blanco (PhET Interactive Simulations)
+ */
+
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
@@ -14,11 +20,6 @@ const TEXT_OPTIONS = {
 const BOX_WIDTH = 17;
 const TOUCH_AREA_DILATION = 5;
 
-/**
- * NLCheckbox is a text-only checkbox that is used throughout the number-line suite of sims for consistency.
- *
- * @author John Blanco (PhET Interactive Simulations)
- */
 class NLCheckbox extends Checkbox {
 
   /**

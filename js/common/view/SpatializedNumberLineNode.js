@@ -1,5 +1,11 @@
 // Copyright 2020, University of Colorado Boulder
 
+/**
+ * SpatializedNumberLineNode is a Scenery Node that presents a number line that is mapped into 2D space.
+ *
+ * @author John Blanco (PhET Interactive Simulations)
+ */
+
 import Property from '../../../../axon/js/Property.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
@@ -52,11 +58,6 @@ const getIndicatorDistanceFromNL = ( numberLine, count ) => {
          ABSOLUTE_VALUE_SPAN_NL_DISTANCE_X + count * ABSOLUTE_VALUE_SPAN_SPACING_X;
 };
 
-/**
- * SpatializedNumberLineNode is a Scenery Node that presents a number line that is mapped into 2D space.
- *
- * @author John Blanco (PhET Interactive Simulations)
- */
 class SpatializedNumberLineNode extends Node {
 
   /**
