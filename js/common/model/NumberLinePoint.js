@@ -104,6 +104,15 @@ class NumberLinePoint {
   }
 
   /**
+   * Get a string representation that is worthy of logging to the console.
+   * @public
+   * @returns {string}
+   */
+  toString() {
+    return `point value: ${this.valueProperty.value}, color: ${this.colorProperty.value}`;
+  }
+
+  /**
    * release all memory to avoid leaks
    * @public
    */
