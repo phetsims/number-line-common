@@ -27,7 +27,10 @@ const NLCConstants = {
     yMargin: 3
   },
 
-  RESET_BUTTON_INSET_FROM_EDGE: 20,
+  // options used to keep layouts consistent across sims in this suite
+  SCREEN_VIEW_X_MARGIN: 15,
+  SCREEN_VIEW_Y_MARGIN: 15,
+
   ACCORDION_BOX_COMMON_OPTIONS: {
     fill: 'white',
     showTitleWhenExpanded: false,
