@@ -142,6 +142,11 @@ class PointController {
    * @public
    */
   dispose() {
+
+    // Disassociate with all number line points.  This will remove any listeners that are observing these points.
+    this.clearNumberLinePoints();
+
+    // Remove the linkages created in the constructor.
     this.disposePointController();
   }
 
@@ -167,13 +172,13 @@ class PointController {
         this.setPositionRelativeToPoint( numberLinePoint );
       };
       numberLinePoint.valueProperty.link( positionUpdater );
-      const itemRemovedListener = removedNumberLinePoint => {
+      const pointRemovedListener = removedNumberLinePoint => {
         if ( removedNumberLinePoint === numberLinePoint ) {
-          this.numberLinePoints.removeItemRemovedListener( itemRemovedListener );
+          this.numberLinePoints.removeItemRemovedListener( pointRemovedListener );
           numberLinePoint.valueProperty.unlink( positionUpdater );
         }
       };
-      this.numberLinePoints.addItemRemovedListener( itemRemovedListener );
+      this.numberLinePoints.addItemRemovedListener( pointRemovedListener );
     }
 
     // set initial drag state, there is a link elsewhere that will make subsequent updates
