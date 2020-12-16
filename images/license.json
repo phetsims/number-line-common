@@ -22,5 +22,37 @@
     "projectURL": "http://phet.colorado.edu",
     "license": "contact phethelp@colorado.edu",
     "notes": "created by Megan Lai for use by PhET"
+  },
+  "bird-air.png": {
+    "text": [
+      "Copyright 2019 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Megan Lai for use by PhET"
+  },
+  "bird-water.png": {
+    "text": [
+      "Copyright 2019 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Megan Lai for use by PhET"
+  },
+  "fish-air.png": {
+    "text": [
+      "Copyright 2019 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Megan Lai for use by PhET"
+  },
+  "fish-water.png": {
+    "text": [
+      "Copyright 2019 University of Colorado Boulder"
+    ],
+    "projectURL": "http://phet.colorado.edu",
+    "license": "contact phethelp@colorado.edu",
+    "notes": "created by Megan Lai for use by PhET"
   }
 }
