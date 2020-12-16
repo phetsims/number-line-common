@@ -33,7 +33,7 @@ class PointControllerNode extends Node {
 
     options = merge( {
 
-      // {node} - The node used for the view representation.  It's X and Y position will be set based on the position
+      // {node} - The node used for the view representation.  Its X and Y position will be set based on the position
       // of the corresponding point controller, so it should be set up with the appropriate offset bounds.  A shaded
       // sphere is created if no node is provided.
       node: null,
