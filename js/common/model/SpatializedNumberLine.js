@@ -14,6 +14,7 @@ import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Range from '../../../../dot/js/Range.js';
+import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Vector2Property from '../../../../dot/js/Vector2Property.js';
 import Line from '../../../../kite/js/segments/Line.js';
@@ -272,6 +273,23 @@ class SpatializedNumberLine extends NumberLine {
       );
     }
     return testBounds.containsPoint( pointControllerPosition );
+  }
+
+  /**
+   * see docs in base class
+   * @param {number} proposedValue
+   * @returns {number}
+   * @override
+   * @public
+   */
+  getConstrainedValue( proposedValue ) {
+
+    // Get the value allowed by the resolution constraint.
+    const initiallyConstrainedValue = super.getConstrainedValue( proposedValue );
+
+    // Further constrain the value to the displayed range.
+    const displayedRange = this.displayedRangeProperty.value;
+    return Utils.clamp( Utils.roundSymmetric( initiallyConstrainedValue ), displayedRange.min, displayedRange.max );
   }
 
   /**

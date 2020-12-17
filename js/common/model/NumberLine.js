@@ -30,12 +30,18 @@ class NumberLine {
       // the number line when constructed and after a reset
       initialPointSpecs: [],
 
+      // {function} - constraint for values that points can take on, integer values by default
+      constrainPointValue: proposedValue => Utils.roundSymmetric( proposedValue ),
+
       preventOverlap: true
     }, options );
 
     // @private {Object{ initialValue, color}[]} - array of point specifications that describe what points should
     // exist on the number line when constructed and after a reset
     this.initialPointSpecs = options.initialPointSpecs;
+
+    // @private {function}
+    this.constrainPointValue = options.constrainPointValue;
 
     // @public (read-only) {ObservableArrayDef<NumberLinePoint>} - array of points on this number line
     this.residentPoints = createObservableArray();
@@ -125,14 +131,13 @@ class NumberLine {
   }
 
   /**
-   * given a floating point number, return the closest integer value that is on the number line
+   * given a floating point number, return the closest integer value that is allowed on the number line
    * @param {number} proposedValue
    * @returns {number}
    * @public
    */
   getConstrainedValue( proposedValue ) {
-    const displayedRange = this.displayedRangeProperty.value;
-    return Utils.clamp( Utils.roundSymmetric( proposedValue ), displayedRange.min, displayedRange.max );
+    return this.constrainPointValue( proposedValue );
   }
 
   /**
