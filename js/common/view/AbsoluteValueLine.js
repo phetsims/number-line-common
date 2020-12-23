@@ -19,7 +19,7 @@ class AbsoluteValueLine extends Line {
 
   /**
    * @param {Node} referenceNode - the node to reference when sizing this line: line matches top and bottom of reference node
-   * @param {Object} [options] - options that will be pass to the constructor of the line node
+   * @param {Object} [options] - options that will be passed to the constructor of the line node
    * @public
    */
   constructor( referenceNode, options ) {
