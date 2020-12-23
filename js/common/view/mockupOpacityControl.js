@@ -1,19 +1,5 @@
 // Copyright 2020, University of Colorado Boulder
 
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Dimension2 from '../../../../dot/js/Dimension2.js';
-import Range from '../../../../dot/js/Range.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import HBox from '../../../../scenery/js/nodes/HBox.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
-import VBox from '../../../../scenery/js/nodes/VBox.js';
-import HSlider from '../../../../sun/js/HSlider.js';
-import numberLineCommon from '../../numberLineCommon.js';
-
-// constants
-const LABEL_FONT = new PhetFont( 20 );
-const QUERY_PARAMETER = 'mockupOpacity';
-
 /**
  * MockupOpacityControl defines a control that sets a global variable that can be used to control the opacity of the
  * mockups that are often used during early development of a sim for getting the layout right.
@@ -30,6 +16,21 @@ const QUERY_PARAMETER = 'mockupOpacity';
  * this.addChild( mockup );
  * window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
  */
+
+import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import Dimension2 from '../../../../dot/js/Dimension2.js';
+import Range from '../../../../dot/js/Range.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
+import HBox from '../../../../scenery/js/nodes/HBox.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import VBox from '../../../../scenery/js/nodes/VBox.js';
+import HSlider from '../../../../sun/js/HSlider.js';
+import numberLineCommon from '../../numberLineCommon.js';
+
+// constants
+const LABEL_FONT = new PhetFont( 20 );
+const QUERY_PARAMETER = 'mockupOpacity';
+
 class MockupOpacityControl extends VBox {
 
   constructor() {
