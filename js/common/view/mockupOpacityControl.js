@@ -15,6 +15,8 @@
  * } );
  * this.addChild( mockup );
  * window.phet.mockupOpacityProperty.linkAttribute( mockup, 'opacity' );
+ *
+ * @author John Blanco (PhET Interactive Simulations)
  */
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';

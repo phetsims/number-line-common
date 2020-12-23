@@ -1,5 +1,12 @@
 // Copyright 2020, University of Colorado Boulder
 
+/**
+ * NumberLineRangeSelector is a ComboBox specialization that can be used to select from a set of ranges that are then
+ * used to control the range of values displayed on a number line.
+ *
+ * @author John Blanco (PhET Interactive Simulations)
+ */
+
 import numberLineCommonStrings from '../../../../number-line-common/js/numberLineCommonStrings.js';
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
@@ -12,10 +19,6 @@ import numberLineCommon from '../../numberLineCommon.js';
 // constants
 const FONT = new PhetFont( 16 );
 
-/**
- * SingleDualNumberLineSelector defines a Scenery node with two radio buttons that are used to choose between "single
- * number line" and "dual number line" modes.
- */
 class NumberLineRangeSelector extends ComboBox {
 
   /**
