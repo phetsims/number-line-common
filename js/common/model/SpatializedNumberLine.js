@@ -295,6 +295,7 @@ class SpatializedNumberLine extends NumberLine {
   /**
    * reset to initial state
    * @public
+   * @override
    */
   reset() {
     super.reset();
