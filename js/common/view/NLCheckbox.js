@@ -23,8 +23,8 @@ const TOUCH_AREA_DILATION = 5;
 class NLCheckbox extends Checkbox {
 
   /**
-   * @param {BooleanProperty} property - Property that will be controlled by the checkbox
    * @param {string} contentString - the string that will be used as the label for the checkbox
+   * @param {BooleanProperty} property - Property that will be controlled by the checkbox
    * @param {Object} [options]
    */
   constructor( contentString, property, options ) {
