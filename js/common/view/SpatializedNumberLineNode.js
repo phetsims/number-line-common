@@ -445,7 +445,8 @@ class SpatializedNumberLineNode extends Node {
           const positionOfLastValue = this.numberLine.valueToModelPosition( displayedRange.max );
           unitsText.left = positionOfLastValue.x + 18;
           unitsText.top = positionOfLastValue.y + options.tickMarkLength + 5;
-        } else {
+        }
+        else {
           const positionOfFirstValue = this.numberLine.valueToModelPosition( displayedRange.min );
           unitsText.top = positionOfFirstValue.y + 10;
           unitsText.left = positionOfFirstValue.x + options.tickMarkLength + 13;
@@ -547,13 +548,13 @@ class SpatializedNumberLineNode extends Node {
             point => point.valueProperty.value <= displayedRange.max
           );
           pointsOffScaleToLeftIndicator.visible = numberLine.residentPoints.length > 0 && areAllPointsBelow
-            && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
+                                                  && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
           pointsOffScaleToRightIndicator.visible = numberLine.residentPoints.length > 0 && areAllPointsAbove
-            && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
+                                                   && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
           pointsOffScaleToTopIndicator.visible = numberLine.residentPoints.length > 0 && areAllPointsAbove
-            && numberLine.orientationProperty.value === Orientation.VERTICAL;
+                                                 && numberLine.orientationProperty.value === Orientation.VERTICAL;
           pointsOffScaleToBottomIndicator.visible = numberLine.residentPoints.length > 0 && areAllPointsBelow
-            && numberLine.orientationProperty.value === Orientation.VERTICAL;
+                                                    && numberLine.orientationProperty.value === Orientation.VERTICAL;
         }
         else {
           const isPointBelow = numberLine.residentPoints.some(
@@ -563,13 +564,13 @@ class SpatializedNumberLineNode extends Node {
             point => point.valueProperty.value > displayedRange.max
           );
           pointsOffScaleToLeftIndicator.visible = isPointBelow
-            && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
+                                                  && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
           pointsOffScaleToRightIndicator.visible = isPointAbove
-            && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
+                                                   && numberLine.orientationProperty.value === Orientation.HORIZONTAL;
           pointsOffScaleToTopIndicator.visible = isPointAbove
-            && numberLine.orientationProperty.value === Orientation.VERTICAL;
+                                                 && numberLine.orientationProperty.value === Orientation.VERTICAL;
           pointsOffScaleToBottomIndicator.visible = isPointBelow
-            && numberLine.orientationProperty.value === Orientation.VERTICAL;
+                                                    && numberLine.orientationProperty.value === Orientation.VERTICAL;
         }
       };
 
