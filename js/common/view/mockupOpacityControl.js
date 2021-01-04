@@ -71,7 +71,7 @@ class MockupOpacityControl extends VBox {
       spacing: 10
     } );
 
-    // make the property globally available
+    // make the Property globally available
     window.phet.mockupOpacityProperty = mockupOpacityProperty;
   }
 }

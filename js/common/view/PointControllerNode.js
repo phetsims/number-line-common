@@ -41,7 +41,7 @@ class PointControllerNode extends Node {
       // {boolean} - controls whether there is a line drawn from this controller to the number line
       connectorLine: true,
 
-      // {BooleanProperty} - if the connector line is present, this boolean property can optionally be provided to
+      // {BooleanProperty} - if the connector line is present, this boolean Property can optionally be provided to
       // control its visibility
       connectorLineVisibleProperty: ALWAYS_TRUE_PROPERTY,
 
@@ -136,7 +136,7 @@ class PointControllerNode extends Node {
     } );
 
     if ( options.connectorLineVisibleProperty !== ALWAYS_TRUE_PROPERTY ) {
-      assert && assert( options.connectorLine, 'must have connector line turned on for the viz property to make sense' );
+      assert && assert( options.connectorLine, 'must have connector line turned on for the viz Property to make sense' );
       options.connectorLineVisibleProperty.link( updateConnectorLineVisibility );
     }
 

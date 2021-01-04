@@ -61,7 +61,7 @@ class PointNode extends Node {
     } );
     this.addChild( circle );
 
-    // create the property that will contain the label text
+    // create the Property that will contain the label text
     const labelTextProperty = new StringProperty( '' );
 
     // function for updating the label text

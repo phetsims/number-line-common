@@ -2,7 +2,7 @@
 
 /**
  * ColorizedReadoutNode is a Scenery node that presents a number enclosed in a rounded rectangle "background",
- * where the color of the stroke and fill of the background changes based on the value of a provided property.
+ * where the color of the stroke and fill of the background changes based on the value of a provided Property.
  *
  * @author John Blanco (PhET Interactive Simulations)
  */

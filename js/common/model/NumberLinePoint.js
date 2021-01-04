@@ -25,16 +25,16 @@ class NumberLinePoint {
 
     options = merge( {
 
-      // {NumberProperty} - a property containing the value for this point, created below if not provided
+      // {NumberProperty} - a Property containing the value for this point, created below if not provided
       valueProperty: null,
 
-      // {number} - the initial value, only used if the value property is not provided
+      // {number} - the initial value, only used if the value Property is not provided
       initialValue: null,
 
       // {PaintColorProperty} - the color that will be used when portraying this point in the view
       colorProperty: null,
 
-      // {Color} - initial color, only used if color property is not provided
+      // {Color} - initial color, only used if color Property is not provided
       initialColor: null,
 
       // {PointController} - point controller to attach to this point
@@ -44,11 +44,11 @@ class NumberLinePoint {
     // options checking
     assert && assert(
       !this.valueProperty || this.initialValue === null,
-      'can\'t specify both an initial value and the value property'
+      'can\'t specify both an initial value and the value Property'
     );
     assert && assert(
       !this.colorProperty || this.initialColor === null,
-      'can\'t specify both an initial color and the color property'
+      'can\'t specify both an initial color and the color Property'
     );
 
     // @private - emitter that is fired on dispose, add listeners as needed
