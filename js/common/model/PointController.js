@@ -106,7 +106,7 @@ class PointController {
 
     // Monitor the number line(s) with which this point controller is associated for changes that require an update to
     // the point controller's position.
-    const positionChangeUpdaters = [];
+    const positionChangeUpdaters = []; // {Multilink}
     options.numberLines.forEach( numberLine => {
       const multilink = Property.multilink(
         [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty ],
