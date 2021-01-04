@@ -115,6 +115,7 @@ class NumberLinePoint {
   /**
    * release all memory to avoid leaks
    * @public
+   * @override
    */
   dispose() {
     this.disposeEmitterNumberLinePoint.emit();

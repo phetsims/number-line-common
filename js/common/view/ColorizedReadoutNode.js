@@ -72,6 +72,7 @@ class ColorizedReadoutNode extends BackgroundNode {
 
   /**
    * @public
+   * @override
    */
   dispose() {
     this.disposeColorizedReadoutNode();

@@ -221,6 +221,7 @@ class AbsoluteValueSpanNode extends Node {
 
   /**
    * @public
+   * @override
    */
   dispose() {
     this.disposeAbsoluteValueSpanNode();

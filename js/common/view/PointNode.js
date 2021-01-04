@@ -147,7 +147,10 @@ class PointNode extends Node {
     };
   }
 
-  // @public
+  /**
+   * @public
+   * @override
+   */
   dispose() {
     this.disposePointNode();
     super.dispose();
