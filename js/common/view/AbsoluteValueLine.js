@@ -12,9 +12,6 @@ import merge from '../../../../phet-core/js/merge.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import numberLineDistance from '../../../../number-line-distance/js/numberLineDistance.js';
 
-/**
- * line used to indicate an absolute value indicator
- */
 class AbsoluteValueLine extends Line {
 
   /**
