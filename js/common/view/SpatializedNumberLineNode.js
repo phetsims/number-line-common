@@ -200,7 +200,7 @@ class SpatializedNumberLineNode extends Node {
     this.addChild( pointDisplayLayer );
 
     // closure that updates the absolute value indicators
-    const absoluteValueLines = [];
+    const absoluteValueLines = []; // {Line[]}
     const updateAbsoluteValueIndicators = ( doAnimation = false ) => {
 
       // if there aren't enough absolute value indicator lines available, add new ones until there are enough
@@ -292,7 +292,7 @@ class SpatializedNumberLineNode extends Node {
       } );
     };
 
-    // array where absolute value span nodes are tracked if displayed for this number line node
+    // {AbsoluteValueSpanNode[]} array where absolute value span nodes are tracked if displayed for this number line node
     let absoluteValueSpanNodes = [];
 
     // handler for number line points that are added to the number line
