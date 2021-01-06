@@ -119,7 +119,6 @@ class NumberLinePoint {
    */
   dispose() {
     this.disposeEmitterNumberLinePoint.emit();
-    super.dispose();
   }
 }
 

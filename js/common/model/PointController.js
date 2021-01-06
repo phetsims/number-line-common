@@ -224,7 +224,7 @@ class PointController {
   }
 
   /**
-   * remove all controlled points from the number line on which each one resides
+   * Remove all controlled points from the number line on which each one resides.
    * @public
    */
   removePointsFromNumberLines() {
@@ -234,8 +234,24 @@ class PointController {
   }
 
   /**
-   * propose a new position to this point controller, may or may not actually update the position depending on whether
-   * a point on the number line is being controlled and how that point moves
+   * The name for this method is essentially a list of actions, i.e. "remove, clear, and dispose the points".  It is a
+   * convenience method that removes the points associated with this controller from any number lines that they are on,
+   * clears the point from this point controller's observable array, and disposes the points.  These actions can happen
+   * independently, but often go together, so this method just does the whole shebang.
+   * @public
+   */
+  removeClearAndDisposePoints() {
+    const controlledPoints = this.numberLinePoints.getArrayCopy();
+    this.removePointsFromNumberLines();
+    this.clearNumberLinePoints();
+    controlledPoints.forEach( point => {
+      point.dispose();
+    } );
+  }
+
+  /**
+   * Propose a new position to this point controller, may or may not actually update the position depending on whether
+   * a point on the number line is being controlled and how that point moves.
    * @param {Vector2} proposedPosition
    * @public
    */
