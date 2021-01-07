@@ -10,7 +10,7 @@
 import Line from '../../../../scenery/js/nodes/Line.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import numberLineDistance from '../../../../number-line-distance/js/numberLineDistance.js';
+import numberLineCommon from '../../numberLineCommon.js';
 
 class AbsoluteValueLine extends Line {
 
@@ -23,8 +23,7 @@ class AbsoluteValueLine extends Line {
     options = merge( { stroke: 'black' }, options );
     super( new Vector2( 0, referenceNode.top ), new Vector2( 0, referenceNode.bottom ), options );
   }
-
 }
 
-numberLineDistance.register( 'AbsoluteValueLine', AbsoluteValueLine );
+numberLineCommon.register( 'AbsoluteValueLine', AbsoluteValueLine );
 export default AbsoluteValueLine;
