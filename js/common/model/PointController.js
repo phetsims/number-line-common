@@ -43,10 +43,10 @@ class PointController {
       color: 'black',
 
       // {number} - offset in model coords from a horizontal number line when controlling a point
-      offsetFromHorizontalNumberLine: 50,
+      initialOffsetFromHorizontalNumberLine: 50,
 
       // {number} - offset in model coords from a vertical number line when controlling a point
-      offsetFromVerticalNumberLine: 52,
+      initialOffsetFromVerticalNumberLine: 52,
 
       // {number} - scale of controller node when animated back into box
       scaleInBox: 1.0,
@@ -68,8 +68,8 @@ class PointController {
     }, options );
 
     // @private
-    this.offsetFromHorizontalNumberLine = options.offsetFromHorizontalNumberLine;
-    this.offsetFromVerticalNumberLine = options.offsetFromVerticalNumberLine;
+    this.offsetFromHorizontalNumberLine = options.initialOffsetFromHorizontalNumberLine; // TODO: make this a property
+    this.offsetFromVerticalNumberLine = options.initialOffsetFromVerticalNumberLine; // TODO: make this a property
     this.lockToNumberLine = options.lockToNumberLine;
     this.bidirectionalAssociation = options.bidirectionalAssociation;
 
