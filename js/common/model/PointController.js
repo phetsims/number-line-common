@@ -67,9 +67,11 @@ class PointController {
 
     }, options );
 
+    // @public {Propery.<number>} the distance of the point controller from the number line
+    this.offsetFromHorizontalNumberLineProperty = new NumberProperty( options.initialOffsetFromHorizontalNumberLine );
+    this.offsetFromVerticalNumberLineProperty = new NumberProperty( options.initialOffsetFromVerticalNumberLine );
+
     // @private
-    this.offsetFromHorizontalNumberLine = options.initialOffsetFromHorizontalNumberLine; // TODO: make this a property
-    this.offsetFromVerticalNumberLine = options.initialOffsetFromVerticalNumberLine; // TODO: make this a property
     this.lockToNumberLine = options.lockToNumberLine;
     this.bidirectionalAssociation = options.bidirectionalAssociation;
 
@@ -171,11 +173,16 @@ class PointController {
       const positionUpdater = () => {
         this.setPositionRelativeToPoint( numberLinePoint );
       };
+      const offsetUpdater = () => {
+        this.setPositionRelativeToPoint( numberLinePoint );
+      };
+      this.offsetFromHorizontalNumberLineProperty.link( offsetUpdater );
       numberLinePoint.valueProperty.link( positionUpdater );
       const pointRemovedListener = removedNumberLinePoint => {
         if ( removedNumberLinePoint === numberLinePoint ) {
           this.numberLinePoints.removeItemRemovedListener( pointRemovedListener );
           numberLinePoint.valueProperty.unlink( positionUpdater );
+          this.offsetFromHorizontalNumberLineProperty.unlink( offsetUpdater );
         }
       };
       this.numberLinePoints.addItemRemovedListener( pointRemovedListener );
@@ -401,7 +408,7 @@ class PointController {
     if ( point.numberLine.isHorizontal ) {
       x = pointPosition.x;
       if ( lockedAlwaysOrWhenClose ) {
-        y = pointPosition.y + this.offsetFromHorizontalNumberLine;
+        y = pointPosition.y + this.offsetFromHorizontalNumberLineProperty.value;
       }
       else {
         y = this.positionProperty.value.y;
@@ -410,7 +417,7 @@ class PointController {
     else {
       y = pointPosition.y;
       if ( lockedAlwaysOrWhenClose ) {
-        x = pointPosition.x + this.offsetFromVerticalNumberLine;
+        x = pointPosition.x + this.offsetFromVerticalNumberLineProperty.value;
       }
       else {
         x = this.positionProperty.value.x;
