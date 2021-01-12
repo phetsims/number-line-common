@@ -17,7 +17,7 @@ import numberLineCommon from '../../numberLineCommon.js';
 class NumberLinePoint {
 
   /**
-   * @param {NumberLine} numberLine - the number line on which this point exists
+   * @param {SpatializedNumberLine} numberLine - the number line on which this point exists
    * @param {Object} [options]
    * @public
    */
@@ -71,7 +71,7 @@ class NumberLinePoint {
     // @public {BooleanProperty} - indicates whether this is being dragged by the user
     this.isDraggingProperty = new BooleanProperty( false );
 
-    // @private {NumberLine} - the number line on which this point resides
+    // @public (read-only) {SpatializedNumberLine} - the number line on which this point resides
     this.numberLine = numberLine;
 
     // @private {PointController|null} - a "point controller" that controls where this point is, can be null
