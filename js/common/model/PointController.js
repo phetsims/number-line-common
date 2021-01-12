@@ -173,16 +173,15 @@ class PointController {
       const positionUpdater = () => {
         this.setPositionRelativeToPoint( numberLinePoint );
       };
-      const offsetUpdater = () => {
-        this.setPositionRelativeToPoint( numberLinePoint );
-      };
-      this.offsetFromHorizontalNumberLineProperty.link( offsetUpdater );
+      this.offsetFromHorizontalNumberLineProperty.link( positionUpdater );
+      this.offsetFromVerticalNumberLineProperty.link( positionUpdater );
       numberLinePoint.valueProperty.link( positionUpdater );
       const pointRemovedListener = removedNumberLinePoint => {
         if ( removedNumberLinePoint === numberLinePoint ) {
           this.numberLinePoints.removeItemRemovedListener( pointRemovedListener );
           numberLinePoint.valueProperty.unlink( positionUpdater );
-          this.offsetFromHorizontalNumberLineProperty.unlink( offsetUpdater );
+          this.offsetFromHorizontalNumberLineProperty.unlink( positionUpdater );
+          this.offsetFromVerticalNumberLineProperty.unlink( positionUpdater );
         }
       };
       this.numberLinePoints.addItemRemovedListener( pointRemovedListener );
