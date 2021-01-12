@@ -24,7 +24,8 @@ const NLCConstants = {
       cornerRadius: LABEL_BACKGROUND_CORNER_RADIUS
     },
     xMargin: 3,
-    yMargin: 3
+    yMargin: 3,
+    pickable: false
   },
 
   // options used to keep layouts consistent across sims in this suite
