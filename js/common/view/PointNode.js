@@ -26,7 +26,7 @@ class PointNode extends Node {
   /**
    * @param {NumberLinePoint} numberLinePoint
    * @param {NumberLine} numberLine
-   * @param {Object} [options]
+   * @param {Object} [options] - specific to this class, not propagated to super
    * @public
    */
   constructor( numberLinePoint, numberLine, options ) {

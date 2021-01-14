@@ -62,7 +62,8 @@ class SpatializedNumberLineNode extends Node {
 
   /**
    * {NumberLine} numberLine - model of a number line
-   * {Object} [options] - options that control the appearance of the number line
+   * {Object} [options] - Options that control the appearance of the number line.  These are specific to this class, and
+   * are not propagated to the superclass.
    * @public
    */
   constructor( numberLine, options ) {
