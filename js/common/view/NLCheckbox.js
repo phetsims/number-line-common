@@ -44,7 +44,7 @@ class NLCheckbox extends Checkbox {
    * @public
    * @override
    */
-  static dispose() {
+  dispose() {
     assert && assert( false, 'NLCheckbox does not support dispose' );
   }
 }
