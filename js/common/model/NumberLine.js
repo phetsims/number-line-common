@@ -26,8 +26,8 @@ class NumberLine {
 
     options = merge( {
 
-      // {Object{initialValue, color}[]} - array of point specifications that describe what points should exist on
-      // the number line when constructed and after a reset
+      // {{initialValue:number, color:Color}[]} - array of point specifications that describe what points should exist
+      // on the number line when constructed and after a reset
       initialPointSpecs: [],
 
       // {function} - constraint for values that points can take on, integer values by default
