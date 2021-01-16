@@ -30,7 +30,7 @@ class NumberLine {
       // on the number line when constructed and after a reset
       initialPointSpecs: [],
 
-      // {function} - constraint for values that points can take on, integer values by default
+      // {function(number):number} - constraint for values that points can take on, integer values by default
       constrainPointValue: proposedValue => Utils.roundSymmetric( proposedValue ),
 
       preventOverlap: true
@@ -40,7 +40,7 @@ class NumberLine {
     // exist on the number line when constructed and after a reset
     this.initialPointSpecs = options.initialPointSpecs;
 
-    // @private {function}
+    // @private {function(number):number}
     this.constrainPointValue = options.constrainPointValue;
 
     // @public (read-only) {ObservableArrayDef<NumberLinePoint>} - array of points on this number line
