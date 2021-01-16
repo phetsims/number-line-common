@@ -36,7 +36,8 @@ class NumberLineRangeSelector extends ComboBox {
       yMargin: 6,
       cornerRadius: 4,
       buttonTouchAreaXDilation: 7,
-      buttonTouchAreaYDilation: 7
+      buttonTouchAreaYDilation: 7,
+      align: 'right'
     }, options );
 
     // create the selection items for the range selection combo box
