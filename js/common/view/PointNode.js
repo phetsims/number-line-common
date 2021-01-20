@@ -48,6 +48,9 @@ class PointNode extends Node {
       // {Font}
       labelFont: new PhetFont( 18 ),
 
+      // {number} - opacity value for the label, 0 to 1
+      labelOpacity: 1,
+
       // true if this point is the opposite of another number line point
       isDoppelganger: false
     }, options );
@@ -80,9 +83,10 @@ class PointNode extends Node {
     const pointLabelNode = new ColorizedReadoutNode( labelTextProperty, numberLinePoint.colorProperty, {
       colorizeBackground: options.colorizeLabelBackground,
       colorizeText: options.usePointColorForLabelText,
+      opacity: options.labelOpacity,
       yMargin: 1,
       textOptions: {
-        font: new PhetFont( 18 ),
+        font: options.labelFont,
         maxWidth: 60 // empirically determined to work in all currently needed cases
       }
     } );
