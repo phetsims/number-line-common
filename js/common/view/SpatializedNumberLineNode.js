@@ -218,9 +218,7 @@ class SpatializedNumberLineNode extends Node {
       }
 
       // create a list of the resident points on the number line sorted by absolute value
-      const pointsSortedByValue = _.sortBy( numberLine.residentPoints, point => {
-        return Math.abs( point.valueProperty.value );
-      } );
+      const pointsSortedByValue = this.getPointsSortedByAbsoluteValue();
 
       // update the position, color, thickness, and layering of each of the lines and the spacing of the spans
       let pointsAboveZeroCount = 0;
@@ -277,9 +275,7 @@ class SpatializedNumberLineNode extends Node {
     const updateAbsoluteValueIndicatorColors = () => {
 
       // create a list of the resident points on the number line sorted by absolute value
-      const pointsSortedByValue = _.sortBy( numberLine.residentPoints, point => {
-        return Math.abs( point.valueProperty.value );
-      } );
+      const pointsSortedByValue = this.getPointsSortedByAbsoluteValue();
 
       pointsSortedByValue.forEach( ( point, index ) => {
 
@@ -660,6 +656,15 @@ class SpatializedNumberLineNode extends Node {
       labelNode,
       merge( tickLabelOptions, this.options.tickMarkLabelOptions )
     ) );
+  }
+
+  /**
+   * Get a list of the resident points on the number line sorted by value.
+   * @returns {NumberLinePoint[]}
+   * @private
+   */
+  getPointsSortedByAbsoluteValue() {
+    return _.sortBy( this.numberLine.residentPoints, point => Math.abs( point.valueProperty.value ) );
   }
 }
 
