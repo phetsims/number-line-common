@@ -22,7 +22,7 @@ const FONT = new PhetFont( 16 );
 class NumberLineRangeSelector extends ComboBox {
 
   /**
-   * @param {Property<Range>} selectedRangeProperty
+   * @param {Property.<Range>} selectedRangeProperty
    * @param {Range[]} ranges
    * @param {Node} listBoxParentNode
    * @param {Object} [options]

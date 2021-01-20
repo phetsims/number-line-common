@@ -43,7 +43,7 @@ class NumberLine {
     // @private {function(number):number}
     this.constrainPointValue = options.constrainPointValue;
 
-    // @public (read-only) {ObservableArrayDef<NumberLinePoint>} - array of points on this number line
+    // @public (read-only) {ObservableArrayDef.<NumberLinePoint>} - array of points on this number line
     this.residentPoints = createObservableArray();
 
     // hook up a listener to make sure that the points don't land on top of one another

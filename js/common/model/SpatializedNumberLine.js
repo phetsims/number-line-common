@@ -80,7 +80,7 @@ class SpatializedNumberLine extends NumberLine {
     // @public {Property} - the value used to scale from model coordinates to number line distance
     this.orientationProperty = new EnumerationProperty( Orientation, options.initialOrientation );
 
-    // @public {Property<Range>} - the range of values that should be displayed to the user
+    // @public {Property.<Range>} - the range of values that should be displayed to the user
     this.displayedRangeProperty = new Property( options.initialDisplayedRange, { valueType: Range } );
 
     // @public {BooleanProperty} - controls whether point labels are displayed to the user
@@ -104,7 +104,7 @@ class SpatializedNumberLine extends NumberLine {
       );
     } );
 
-    // @public (read-only) {Property<Line>} - The line into which the number line is projected in model space. This only
+    // @public (read-only) {Property.<Line>} - The line into which the number line is projected in model space. This only
     // includes the displayed range and nothing beyond that.
     this.modelProjectedLineProperty = new DerivedProperty(
       [ this.centerPositionProperty, this.orientationProperty, this.displayedRangeProperty ],

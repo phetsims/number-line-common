@@ -21,7 +21,7 @@ class ColorizedReadoutNode extends BackgroundNode {
 
   /**
    * @param {StringProperty} textProperty - a Property that encloses the value to display
-   * @param {Property<Color>} baseColorProperty - a Property that encloses a color from which the fill and stroke are
+   * @param {Property.<Color>} baseColorProperty - a Property that encloses a color from which the fill and stroke are
    * derived
    * @param {Object} [options]
    * @public

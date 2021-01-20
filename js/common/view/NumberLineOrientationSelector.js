@@ -18,7 +18,7 @@ const ORIENTATION_BUTTON_DILATION = 2;
 class NumberLineOrientationSelector extends RectangularRadioButtonGroup {
 
   /**
-   * @param {Property<Orientation>} orientationProperty
+   * @param {Property.<Orientation>} orientationProperty
    * @param {Object} [options]
    */
   constructor( orientationProperty, options ) {

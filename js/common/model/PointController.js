@@ -95,7 +95,7 @@ class PointController {
     // @public (read-only) {Animation|null} - tracks any animation that is currently in progress
     this.inProgressAnimationProperty = new Property( null );
 
-    // @public (read-only) {ObservableArrayDef<NumberLinePoint>} - points on the number line that this controls
+    // @public (read-only) {ObservableArrayDef.<NumberLinePoint>} - points on the number line that this controls
     this.numberLinePoints = createObservableArray();
 
     // add the initial number line points
