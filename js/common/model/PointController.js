@@ -387,8 +387,8 @@ class PointController {
   }
 
   /**
-   * given a number line point's position in model space, set this point controller to that value, but offset from the
-   * number line
+   * Given a number line point's position in model space, set this point controller to that value, but offset from the
+   * number line.
    * @param {NumberLinePoint} point
    * @public
    */
@@ -396,9 +396,11 @@ class PointController {
     const pointPosition = point.getPositionInModelSpace();
     let x;
     let y;
+    const lockedAlwaysOrWhenClose = this.lockToNumberLine === LockToNumberLine.ALWAYS ||
+                                    this.lockToNumberLine === LockToNumberLine.WHEN_CLOSE;
     if ( point.numberLine.isHorizontal ) {
       x = pointPosition.x;
-      if ( this.lockToNumberLine === LockToNumberLine.ALWAYS || this.lockToNumberLine === LockToNumberLine.WHEN_CLOSE ) {
+      if ( lockedAlwaysOrWhenClose ) {
         y = pointPosition.y + this.offsetFromHorizontalNumberLine;
       }
       else {
@@ -407,7 +409,7 @@ class PointController {
     }
     else {
       y = pointPosition.y;
-      if ( this.lockToNumberLine === LockToNumberLine.ALWAYS || this.lockToNumberLine === LockToNumberLine.WHEN_CLOSE ) {
+      if ( lockedAlwaysOrWhenClose ) {
         x = pointPosition.x + this.offsetFromVerticalNumberLine;
       }
       else {
