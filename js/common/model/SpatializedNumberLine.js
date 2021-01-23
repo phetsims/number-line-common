@@ -149,7 +149,7 @@ class SpatializedNumberLine extends NumberLine {
   }
 
   /**
-   * project a position in model space into a 1D value on the number line
+   * Project a position in model space into a 1D value on the number line.
    * @param {Vector2} modelPosition
    * @returns {number}
    * @public
@@ -171,7 +171,7 @@ class SpatializedNumberLine extends NumberLine {
   }
 
   /**
-   * convert a value on the number line to a position in 2D model space
+   * Convert a value on the number line to a position in 2D model space.
    * @param {number} numberLineValue
    * @returns {Vector2}
    * @public
@@ -195,7 +195,7 @@ class SpatializedNumberLine extends NumberLine {
   }
 
   /**
-   * get the positive or negative distance in model space from the zero point on the number line to the provided value
+   * Get the positive or negative distance in model space from the zero point on the number line to the provided value.
    * @param numberLineValue
    * @returns {number}
    * @public
@@ -212,7 +212,7 @@ class SpatializedNumberLine extends NumberLine {
   }
 
   /**
-   * whether the provided point controller position is within range for a number line point to be created
+   * Whether the provided point controller position is within range for a number line point to be created.
    * @param {Vector2} pointControllerPosition
    * @returns {boolean}
    * @public
@@ -222,7 +222,7 @@ class SpatializedNumberLine extends NumberLine {
   }
 
   /**
-   * whether the provided point controller position is within range for a number line point to be removed
+   * Whether the provided point controller position is within range for a number line point to be removed.
    * @param {Vector2} pointControllerPosition
    * @returns {boolean}
    * @public
@@ -242,7 +242,7 @@ class SpatializedNumberLine extends NumberLine {
   }
 
   /**
-   * whether the provided position is within range of the provided distance
+   * Return true if the provided position is within range of the provided distance, false if not.
    * @param {Vector2} pointControllerPosition
    * @param {number} perpendicularDistance
    * @param {number} endDistance
@@ -276,7 +276,7 @@ class SpatializedNumberLine extends NumberLine {
   }
 
   /**
-   * see docs in base class
+   * See docs in base class.
    * @param {number} proposedValue
    * @returns {number}
    * @override
@@ -293,7 +293,7 @@ class SpatializedNumberLine extends NumberLine {
   }
 
   /**
-   * reset to initial state
+   * Reset to initial state.
    * @public
    * @override
    */

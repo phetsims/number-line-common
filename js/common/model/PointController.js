@@ -138,7 +138,7 @@ class PointController {
   }
 
   /**
-   * clean up any linkages or other associations that could cause memory leaks
+   * Clean up any linkages or other associations that could cause memory leaks.
    * @public
    */
   dispose() {
@@ -151,7 +151,7 @@ class PointController {
   }
 
   /**
-   * returns whether this point controller is controlling one or more number line points
+   * Returns whether this point controller is controlling one or more number line points.
    * @returns {boolean}
    * @public
    */
@@ -160,7 +160,7 @@ class PointController {
   }
 
   /**
-   * associate this controller with a point on the number line
+   * Associate this controller with a point on the number line.
    * @param {NumberLinePoint} numberLinePoint
    * @public
    */
@@ -333,7 +333,7 @@ class PointController {
   }
 
   /**
-   * go to the specified position, either immediately or via an animation
+   * Go to the specified position, either immediately or via an animation.
    * @param {Vector2} position
    * @param {boolean} [animate]
    * @public
@@ -420,7 +420,7 @@ class PointController {
   }
 
   /**
-   * stop the current animation if one is happening, do nothing if not
+   * Stop the current animation if one is happening, do nothing if not.
    * @public
    */
   stopAnimation() {
@@ -431,7 +431,7 @@ class PointController {
   }
 
   /**
-   * restore initial state
+   * Restore initial state.
    * @public
    */
   reset() {

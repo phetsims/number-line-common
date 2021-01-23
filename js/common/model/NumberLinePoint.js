@@ -82,7 +82,7 @@ class NumberLinePoint {
   }
 
   /**
-   * get the position of this number line point in model space
+   * Get the position of this number line point in model space.
    * @returns {Vector2}
    * @public
    */
@@ -91,7 +91,7 @@ class NumberLinePoint {
   }
 
   /**
-   * given the proposed value, set the value of this number line point to the closest valid value on the number line
+   * Given the proposed value, set the value of this number line point to the closest valid value on the number line.
    * @param {number} numberLineValue - value on number line, doesn't have to be constrained to integer values
    * @public
    */
@@ -113,7 +113,7 @@ class NumberLinePoint {
   }
 
   /**
-   * release all memory to avoid leaks
+   * Release all memory to avoid leaks.
    * @public
    * @override
    */

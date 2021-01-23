@@ -81,7 +81,7 @@ class NumberLine {
   }
 
   /**
-   * add the initial set of points to the number line, used during construction and reset
+   * Add the initial set of points to the number line, used during construction and reset/
    * @private
    */
   addInitialPoints() {
@@ -95,7 +95,7 @@ class NumberLine {
   }
 
   /**
-   * add a point to the number line
+   * Add a point to the number line.
    * @param {NumberLinePoint} numberLinePoint
    * @public
    */
@@ -104,7 +104,7 @@ class NumberLine {
   }
 
   /**
-   * remove a point from the number line
+   * Remove a point from the number line.
    * @param {NumberLinePoint} numberLinePoint
    * @public
    */
@@ -113,7 +113,7 @@ class NumberLine {
   }
 
   /**
-   * checks whether a specific instance of a number line point is on this number line
+   * Check whether a specific instance of a number line point is on this number line.
    * @param {NumberLinePoint} numberLinePoint
    * @returns {boolean}
    * @public
@@ -123,7 +123,7 @@ class NumberLine {
   }
 
   /**
-   * remove all points from the number line
+   * Remove all points from the number line.
    * @public
    */
   removeAllPoints() {
@@ -131,7 +131,7 @@ class NumberLine {
   }
 
   /**
-   * given a floating point number, return the closest integer value that is allowed on the number line
+   * Given a floating point number, return the closest integer value that is allowed on the number line.
    * @param {number} proposedValue
    * @returns {number}
    * @public
@@ -141,7 +141,7 @@ class NumberLine {
   }
 
   /**
-   * whether any point on the number line already exists at the provided value
+   * Returns true if any of the resident points on the number line are at the provided value.
    * @param {number} value
    * @returns {boolean}
    * @public
@@ -151,7 +151,7 @@ class NumberLine {
   }
 
   /**
-   * get a list of all points at the provided value
+   * Get a list of all points at the provided value.
    * @param {number} value
    * @returns {NumberLinePoint[]}
    * @private
@@ -161,7 +161,7 @@ class NumberLine {
   }
 
   /**
-   * get the closest valid value that isn't already occupied by a point
+   * Get the closest valid value that isn't already occupied by a point.
    * @param {number} value
    * @public
    */
@@ -181,7 +181,7 @@ class NumberLine {
   }
 
   /**
-   * reset to initial state
+   * Reset to initial state.
    * @public
    */
   reset() {

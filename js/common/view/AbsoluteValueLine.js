@@ -1,7 +1,7 @@
 // Copyright 2020, University of Colorado Boulder
 
 /**
- * A line that is used to denote absolute values
+ * AbsoluteValueLine is a Scenery Node that looks link line and is used to denote absolute values.
  *
  * @author John Blanco (PhET Interactive Simulations)
  * @author Saurabh Totey

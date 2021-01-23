@@ -229,7 +229,7 @@ class PointControllerNode extends Node {
   }
 
   /**
-   * clean up any linkages or other references that could lead to memory leaks
+   * Clean up any linkages or other references that could lead to memory leaks.
    * @public
    * @override
    */
