@@ -38,7 +38,7 @@ class PiggyBankShapes {
    */
   constructor() {
 
-    // scale the shape to be reasonably sized
+    // Scale the shape to be reasonably sized.
     const mediumVersionScale = ( NLI_LAYOUT_BOUNDS.width / 8 ) / PIGGY_BANK_SHAPE.bounds.width;
     const mediumScaleTransform = Matrix3.scale( mediumVersionScale, mediumVersionScale );
     this.MEDIUM_PIGGY_BANK_SHAPE = PIGGY_BANK_SHAPE.transformed( mediumScaleTransform );

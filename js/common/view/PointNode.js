@@ -57,14 +57,14 @@ class PointNode extends Node {
 
     super();
 
-    // add the small circle that will represent the point
+    // Add the small circle that will represent the point.
     const circle = new Circle( options.radius, {
       fill: numberLinePoint.colorProperty,
       stroke: options.isDoppelganger ? 'gray' : numberLinePoint.colorProperty
     } );
     this.addChild( circle );
 
-    // create the Property that will contain the label text
+    // Create the Property that will contain the label text.
     const labelTextProperty = new StringProperty( '' );
 
     // function for updating the label text
@@ -79,7 +79,7 @@ class PointNode extends Node {
       labelTextProperty.set( stringValue );
     };
 
-    // create a background and add the label text to it
+    // Create a background and add the label text to it.
     const pointLabelNode = new ColorizedReadoutNode( labelTextProperty, numberLinePoint.colorProperty, {
       colorizeBackground: options.colorizeLabelBackground,
       colorizeText: options.usePointColorForLabelText,
@@ -91,17 +91,17 @@ class PointNode extends Node {
       }
     } );
 
-    // add the label and link a listener for visibility
+    // Add the label and link a listener for visibility.
     this.addChild( pointLabelNode );
     const labelVisibilityListener = numberLine.showPointLabelsProperty.linkAttribute( pointLabelNode, 'visible' );
 
-    // move in front of other points when being dragged or when the point value is being changed by other means
+    // Move in front of other points when being dragged or when the point value is being changed by other means.
     const moveToFrontMultilink = Property.multilink(
       [ numberLinePoint.isDraggingProperty, numberLinePoint.valueProperty ],
       () => { this.moveToFront(); }
     );
 
-    // update the point representation as it moves
+    // Update the point representation as it moves.
     const updatePointRepresentationMultilink = Property.multilink(
       [
         numberLinePoint.valueProperty,
@@ -120,7 +120,7 @@ class PointNode extends Node {
           }
           circle.center = numberLine.valueToModelPosition( value );
 
-          // update the point label text and position
+          // Update the point label text and position.
           updateLabelText( value );
           if ( numberLine.isHorizontal ) {
             pointLabelNode.centerX = circle.centerX;

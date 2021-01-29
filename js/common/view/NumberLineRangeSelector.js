@@ -40,7 +40,7 @@ class NumberLineRangeSelector extends ComboBox {
       align: 'right'
     }, options );
 
-    // create the selection items for the range selection combo box
+    // Create the selection items for the range selection combo box.
     const rangeSelectionComboBoxItems = []; // {ComboBoxItem[]}
     ranges.forEach( range => {
       rangeSelectionComboBoxItems.push(

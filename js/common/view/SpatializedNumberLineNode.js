@@ -113,7 +113,7 @@ class SpatializedNumberLineNode extends Node {
 
     }, options );
 
-    // since the position is set based on the model, don't pass options through to parent class
+    // Since the position is set based on the model, don't pass options through to parent class.
     super();
 
     // @public (readonly) {Object} - make options visible to methods
@@ -122,7 +122,7 @@ class SpatializedNumberLineNode extends Node {
     // @private {NumberLine} - make the number line model available to methods
     this.numberLine = numberLine;
 
-    // assemble the options that control the appearance of the main number into one place
+    // Assemble the options that control the appearance of the main number into one place.
     const numberLineNodeOptions = {
       doubleHead: true,
       lineWidth: options.numberLineWidth,
@@ -140,7 +140,7 @@ class SpatializedNumberLineNode extends Node {
     const numberLineRootNode = new Node();
     this.addChild( numberLineRootNode );
 
-    // add the number line, and update it if the orientation changes
+    // Add the number line, and update it if the orientation changes.
     const numberLineNode = new Node();
     numberLineRootNode.addChild( numberLineNode );
     numberLine.orientationProperty.link( orientation => {
@@ -148,12 +148,12 @@ class SpatializedNumberLineNode extends Node {
       const minValueProjected = numberLine.getScaledOffsetFromZero( numberLine.displayedRangeProperty.value.min );
       const maxValueProjected = numberLine.getScaledOffsetFromZero( numberLine.displayedRangeProperty.value.max );
 
-      // remove the previous representation
+      // Remove the previous representation.
       numberLineNode.removeAllChildren();
 
       if ( orientation === Orientation.HORIZONTAL ) {
 
-        // add the arrow node that represents the number line
+        // Add the arrow node that represents the number line.
         numberLineNode.addChild( new ArrowNode(
           minValueProjected - options.displayedRangeInset,
           0,
@@ -164,7 +164,7 @@ class SpatializedNumberLineNode extends Node {
       }
       else {
 
-        // add the arrow node that represents the number line
+        // Add the arrow node that represents the number line.
         numberLineNode.addChild( new ArrowNode(
           0,
           maxValueProjected - options.displayedRangeInset,
@@ -174,29 +174,29 @@ class SpatializedNumberLineNode extends Node {
         ) );
       }
 
-      // add the tick mark for the 0 position, which is always visible
+      // Add the tick mark for the 0 position, which is always visible.
       this.addTickMark( numberLineNode, 0, true );
     } );
 
-    // handle the tick marks at the ends of the display range
+    // Handle the tick marks at the ends of the display range.
     const endTickMarksRootNode = new Node();
     numberLineRootNode.addChild( endTickMarksRootNode );
 
-    // add the root node for the tick marks that exist between the middle and the end
+    // Add the root node for the tick marks that exist between the middle and the end.
     const middleTickMarksRootNode = new Node();
     numberLine.showTickMarksProperty.linkAttribute( middleTickMarksRootNode, 'visible' );
     numberLineRootNode.addChild( middleTickMarksRootNode );
 
-    // add the layer where the lines that are used to indicate the absolute value of a point will be displayed
+    // Add the layer where the lines that are used to indicate the absolute value of a point will be displayed.
     const absoluteValueLineLayer = new Node();
     this.addChild( absoluteValueLineLayer );
     numberLine.showAbsoluteValuesProperty.linkAttribute( absoluteValueLineLayer, 'visible' );
 
-    // add the layer where opposite points on the number line will be displayed
+    // Add the layer where opposite points on the number line will be displayed.
     const oppositePointDisplayLayer = new Node();
     this.addChild( oppositePointDisplayLayer );
 
-    // add the layer where the normal (non-opposite) points on the number line will be displayed
+    // Add the layer where the normal (non-opposite) points on the number line will be displayed.
     const pointDisplayLayer = new Node();
     this.addChild( pointDisplayLayer );
 
@@ -204,36 +204,36 @@ class SpatializedNumberLineNode extends Node {
     const absoluteValueLines = []; // {Line[]}
     const updateAbsoluteValueIndicators = ( doAnimation = false ) => {
 
-      // if there aren't enough absolute value indicator lines available, add new ones until there are enough
+      // If there aren't enough absolute value indicator lines available, add new ones until there are enough.
       while ( absoluteValueLines.length < numberLine.residentPoints.length ) {
         const absoluteValueLine = new Line( 0, 0, 1, 1 ); // position and size are arbitrary, will be updated below
         absoluteValueLines.push( absoluteValueLine );
         absoluteValueLineLayer.addChild( absoluteValueLine );
       }
 
-      // if there are too many absolute value indicator lines, remove them until we have the right amount
+      // If there are too many absolute value indicator lines, remove them until we have the right amount.
       while ( absoluteValueLines.length > numberLine.residentPoints.length ) {
         const absoluteValueLine = absoluteValueLines.pop();
         absoluteValueLineLayer.removeChild( absoluteValueLine );
       }
 
-      // create a list of the resident points on the number line sorted by absolute value
+      // Create a list of the resident points on the number line sorted by absolute value.
       const pointsSortedByValue = this.getPointsSortedByAbsoluteValue();
 
-      // update the position, color, thickness, and layering of each of the lines and the spacing of the spans
+      // Update the position, color, thickness, and layering of each of the lines and the spacing of the spans.
       let pointsAboveZeroCount = 0;
       let pointsBelowZeroCount = 0;
       const zeroPosition = numberLine.centerPositionProperty.value;
       pointsSortedByValue.forEach( ( point, index ) => {
 
-        // get a line that will display the absolute value on the number line itself
+        // Get a line that will display the absolute value on the number line itself.
         const lineOnNumberLine = absoluteValueLines[ index ];
 
-        // get the span indicator that is associated with this point
+        // Get the span indicator that is associated with this point.
         const pointValue = point.valueProperty.value;
         if ( pointValue === 0 ) {
 
-          // hide the line entirely in this case, and position it so that it doesn't mess with the overall bounds
+          // Hide the line entirely in this case, and position it so that it doesn't mess with the overall bounds.
           lineOnNumberLine.visible = false;
           lineOnNumberLine.setLine( zeroPosition.x, zeroPosition.y, zeroPosition.x, zeroPosition.y );
         }
@@ -256,7 +256,7 @@ class SpatializedNumberLineNode extends Node {
         }
       } );
 
-      // create a list of the absolute value span indicators sorted by their distance from the number line
+      // Create a list of the absolute value span indicators sorted by their distance from the number line.
       const sortedAbsoluteValueSpanNodes = _.sortBy( absoluteValueSpanNodes, absoluteValueSpanNode => {
         return absoluteValueSpanNode.distanceFromNumberLineProperty.value;
       } );
@@ -271,18 +271,18 @@ class SpatializedNumberLineNode extends Node {
       } );
     };
 
-    // update the color of the lines separately to avoid race conditions between point value and color
+    // Update the color of the lines separately to avoid race conditions between point value and color.
     const updateAbsoluteValueIndicatorColors = () => {
 
-      // create a list of the resident points on the number line sorted by absolute value
+      // Create a list of the resident points on the number line sorted by absolute value.
       const pointsSortedByValue = this.getPointsSortedByAbsoluteValue();
 
       pointsSortedByValue.forEach( ( point, index ) => {
 
-        // get a line that will display the absolute value on the number line itself
+        // Get a line that will display the absolute value on the number line itself.
         const lineOnNumberLine = absoluteValueLines[ index ];
 
-        // update color of line if it exists
+        // Update color of line if it exists.
         if ( point.valueProperty.value !== 0 ) {
           lineOnNumberLine.stroke = point.colorProperty.value;
         }
@@ -295,21 +295,21 @@ class SpatializedNumberLineNode extends Node {
     // handler for number line points that are added to the number line
     const handlePointAdded = point => {
 
-      // add the node that will represent the point on the number line
+      // Add the node that will represent the point on the number line.
       const pointNode = new PointNode( point, numberLine, merge( {
         labelTemplate: options.numericalLabelTemplate
       }, options.pointNodeOptions ) );
       pointDisplayLayer.addChild( pointNode );
 
-      // add the point that will represent the opposite point
+      // Add the point that will represent the opposite point.
       const oppositePointNode = new PointNode( point, numberLine, {
         isDoppelganger: true,
         labelTemplate: options.numericalLabelTemplate
       } );
       oppositePointDisplayLayer.addChild( oppositePointNode );
 
-      // if enabled, add an absolute value "span indicator", which depicts the absolute value at some distance from
-      // the number line
+      // If enabled, add an absolute value "span indicator", which depicts the absolute value at some distance from
+      // the number line.
       let absoluteValueSpanNode = null;
       if ( options.showAbsoluteValueSpans ) {
         const absoluteValueSpanNodeDistance = getIndicatorDistanceFromNL( numberLine, absoluteValueSpanNodes.length );
@@ -318,11 +318,11 @@ class SpatializedNumberLineNode extends Node {
         this.addChild( absoluteValueSpanNode );
       }
 
-      // add a listeners that will update the absolute value indicators
+      // Add a listeners that will update the absolute value indicators.
       point.valueProperty.link( updateAbsoluteValueIndicators );
       point.colorProperty.link( updateAbsoluteValueIndicatorColors );
 
-      // add a listener that will unhook everything if and when this point is removed
+      // Add a listener that will unhook everything if and when this point is removed.
       const removeItemListener = removedPoint => {
         if ( removedPoint === point ) {
           pointDisplayLayer.removeChild( pointNode );
@@ -343,16 +343,16 @@ class SpatializedNumberLineNode extends Node {
       numberLine.residentPoints.addItemRemovedListener( removeItemListener );
     };
 
-    // add nodes for any points that are initially on the number line
+    // Add nodes for any points that are initially on the number line.
     numberLine.residentPoints.forEach( handlePointAdded );
 
-    // handle comings and goings of number line points
+    // Handle comings and goings of number line points.
     numberLine.residentPoints.addItemAddedListener( handlePointAdded );
 
     const unitsText = new Text( options.unitsString, options.tickMarkLabelOptions );
     this.addChild( unitsText );
 
-    // update portions of the representation that change if the displayed range or orientation changes
+    // Update portions of the representation that change if the displayed range or orientation changes.
     Property.multilink(
       [ numberLine.displayedRangeProperty, numberLine.orientationProperty ],
       ( displayedRange, orientation ) => {
@@ -362,7 +362,7 @@ class SpatializedNumberLineNode extends Node {
           `Invalid orientation: ${orientation}`
         );
 
-        // remove previous middle and end tickmarks
+        // Remove previous middle and end tickmarks.
         middleTickMarksRootNode.removeAllChildren();
         endTickMarksRootNode.removeAllChildren();
 
@@ -434,7 +434,7 @@ class SpatializedNumberLineNode extends Node {
           }
         }
 
-        // update absolute value representations
+        // Update absolute value representations.
         updateAbsoluteValueIndicators();
 
         // positions the units text
@@ -459,6 +459,7 @@ class SpatializedNumberLineNode extends Node {
 
     // Adds points off scale panels if necessary
     if ( options.pointsOffScaleCondition !== PointsOffScaleCondition.NEVER ) {
+
       // indicators for when all points are off the scale
       const offScaleToRightText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
@@ -571,7 +572,7 @@ class SpatializedNumberLineNode extends Node {
         }
       };
 
-      // hook up the listener that will update the points-off-scale indicators
+      // Hook up the listener that will update the points-off-scale indicators.
       Property.multilink(
         [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty, numberLine.orientationProperty ],
         updatePointsOffScaleIndicators
@@ -599,7 +600,7 @@ class SpatializedNumberLineNode extends Node {
    */
   addTickMark( parentNode, value, addLabel ) {
 
-    // the value for zero is a special case, and uses a longer and thicker tick mark
+    // The value for zero is a special case, and uses a longer and thicker tick mark.
     const length = value === 0 ? this.options.zeroTickMarkLength : this.options.tickMarkLength;
     const lineWidth = value === 0 ? this.options.zeroTickMarkLineWidth : this.options.tickMarkLineWidth;
     const tickMarkOptions = {
@@ -607,7 +608,7 @@ class SpatializedNumberLineNode extends Node {
       lineWidth: lineWidth
     };
 
-    // calculate the center position of the tick mark, scaled but not translated
+    // Calculate the center position of the tick mark, scaled but not translated.
     const tmCenter = this.numberLine.valueToModelPosition( value ).minus( this.numberLine.centerPositionProperty.value );
 
     // create label

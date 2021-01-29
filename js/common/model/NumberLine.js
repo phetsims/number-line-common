@@ -46,18 +46,18 @@ class NumberLine {
     // @public (read-only) {ObservableArrayDef.<NumberLinePoint>} - array of points on this number line
     this.residentPoints = createObservableArray();
 
-    // hook up a listener to make sure that the points don't land on top of one another
+    // Hook up a listener to make sure that the points don't land on top of one another.
     this.residentPoints.addItemAddedListener( addedPoint => {
 
       // listener to make sure point lands in a good point when released
       const pointIsDraggingListener = dragging => {
 
-        // do nothing if dragging, if this is the only point at this position, or if overlap is allowed
+        // Do nothing if dragging, or if this is the only point at this position, or if overlap is allowed.
         if ( dragging || !options.preventOverlap || this.getPointsAt( addedPoint.valueProperty.value ).length <= 1 ) {
           return;
         }
 
-        // there is already a point at this position, so we have to choose another
+        // There is already a point at this position, so we have to choose another.
         let beginningValue = addedPoint.mostRecentlyProposedValue;
         if ( beginningValue === null ) {
           beginningValue = addedPoint.valueProperty.value;
@@ -66,7 +66,7 @@ class NumberLine {
       };
       addedPoint.isDraggingProperty.link( pointIsDraggingListener );
 
-      // remove the listener when the point is removed from the number line
+      // Remove the listener when the point is removed from the number line.
       const pointRemovalListener = removedPoint => {
         if ( removedPoint === addedPoint ) {
           removedPoint.isDraggingProperty.unlink( pointIsDraggingListener );
@@ -76,7 +76,7 @@ class NumberLine {
       this.residentPoints.addItemRemovedListener( pointRemovalListener );
     } );
 
-    // add the initial points
+    // Add the initial points.
     this.addInitialPoints();
   }
 

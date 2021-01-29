@@ -52,7 +52,7 @@ class MockupOpacityControl extends VBox {
       }
     );
 
-    // put the slider together with labels
+    // Put the slider together with labels.
     const sliderAndLabels = new HBox( {
       children: [
         new Text( '0', { font: LABEL_FONT } ),
@@ -71,7 +71,7 @@ class MockupOpacityControl extends VBox {
       spacing: 10
     } );
 
-    // make the Property globally available
+    // Make the Property globally available.
     window.phet.mockupOpacityProperty = mockupOpacityProperty;
   }
 }

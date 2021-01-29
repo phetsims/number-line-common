@@ -41,7 +41,7 @@ class AbsoluteValueSpanNode extends Node {
 
     super();
 
-    // control the visibility of this node
+    // Control the visibility of this node.
     const visibilityUpdater = showAbsoluteValues => { this.visible = showAbsoluteValues; };
     numberLine.showAbsoluteValuesProperty.link( visibilityUpdater );
 
@@ -54,19 +54,19 @@ class AbsoluteValueSpanNode extends Node {
     // @private {null|Animation} - null when this span node is not animating
     this.translateAnimation = null;
 
-    // add the equation text
+    // Add the equation text.
     const equationNode = new Node();
     const equationBackground = new BackgroundNode( equationNode, NLCConstants.LABEL_BACKGROUND_OPTIONS );
     this.addChild( equationBackground );
 
-    // add the span indicator shape
+    // Add the span indicator shape.
     const spanIndicatorNode = new Path( null, {
       stroke: numberLinePoint.colorProperty,
       lineWidth: 2
     } );
     this.addChild( spanIndicatorNode );
 
-    // define a function to update the span shape
+    // Define a function to update the span shape.
     const updateSpanShape = () => {
       const spanIndicatorShape = new Shape();
       const distanceFromNumberLine = this.distanceFromNumberLineProperty.value;
@@ -117,7 +117,7 @@ class AbsoluteValueSpanNode extends Node {
       spanIndicatorNode.shape = spanIndicatorShape;
     };
 
-    // define a function to update the text label
+    // Define a function to update the text label.
     const updateEquation = () => {
       const value = numberLinePoint.valueProperty.value;
       equationNode.removeAllChildren();
@@ -155,13 +155,13 @@ class AbsoluteValueSpanNode extends Node {
       }
     };
 
-    // update when the point value changes
+    // Update when the point value changes.
     numberLinePoint.valueProperty.link( () => {
       updateSpanShape();
       updateEquation();
     } );
 
-    // update position when the orientation or displayed range of the number line changes
+    // Update position when the orientation or displayed range of the number line changes.
     const positionAndShapeMultilink = Property.multilink(
       [ numberLine.orientationProperty, numberLine.displayedRangeProperty, this.distanceFromNumberLineProperty ],
       () => {
@@ -200,16 +200,16 @@ class AbsoluteValueSpanNode extends Node {
         easing: Easing.CUBIC_IN_OUT
       };
 
-      // if an animation is in progress, stop it
+      // If an animation is in progress, stop it.
       if ( this.translateAnimation ) {
         this.translateAnimation.stop();
       }
 
-      // create and start a new animation
+      // Create and start a new animation.
       this.translateAnimation = new Animation( animationOptions );
       this.translateAnimation.start();
 
-      // set the current animation to null once it finishes (or is stopped)
+      // Set the current animation to null once it finishes (or is stopped).
       this.translateAnimation.endedEmitter.addListener( () => {
         this.translateAnimation = null;
       } );

@@ -42,18 +42,18 @@ class ColorizedReadoutNode extends BackgroundNode {
     // text that will be displayed on the background
     const textNode = new Text( textProperty.value, options.textOptions );
 
-    // update the text node as the text string changes
+    // Update the text node as the text string changes.
     const updateText = text => { textNode.text = text; };
     textProperty.link( updateText );
 
     super( textNode, options );
 
-    // update the stroke and background colors as the base color changes
+    // Update the stroke and background colors as the base color changes.
     const updateColors = baseColor => {
       if ( options.colorizeBackground ) {
         this.background.stroke = baseColor;
 
-        // use a lighter version of the base color as the fill
+        // Use a lighter version of the base color as the fill.
         this.background.fill = baseColor.colorUtilsBrighter( 0.75 );
       }
 

@@ -79,7 +79,7 @@ class PointController {
     // @public (read-only) {Vector2Property} - position of this point in model space
     this.positionProperty = new Vector2Property( Vector2.ZERO, {
 
-      // allowing reentry is necessary because of two-way position relationship with number line points
+      // Allowing reentry is necessary because of two-way position relationship with number line points.
       reentrant: true
     } );
 
@@ -98,7 +98,7 @@ class PointController {
     // @public (read-only) {ObservableArrayDef.<NumberLinePoint>} - points on the number line that this controls
     this.numberLinePoints = createObservableArray();
 
-    // add the initial number line points
+    // Add the initial number line points.
     options.numberLinePoints.forEach( point => { this.associateWithNumberLinePoint( point ); } );
 
     // @public (read-only) {Color}
@@ -122,7 +122,7 @@ class PointController {
 
     assert && assert( positionChangeUpdaters.length === options.numberLines.length );
 
-    // set our number line points to match this point controller's dragging state
+    // Set our number line points to match this point controller's dragging state.
     this.isDraggingProperty.link( isDragging => {
       this.numberLinePoints.forEach( point => {
         point.isDraggingProperty.value = isDragging;
@@ -181,7 +181,7 @@ class PointController {
       this.numberLinePoints.addItemRemovedListener( pointRemovedListener );
     }
 
-    // set initial drag state, there is a link elsewhere that will make subsequent updates
+    // Set initial drag state, there is a link elsewhere that will make subsequent updates.
     numberLinePoint.isDraggingProperty.value = this.isDraggingProperty.value;
 
     assert && assert(
@@ -198,16 +198,16 @@ class PointController {
    */
   dissociateFromNumberLinePoint( numberLinePoint ) {
 
-    // verify that the point is being controlled
+    // Verify that the point is being controlled.
     assert && assert(
       this.numberLinePoints.indexOf( numberLinePoint ) >= 0,
       'point is not controlled by this point controller'
     );
 
-    // since the point will no longer be controlled, it can't be dragging
+    // Since the point will no longer be controlled, it can't be dragging.
     numberLinePoint.isDraggingProperty.value = false;
 
-    // remove the point from the list of controlled points
+    // Remove the point from the list of controlled points.
     this.numberLinePoints.remove( numberLinePoint );
   }
 
@@ -260,7 +260,7 @@ class PointController {
     if ( this.isControllingNumberLinePoint() ) {
       this.numberLinePoints.forEach( point => {
 
-        // map the proposed position to a value on the number line
+        // Map the proposed position to a value on the number line.
         const proposedNumberLineValue = point.numberLine.modelPositionToValue( proposedPosition );
 
         if ( this.lockToNumberLine === LockToNumberLine.ALWAYS ) {
@@ -268,10 +268,10 @@ class PointController {
         }
         else if ( this.lockToNumberLine === LockToNumberLine.NEVER ) {
 
-          // this will update the number line point and move it in the orientation of the number line
+          // This will update the number line point and move it in the orientation of the number line.
           point.proposeValue( proposedNumberLineValue );
 
-          // move the point controller in the direction perpendicular to the number line
+          // Move the point controller in the direction perpendicular to the number line.
           if ( point.numberLine.isHorizontal ) {
             this.positionProperty.value = new Vector2( this.positionProperty.value.x, proposedPosition.y );
           }
@@ -281,7 +281,7 @@ class PointController {
         }
         else if ( this.lockToNumberLine === LockToNumberLine.WHEN_CLOSE ) {
 
-          // determine whether to propose a new value for the point or to detach and remove the point
+          // Determine whether to propose a new value for the point or to detach and remove the point.
           if ( point.numberLine.isWithinPointRemovalDistance( proposedPosition ) ) {
             point.proposeValue( proposedNumberLineValue );
           }
@@ -301,7 +301,7 @@ class PointController {
 
       if ( this.lockToNumberLine === LockToNumberLine.WHEN_CLOSE ) {
 
-        // check if a point should be created and added based on the proposed position
+        // Check if a point should be created and added based on the proposed position.
         const numberLinesInRange = this.numberLines.filter( numberLine => numberLine.isWithinPointCreationDistance( proposedPosition ) );
 
         const constrainedValues = numberLinesInRange.map(
@@ -320,13 +320,13 @@ class PointController {
         }
         else {
 
-          // just accept the proposed position, no other action is necessary
+          // Just accept the proposed position, no other action is necessary.
           this.goToPosition( proposedPosition );
         }
       }
       else {
 
-        // no restraint is needed, be free and go wherever you want
+        // No restraint is needed, be free and go wherever you want.
         this.goToPosition( proposedPosition );
       }
     }
@@ -340,12 +340,12 @@ class PointController {
    */
   goToPosition( position, animate = false ) {
 
-    // if there is an active animation, stop it
+    // If there is an active animation, stop it.
     this.stopAnimation();
 
     if ( animate ) {
 
-      // animate the point controller's journey to the provided position
+      // Animate the point controller's journey to the provided position.
       const animation = new Animation( {
         duration: Math.max(
           MIN_ANIMATION_TIME,
@@ -371,7 +371,7 @@ class PointController {
       this.inProgressAnimationProperty.value = animation;
       animation.start();
 
-      // when the animation is finished, clear the Property that is keeping track of it
+      // When the animation is finished, clear the Property that is keeping track of it.
       animation.finishEmitter.addListener( () => {
         this.inProgressAnimationProperty.value = null;
       } );
@@ -381,7 +381,7 @@ class PointController {
     }
     else {
 
-      // go straight to the specified position
+      // Go straight to the specified position.
       this.positionProperty.value = position;
     }
   }

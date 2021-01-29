@@ -51,7 +51,7 @@ class PointControllerNode extends Node {
 
     super( options );
 
-    // create and add the line that will connect to the number line point
+    // Create and add the line that will connect to the number line point.
     const connectorLine = new Line( 0, 0, 0, 0, { stroke: 'gray' } );
     connectorLine.visible = false;
     this.addChild( connectorLine );
@@ -98,12 +98,12 @@ class PointControllerNode extends Node {
       // for point controllers that are locked to multiple number lines is ever needed, this will need to change.
       assert && assert( pointController.numberLines.length === 1 );
 
-      // listen for changes to the number line's displayed range and update visibility
+      // Listen for changes to the number line's displayed range and update visibility.
       const numberLine = pointController.numberLines[ 0 ];
       numberLine.displayedRangeProperty.link( updatePointControllerVisibility );
     }
 
-    // handle changes to the point controller position
+    // Handle changes to the point controller position.
     const updateAppearanceOnPositionChange = position => {
       if ( options.connectorLine && pointController.isControllingNumberLinePoint() ) {
 
@@ -112,7 +112,7 @@ class PointControllerNode extends Node {
         // handled. If you need it, feel free to add it.
         assert && assert( pointController.numberLinePoints.length === 1, 'incorrect number of points controlled' );
 
-        // update the connector line
+        // Update the connector line.
         const pointPosition = pointController.numberLinePoints.get( 0 ).getPositionInModelSpace();
         connectorLine.setLine( position.x, position.y, pointPosition.x, pointPosition.y );
       }
@@ -122,7 +122,7 @@ class PointControllerNode extends Node {
     };
     pointController.positionProperty.link( updateAppearanceOnPositionChange );
 
-    // move this point controller to the front of the z-order if its PointController has a point that changes value
+    // Move this point controller to the front of the z-order if its PointController has a point that changes value.
     pointController.numberLinePoints.addItemAddedListener( numberLinePoint => {
       const valueListener = () => { this.moveToFront(); };
       numberLinePoint.valueProperty.link( valueListener );
@@ -145,7 +145,7 @@ class PointControllerNode extends Node {
     };
     pointController.scaleProperty.link( handlePointControllerScaleChange );
 
-    // pop to the front of the z-order when dragged
+    // Pop to the front of the z-order when dragged.
     const dragStateChangeHandler = dragging => {
       if ( dragging ) {
         this.moveToFront();
@@ -153,7 +153,7 @@ class PointControllerNode extends Node {
     };
     pointController.isDraggingProperty.link( dragStateChangeHandler );
 
-    // don't allow the point controller node to be grabbed if it is animating somewhere
+    // Don't allow the point controller node to be grabbed if it is animating somewhere.
     const inProgressAnimationChangedHandler = inProgressAnimation => {
       this.pickable = inProgressAnimation === null;
     };
