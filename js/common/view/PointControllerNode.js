@@ -122,18 +122,25 @@ class PointControllerNode extends Node {
     };
     pointController.positionProperty.link( updateAppearanceOnPositionChange );
 
-    // Move this point controller to the front of the z-order if its PointController has a point that changes value.
-    pointController.numberLinePoints.addItemAddedListener( numberLinePoint => {
-      const valueListener = () => { this.moveToFront(); };
-      numberLinePoint.valueProperty.link( valueListener );
-      const itemRemovedListener = removedNumberLinePoint => {
-        if ( numberLinePoint === removedNumberLinePoint ) {
-          numberLinePoint.valueProperty.unlink( valueListener );
-          pointController.numberLinePoints.removeItemRemovedListener( itemRemovedListener );
-        }
-      };
-      pointController.numberLinePoints.addItemRemovedListener( itemRemovedListener );
+    // Closure that moves this point controller node to the front of the z-order.
+    const moveToFront = () => { this.moveToFront(); };
+
+    // Move this point controller to the front of the z-order if any of it's currently controlled points change.
+    pointController.numberLinePoints.forEach( numberLinePoint => {
+      numberLinePoint.valueProperty.link( moveToFront );
     } );
+
+    // Watch for new controlled points and add listeners to manage layering.
+    const pointAddedListener = numberLinePoint => {
+      numberLinePoint.valueProperty.link( moveToFront );
+    };
+    pointController.numberLinePoints.addItemAddedListener( pointAddedListener );
+
+    // Remove our listeners from points that are removed from this point controller's list.
+    const pointRemovedListener = removedNumberLinePoint => {
+      removedNumberLinePoint.valueProperty.unlink( moveToFront );
+    };
+    pointController.numberLinePoints.addItemRemovedListener( pointRemovedListener );
 
     if ( options.connectorLineVisibleProperty !== ALWAYS_TRUE_PROPERTY ) {
       assert && assert( options.connectorLine, 'must have connector line turned on for the viz Property to make sense' );
@@ -224,6 +231,11 @@ class PointControllerNode extends Node {
         if ( numberLine.orientationProperty.hasListener( setTouchDilationBasedOnOrientation ) ) {
           numberLine.orientationProperty.unlink( setTouchDilationBasedOnOrientation );
         }
+      } );
+      pointController.numberLinePoints.removeItemAddedListener( pointAddedListener );
+      pointController.numberLinePoints.removeItemRemovedListener( pointRemovedListener );
+      pointController.numberLinePoints.forEach( numberLinePoint => {
+        numberLinePoint.valueProperty.unlink( moveToFront );
       } );
     };
   }
