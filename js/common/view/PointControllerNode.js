@@ -170,7 +170,9 @@ class PointControllerNode extends Node {
     if ( options.pickable !== false ) {
       let pointOffset;
       this.addInputListener( new DragListener( {
+
         dragBoundsProperty: new Property( this.layoutBounds ),
+
         start: event => {
           pointController.isDraggingProperty.value = true;
           const point = this.draggableNode.globalToParentPoint( event.pointer.point ); // pointer in parent frame
@@ -184,11 +186,13 @@ class PointControllerNode extends Node {
           );
           pointOffset = point.minus( this.draggableNode );
         },
+
         drag: event => {
           pointController.isDraggingProperty.value = true; // necessary in case isDraggingProperty is changed while dragging
           const parentPoint = this.globalToParentPoint( event.pointer.point );
           pointController.proposePosition( parentPoint.minus( pointOffset ) );
         },
+
         end: () => {
           pointController.isDraggingProperty.value = false;
         }
