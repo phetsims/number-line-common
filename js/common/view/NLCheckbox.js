@@ -13,10 +13,6 @@ import Checkbox from '../../../../sun/js/Checkbox.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
-const TEXT_OPTIONS = {
-  font: new PhetFont( 16 ),
-  maxWidth: 200
-};
 const BOX_WIDTH = 17;
 const TOUCH_AREA_DILATION = 5;
 
@@ -30,10 +26,16 @@ class NLCheckbox extends Checkbox {
   constructor( contentString, property, options ) {
 
     options = merge( {
-      boxWidth: BOX_WIDTH
+      boxWidth: BOX_WIDTH,
+
+      // passed through to the text label
+      textOptions: {
+        font: new PhetFont( 16 ),
+        maxWidth: 200
+      }
     }, options );
 
-    const content = new Text( contentString, TEXT_OPTIONS );
+    const content = new Text( contentString, options.textOptions );
 
     super( content, property, options );
 
