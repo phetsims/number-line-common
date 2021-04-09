@@ -250,6 +250,7 @@ class PointControllerNode extends Node {
    * @override
    */
   dispose() {
+    this.interruptSubtreeInput(); // Make sure there are no in-progress interactions, see #106.
     this.disposePointControllerNode();
     super.dispose();
   }
