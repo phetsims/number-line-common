@@ -23,20 +23,6 @@ import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
-// constants
-
-// perpendicular distance from number line in model/view coords where points get created
-const POINT_CREATION_PERPENDICULAR_DISTANCE = 60;
-
-// distance from the end of the number line in model/view coords where points get created
-const POINT_CREATION_END_DISTANCE = 20;
-
-// perpendicular distance from number line in model/view coords where points get removed
-const POINT_REMOVAL_PERPENDICULAR_DISTANCE = 120;
-
-// distance from the end of the number line in model/view coords where points get removed
-const POINT_REMOVAL_END_DISTANCE = 25;
-
 class SpatializedNumberLine extends NumberLine {
 
   /**
@@ -70,8 +56,19 @@ class SpatializedNumberLine extends NumberLine {
       // line is only ever shown in one orientation, the value corresponding to the other orientation can be left at
       // the default value.
       widthInModelSpace: 100,
-      heightInModelSpace: 100
+      heightInModelSpace: 100,
 
+      // {number} perpendicular distance from number line in model/view coords where points get created
+      pointCreationPerpendicularDistance: 60,
+
+      // {number} distance from the end of the number line in model/view coords where points get created
+      pointCreationEndDistance: 20,
+
+      // {number} perpendicular distance from number line in model/view coords where points get removed
+      pointRemovalPerpendicularDistance: 120,
+
+      // {number} distance from the end of the number line in model/view coords where points get removed
+      pointRemovalEndDistance: 25
     }, options );
 
     // @public {Vector2Property} - center in model space where this number line exists
@@ -128,6 +125,12 @@ class SpatializedNumberLine extends NumberLine {
         return new Line( new Vector2( x1, y1 ), new Vector2( x2, y2 ) );
       }
     );
+
+    // @private
+    this.pointCreationPerpendicularDistance = options.pointCreationPerpendicularDistance;
+    this.pointCreationEndDistance = options.pointCreationEndDistance;
+    this.pointRemovalPerpendicularDistance = options.pointRemovalPerpendicularDistance;
+    this.pointRemovalEndDistance = options.pointRemovalEndDistance;
   }
 
   /**
@@ -218,7 +221,7 @@ class SpatializedNumberLine extends NumberLine {
    * @public
    */
   isWithinPointCreationDistance( pointControllerPosition ) {
-    return this.isWithinDistance( pointControllerPosition, POINT_CREATION_PERPENDICULAR_DISTANCE, POINT_CREATION_END_DISTANCE );
+    return this.isWithinDistance( pointControllerPosition, this.pointCreationPerpendicularDistance, this.pointCreationEndDistance );
   }
 
   /**
@@ -228,7 +231,7 @@ class SpatializedNumberLine extends NumberLine {
    * @public
    */
   isWithinPointRemovalDistance( pointControllerPosition ) {
-    return this.isWithinDistance( pointControllerPosition, POINT_REMOVAL_PERPENDICULAR_DISTANCE, POINT_REMOVAL_END_DISTANCE );
+    return this.isWithinDistance( pointControllerPosition, this.pointRemovalPerpendicularDistance, this.pointRemovalEndDistance );
   }
 
   /**
