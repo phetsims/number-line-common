@@ -1,4 +1,4 @@
-// Copyright 2020, University of Colorado Boulder
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * NLCheckbox is a text-only checkbox that is used throughout the number-line suite of sims for consistency.

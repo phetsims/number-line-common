@@ -1,4 +1,4 @@
-// Copyright 2020, University of Colorado Boulder
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * NumberLine is a simple model of a number line.  It tracks points that are on the line, and those points can be added

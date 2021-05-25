@@ -1,4 +1,4 @@
-// Copyright 2020, University of Colorado Boulder
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * ColorizedReadoutNode is a Scenery node that presents a number enclosed in a rounded rectangle "background",

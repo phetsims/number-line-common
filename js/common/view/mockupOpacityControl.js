@@ -1,4 +1,4 @@
-// Copyright 2020, University of Colorado Boulder
+// Copyright 2020-2021, University of Colorado Boulder
 
 /**
  * MockupOpacityControl defines a control that sets a global variable that can be used to control the opacity of the
