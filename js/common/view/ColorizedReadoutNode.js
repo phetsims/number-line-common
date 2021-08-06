@@ -30,7 +30,7 @@ class ColorizedReadoutNode extends BackgroundNode {
 
     options = merge(
       {
-        backgroundOptions: { lineWidth: 2 },
+        rectangleOptions: { lineWidth: 2 },
         textOptions: { font: DEFAULT_FONT },
         colorizeBackground: true,
         colorizeText: false
