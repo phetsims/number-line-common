@@ -7,7 +7,7 @@
  * @author Saurabh Totey
  */
 
-import Line from '../../../../scenery/js/nodes/Line.js';
+import { Line } from '../../../../scenery/js/imports.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import numberLineCommon from '../../numberLineCommon.js';

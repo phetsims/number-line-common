@@ -12,9 +12,9 @@ import Property from '../../../../axon/js/Property.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import DragListener from '../../../../scenery/js/listeners/DragListener.js';
-import Line from '../../../../scenery/js/nodes/Line.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
+import { DragListener } from '../../../../scenery/js/imports.js';
+import { Line } from '../../../../scenery/js/imports.js';
+import { Node } from '../../../../scenery/js/imports.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 

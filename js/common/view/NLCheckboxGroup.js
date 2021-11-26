@@ -7,7 +7,7 @@
  */
 
 import merge from '../../../../phet-core/js/merge.js';
-import VBox from '../../../../scenery/js/nodes/VBox.js';
+import { VBox } from '../../../../scenery/js/imports.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import NLCConstants from '../NLCConstants.js';
 

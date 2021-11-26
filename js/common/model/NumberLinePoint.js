@@ -10,8 +10,8 @@ import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Emitter from '../../../../axon/js/Emitter.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import merge from '../../../../phet-core/js/merge.js';
-import Color from '../../../../scenery/js/util/Color.js';
-import PaintColorProperty from '../../../../scenery/js/util/PaintColorProperty.js';
+import { Color } from '../../../../scenery/js/imports.js';
+import { PaintColorProperty } from '../../../../scenery/js/imports.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
 class NumberLinePoint {

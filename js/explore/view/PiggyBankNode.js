@@ -9,9 +9,9 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
-import Image from '../../../../scenery/js/nodes/Image.js';
-import Node from '../../../../scenery/js/nodes/Node.js';
-import Path from '../../../../scenery/js/nodes/Path.js';
+import { Image } from '../../../../scenery/js/imports.js';
+import { Node } from '../../../../scenery/js/imports.js';
+import { Path } from '../../../../scenery/js/imports.js';
 import piggyBankNoDecoration from '../../../images/piggy-bank-no-decoration_png.js';
 import piggyBankWithFlowers from '../../../images/piggy-bank-with-flowers_png.js';
 import piggyBankWithLightning from '../../../images/piggy-bank-with-lightning_png.js';
