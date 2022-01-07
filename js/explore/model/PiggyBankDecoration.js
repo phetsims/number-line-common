@@ -6,9 +6,9 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
-import Enumeration from '../../../../phet-core/js/Enumeration.js';
+import EnumerationDeprecated from '../../../../phet-core/js/EnumerationDeprecated.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
-const PiggyBankDecoration = Enumeration.byKeys( [ 'NONE', 'LIGHTNING', 'FLOWERS' ] );
+const PiggyBankDecoration = EnumerationDeprecated.byKeys( [ 'NONE', 'LIGHTNING', 'FLOWERS' ] );
 numberLineCommon.register( 'PiggyBankDecoration', PiggyBankDecoration );
 export default PiggyBankDecoration;

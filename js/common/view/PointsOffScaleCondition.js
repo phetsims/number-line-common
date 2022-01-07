@@ -10,11 +10,11 @@
  * @author Saurabh Totey
  */
 
-import Enumeration from '../../../../phet-core/js/Enumeration.js';
+import EnumerationDeprecated from '../../../../phet-core/js/EnumerationDeprecated.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
 // @public
-const PointsOffScaleCondition = Enumeration.byKeys( [ 'NEVER', 'SOME', 'ALL' ] );
+const PointsOffScaleCondition = EnumerationDeprecated.byKeys( [ 'NEVER', 'SOME', 'ALL' ] );
 
 numberLineCommon.register( 'PointsOffScaleCondition', PointsOffScaleCondition );
 export default PointsOffScaleCondition;
