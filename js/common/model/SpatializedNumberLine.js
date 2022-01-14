@@ -10,7 +10,7 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import EnumerationDeprecatedProperty from '../../../../axon/js/EnumerationDeprecatedProperty.js';
+import EnumerationProperty from '../../../../axon/js/EnumerationProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Range from '../../../../dot/js/Range.js';
@@ -75,7 +75,7 @@ class SpatializedNumberLine extends NumberLine {
     this.centerPositionProperty = new Vector2Property( initialZeroPosition );
 
     // @public {Property} - the value used to scale from model coordinates to number line distance
-    this.orientationProperty = new EnumerationDeprecatedProperty( Orientation, options.initialOrientation );
+    this.orientationProperty = new EnumerationProperty( options.initialOrientation );
 
     // @public {Property.<Range>} - the range of values that should be displayed to the user
     this.displayedRangeProperty = new Property( options.initialDisplayedRange, { valueType: Range } );
