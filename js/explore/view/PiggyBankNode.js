@@ -12,18 +12,18 @@ import merge from '../../../../phet-core/js/merge.js';
 import { Image } from '../../../../scenery/js/imports.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import { Path } from '../../../../scenery/js/imports.js';
-import piggyBankNoDecoration from '../../../images/piggy-bank-no-decoration_png.js';
-import piggyBankWithFlowers from '../../../images/piggy-bank-with-flowers_png.js';
-import piggyBankWithLightning from '../../../images/piggy-bank-with-lightning_png.js';
+import piggyBankNoDecoration_png from '../../../images/piggyBankNoDecoration_png.js';
+import piggyBankWithFlowers_png from '../../../images/piggyBankWithFlowers_png.js';
+import piggyBankWithLightning_png from '../../../images/piggyBankWithLightning_png.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import PiggyBankDecoration from '../model/PiggyBankDecoration.js';
 import piggyBankShapes from './piggyBankShapes.js';
 
 // constants
 const MAP_DECORATION_TYPE_TO_IMAGE_INFO = new Map();
-MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.NONE, piggyBankNoDecoration );
-MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.FLOWERS, piggyBankWithFlowers );
-MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.LIGHTNING, piggyBankWithLightning );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.NONE, piggyBankNoDecoration_png );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.FLOWERS, piggyBankWithFlowers_png );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.LIGHTNING, piggyBankWithLightning_png );
 
 class PiggyBankNode extends Node {
 
