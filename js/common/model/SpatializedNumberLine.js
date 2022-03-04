@@ -17,7 +17,7 @@ import Range from '../../../../dot/js/Range.js';
 import Utils from '../../../../dot/js/Utils.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Vector2Property from '../../../../dot/js/Vector2Property.js';
-import Line from '../../../../kite/js/segments/Line.js';
+import { Line } from '../../../../kite/js/imports.js';
 import NumberLine from '../../../../number-line-common/js/common/model/NumberLine.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';

@@ -8,7 +8,7 @@
 
 import Matrix3 from '../../../../dot/js/Matrix3.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import Shape from '../../../../kite/js/Shape.js';
+import { Shape } from '../../../../kite/js/imports.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
 // constants

@@ -8,7 +8,7 @@
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import Shape from '../../../../kite/js/Shape.js';
+import { Shape } from '../../../../kite/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Node } from '../../../../scenery/js/imports.js';
