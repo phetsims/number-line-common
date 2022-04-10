@@ -3,11 +3,16 @@
 /**
  * Auto-generated from modulify, DO NOT manually modify.
  */
-
+/* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
 import numberLineCommon from './numberLineCommon.js';
 
-const numberLineCommonStrings = getStringModule( 'NUMBER_LINE_COMMON' );
+type StringsType = {
+  'rangePattern': string,
+  'pointsOffScale': string
+};
+
+const numberLineCommonStrings = getStringModule( 'NUMBER_LINE_COMMON' ) as StringsType;
 
 numberLineCommon.register( 'numberLineCommonStrings', numberLineCommonStrings );
 
