@@ -8,8 +8,8 @@ import getStringModule from '../../chipper/js/getStringModule.js';
 import numberLineCommon from './numberLineCommon.js';
 
 type StringsType = {
-  'rangePattern': string,
-  'pointsOffScale': string
+  'rangePattern': string;
+  'pointsOffScale': string;
 };
 
 const numberLineCommonStrings = getStringModule( 'NUMBER_LINE_COMMON' ) as StringsType;
