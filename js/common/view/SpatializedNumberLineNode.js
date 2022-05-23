@@ -6,7 +6,7 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
@@ -353,7 +353,7 @@ class SpatializedNumberLineNode extends Node {
     this.addChild( unitsText );
 
     // Update portions of the representation that change if the displayed range or orientation changes.
-    Property.multilink(
+    Multilink.multilink(
       [ numberLine.displayedRangeProperty, numberLine.orientationProperty ],
       ( displayedRange, orientation ) => {
 
@@ -573,7 +573,7 @@ class SpatializedNumberLineNode extends Node {
       };
 
       // Hook up the listener that will update the points-off-scale indicators.
-      Property.multilink(
+      Multilink.multilink(
         [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty, numberLine.orientationProperty ],
         updatePointsOffScaleIndicators
       );

@@ -13,6 +13,7 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
@@ -108,7 +109,7 @@ class PointController {
     // the point controller's position.
     const positionChangeUpdaters = []; // {Multilink}
     options.numberLines.forEach( numberLine => {
-      const multilink = Property.multilink(
+      const multilink = Multilink.multilink(
         [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty ],
         () => {
           if ( this.lockToNumberLine !== LockToNumberLine.NEVER && this.numberLinePoints.length === 1 ) {

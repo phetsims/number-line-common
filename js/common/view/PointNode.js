@@ -6,7 +6,7 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
@@ -96,13 +96,13 @@ class PointNode extends Node {
     const labelVisibilityListener = numberLine.showPointLabelsProperty.linkAttribute( pointLabelNode, 'visible' );
 
     // Move in front of other points when being dragged or when the point value is being changed by other means.
-    const moveToFrontMultilink = Property.multilink(
+    const moveToFrontMultilink = Multilink.multilink(
       [ numberLinePoint.isDraggingProperty, numberLinePoint.valueProperty ],
       () => { this.moveToFront(); }
     );
 
     // Update the point representation as it moves.
-    const updatePointRepresentationMultilink = Property.multilink(
+    const updatePointRepresentationMultilink = Multilink.multilink(
       [
         numberLinePoint.valueProperty,
         numberLine.showOppositesProperty,

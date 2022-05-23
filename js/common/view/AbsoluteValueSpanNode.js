@@ -7,7 +7,7 @@
  */
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import { Shape } from '../../../../kite/js/imports.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
@@ -162,7 +162,7 @@ class AbsoluteValueSpanNode extends Node {
     } );
 
     // Update position when the orientation or displayed range of the number line changes.
-    const positionAndShapeMultilink = Property.multilink(
+    const positionAndShapeMultilink = Multilink.multilink(
       [ numberLine.orientationProperty, numberLine.displayedRangeProperty, this.distanceFromNumberLineProperty ],
       () => {
         updateSpanShape();
