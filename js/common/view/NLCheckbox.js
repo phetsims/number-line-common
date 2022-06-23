@@ -19,11 +19,11 @@ const TOUCH_AREA_DILATION = 5;
 class NLCheckbox extends Checkbox {
 
   /**
-   * @param {string} contentString - the string that will be used as the label for the checkbox
    * @param {BooleanProperty} property - Property that will be controlled by the checkbox
+   * @param {string} contentString - the string that will be used as the label for the checkbox
    * @param {Object} [options]
    */
-  constructor( contentString, property, options ) {
+  constructor( property, contentString, options ) {
 
     options = merge( {
       boxWidth: BOX_WIDTH,
@@ -37,7 +37,7 @@ class NLCheckbox extends Checkbox {
 
     const content = new Text( contentString, options.textOptions );
 
-    super( content, property, options );
+    super( property, content, options );
 
     this.touchArea = this.localBounds.dilated( TOUCH_AREA_DILATION );
   }
