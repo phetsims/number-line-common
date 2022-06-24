@@ -57,7 +57,7 @@ class NumberLineRangeSelector extends ComboBox {
       );
     } );
 
-    super( rangeSelectionComboBoxItems, selectedRangeProperty, listBoxParentNode, options );
+    super( selectedRangeProperty, rangeSelectionComboBoxItems, listBoxParentNode, options );
   }
 }
 
