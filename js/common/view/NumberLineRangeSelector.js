@@ -13,7 +13,6 @@ import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Text } from '../../../../scenery/js/imports.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
-import ComboBoxItem from '../../../../sun/js/ComboBoxItem.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
@@ -43,18 +42,16 @@ class NumberLineRangeSelector extends ComboBox {
     // Create the selection items for the range selection combo box.
     const rangeSelectionComboBoxItems = []; // {ComboBoxItem[]}
     ranges.forEach( range => {
-      rangeSelectionComboBoxItems.push(
-        new ComboBoxItem(
-          new Text(
-            StringUtils.fillIn( numberLineCommonStrings.rangePattern, {
-              lowValue: range.min,
-              highValue: range.max
-            } ),
-            { font: FONT, maxWidth: 150 }
-          ),
-          range
+      rangeSelectionComboBoxItems.push( {
+        value: range,
+        node: new Text(
+          StringUtils.fillIn( numberLineCommonStrings.rangePattern, {
+            lowValue: range.min,
+            highValue: range.max
+          } ),
+          { font: FONT, maxWidth: 150 }
         )
-      );
+      } );
     } );
 
     super( selectedRangeProperty, rangeSelectionComboBoxItems, listBoxParentNode, options );
