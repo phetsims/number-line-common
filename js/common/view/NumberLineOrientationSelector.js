@@ -48,16 +48,18 @@ class NumberLineOrientationSelector extends RectangularRadioButtonGroup {
       orientationProperty,
       orientationButtonsContent,
       merge( {
-        buttonContentXMargin: 5,
-        buttonContentYMargin: 5,
-        baseColor: 'white',
-        selectedLineWidth: 2,
-        deselectedLineWidth: 0.5,
-        deselectedButtonOpacity: 0.25,
         orientation: 'horizontal',
         spacing: 12,
         touchAreaXDilation: ORIENTATION_BUTTON_DILATION,
-        touchAreaYDilation: ORIENTATION_BUTTON_DILATION
+        touchAreaYDilation: ORIENTATION_BUTTON_DILATION,
+        radioButtonOptions: {
+          xMargin: 5,
+          yMargin: 5,
+          baseColor: 'white',
+          selectedLineWidth: 2,
+          deselectedLineWidth: 0.5,
+          deselectedButtonOpacity: 0.25
+        }
       }, options ) );
   }
 
