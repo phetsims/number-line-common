@@ -13,18 +13,18 @@
  */
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
+import createObservableArray from '../../../../axon/js/createObservableArray.js';
 import Multilink from '../../../../axon/js/Multilink.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Vector2Property from '../../../../dot/js/Vector2Property.js';
+import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import LockToNumberLine from './LockToNumberLine.js';
-import NumberLinePoint from '../../../../number-line-common/js/common/model/NumberLinePoint.js';
-import createObservableArray from '../../../../axon/js/createObservableArray.js';
 
 // constants
 const AVERAGE_ANIMATION_SPEED = 1000; // screen coordinates per second

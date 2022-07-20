@@ -9,14 +9,12 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
+import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import { DragListener } from '../../../../scenery/js/imports.js';
-import { Line } from '../../../../scenery/js/imports.js';
-import { Node } from '../../../../scenery/js/imports.js';
+import { DragListener, Line, Node } from '../../../../scenery/js/imports.js';
 import numberLineCommon from '../../numberLineCommon.js';
-import LockToNumberLine from '../../../../number-line-common/js/common/model/LockToNumberLine.js';
 
 // constants
 const SPHERE_RADIUS = 10; // in screen coords, radius of sphere that is used if no controller node is provided

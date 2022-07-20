@@ -8,15 +8,14 @@
 
 import Multilink from '../../../../axon/js/Multilink.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
+import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Circle } from '../../../../scenery/js/imports.js';
-import { Node } from '../../../../scenery/js/imports.js';
+import { Circle, Node } from '../../../../scenery/js/imports.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import ColorizedReadoutNode from './ColorizedReadoutNode.js';
-import Utils from '../../../../dot/js/Utils.js';
 
 // constants
 const DEFAULT_POINT_NODE_RADIUS = 4.5; // in screen coordinates
