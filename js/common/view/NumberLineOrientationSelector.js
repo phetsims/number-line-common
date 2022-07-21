@@ -56,9 +56,11 @@ class NumberLineOrientationSelector extends RectangularRadioButtonGroup {
           xMargin: 5,
           yMargin: 5,
           baseColor: 'white',
-          selectedLineWidth: 2,
-          deselectedLineWidth: 0.5,
-          deselectedButtonOpacity: 0.25
+          buttonAppearanceStrategyOptions: {
+            selectedLineWidth: 2,
+            deselectedLineWidth: 0.5,
+            deselectedButtonOpacity: 0.25
+          }
         }
       }, options ) );
   }
