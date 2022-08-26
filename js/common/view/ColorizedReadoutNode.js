@@ -40,11 +40,7 @@ class ColorizedReadoutNode extends BackgroundNode {
     );
 
     // text that will be displayed on the background
-    const textNode = new Text( textProperty.value, options.textOptions );
-
-    // Update the text node as the text string changes.
-    const updateText = text => { textNode.text = text; };
-    textProperty.link( updateText );
+    const textNode = new Text( textProperty, options.textOptions );
 
     super( textNode, options );
 
@@ -65,7 +61,6 @@ class ColorizedReadoutNode extends BackgroundNode {
 
     // @private - dispose function
     this.disposeColorizedReadoutNode = () => {
-      textProperty.unlink( updateText );
       baseColorProperty.unlink( updateColors );
     };
   }
