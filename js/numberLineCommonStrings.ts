@@ -5,11 +5,14 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
+import TReadOnlyProperty from '../../axon/js/TReadOnlyProperty.js';
 import numberLineCommon from './numberLineCommon.js';
 
 type StringsType = {
   'rangePattern': string;
+  'rangePatternStringProperty': TReadOnlyProperty<string>;
   'pointsOffScale': string;
+  'pointsOffScaleStringProperty': TReadOnlyProperty<string>;
 };
 
 const numberLineCommonStrings = getStringModule( 'NUMBER_LINE_COMMON' ) as StringsType;
