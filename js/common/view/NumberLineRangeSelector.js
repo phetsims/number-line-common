@@ -7,7 +7,7 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
-import numberLineCommonStrings from '../../../../number-line-common/js/numberLineCommonStrings.js';
+import NumberLineCommonStrings from '../../../../number-line-common/js/NumberLineCommonStrings.js';
 import merge from '../../../../phet-core/js/merge.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
@@ -45,7 +45,7 @@ class NumberLineRangeSelector extends ComboBox {
       rangeSelectionComboBoxItems.push( {
         value: range,
         node: new Text(
-          StringUtils.fillIn( numberLineCommonStrings.rangePattern, {
+          StringUtils.fillIn( NumberLineCommonStrings.rangePattern, {
             lowValue: range.min,
             highValue: range.max
           } ),

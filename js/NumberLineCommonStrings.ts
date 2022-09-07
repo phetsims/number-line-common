@@ -15,8 +15,8 @@ type StringsType = {
   'pointsOffScaleStringProperty': TReadOnlyProperty<string>;
 };
 
-const numberLineCommonStrings = getStringModule( 'NUMBER_LINE_COMMON' ) as StringsType;
+const NumberLineCommonStrings = getStringModule( 'NUMBER_LINE_COMMON' ) as StringsType;
 
-numberLineCommon.register( 'numberLineCommonStrings', numberLineCommonStrings );
+numberLineCommon.register( 'NumberLineCommonStrings', NumberLineCommonStrings );
 
-export default numberLineCommonStrings;
+export default NumberLineCommonStrings;

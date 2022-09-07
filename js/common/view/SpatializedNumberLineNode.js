@@ -16,13 +16,13 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Color, HBox, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import Panel from '../../../../sun/js/Panel.js';
 import numberLineCommon from '../../numberLineCommon.js';
-import numberLineCommonStrings from '../../numberLineCommonStrings.js';
+import NumberLineCommonStrings from '../../NumberLineCommonStrings.js';
 import NLCConstants from '../NLCConstants.js';
 import AbsoluteValueSpanNode from './AbsoluteValueSpanNode.js';
 import PointNode from './PointNode.js';
 import PointsOffScaleCondition from './PointsOffScaleCondition.js';
 
-const pointsOffScaleString = numberLineCommonStrings.pointsOffScale;
+const pointsOffScaleString = NumberLineCommonStrings.pointsOffScale;
 
 // constants
 const TICK_MARK_LABEL_DISTANCE = 5;
