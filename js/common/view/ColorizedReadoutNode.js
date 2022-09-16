@@ -20,13 +20,13 @@ const DEFAULT_FONT = new PhetFont( 18 );
 class ColorizedReadoutNode extends BackgroundNode {
 
   /**
-   * @param {StringProperty} textProperty - a Property that encloses the value to display
+   * @param {StringProperty} stringProperty - a Property that encloses the value to display
    * @param {Property.<Color>} baseColorProperty - a Property that encloses a color from which the fill and stroke are
    * derived
    * @param {Object} [options]
    * @public
    */
-  constructor( textProperty, baseColorProperty, options ) {
+  constructor( stringProperty, baseColorProperty, options ) {
 
     options = merge(
       {
@@ -40,7 +40,7 @@ class ColorizedReadoutNode extends BackgroundNode {
     );
 
     // text that will be displayed on the background
-    const textNode = new Text( textProperty, options.textOptions );
+    const textNode = new Text( stringProperty, options.textOptions );
 
     super( textNode, options );
 

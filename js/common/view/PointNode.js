@@ -64,7 +64,7 @@ class PointNode extends Node {
     this.addChild( circle );
 
     // Create the Property that will contain the label text.
-    const labelTextProperty = new StringProperty( '' );
+    const labelStringProperty = new StringProperty( '' );
 
     // function for updating the label text
     const updateLabelText = value => {
@@ -75,11 +75,11 @@ class PointNode extends Node {
       if ( value < 0 ) {
         stringValue = MathSymbols.UNARY_MINUS + stringValue;
       }
-      labelTextProperty.set( stringValue );
+      labelStringProperty.set( stringValue );
     };
 
     // Create a background and add the label text to it.
-    const pointLabelNode = new ColorizedReadoutNode( labelTextProperty, numberLinePoint.colorProperty, {
+    const pointLabelNode = new ColorizedReadoutNode( labelStringProperty, numberLinePoint.colorProperty, {
       colorizeBackground: options.colorizeLabelBackground,
       colorizeText: options.usePointColorForLabelText,
       opacity: options.labelOpacity,
