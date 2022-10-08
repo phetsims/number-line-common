@@ -27,19 +27,15 @@ class NumberLineOrientationSelector extends RectangularRadioButtonGroup {
       tailWidth: 1
     };
 
-    // Create the orientation selection icons.
-    const horizontalIcon = new ArrowNode( -ARROW_ICON_LENGTH / 2, 0, ARROW_ICON_LENGTH / 2, 0, arrowIconOptions );
-    const verticalIcon = new ArrowNode( 0, -ARROW_ICON_LENGTH / 2, 0, ARROW_ICON_LENGTH / 2, arrowIconOptions );
-
     // Map the orientation icons to their enum values.
     const orientationButtonsContent = [
       {
         value: Orientation.HORIZONTAL,
-        node: horizontalIcon
+        createNode: tandem => new ArrowNode( -ARROW_ICON_LENGTH / 2, 0, ARROW_ICON_LENGTH / 2, 0, arrowIconOptions )
       },
       {
         value: Orientation.VERTICAL,
-        node: verticalIcon
+        createNode: tandem => new ArrowNode( 0, -ARROW_ICON_LENGTH / 2, 0, ARROW_ICON_LENGTH / 2, arrowIconOptions )
       }
     ];
 
