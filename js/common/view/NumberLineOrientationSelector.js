@@ -31,11 +31,11 @@ class NumberLineOrientationSelector extends RectangularRadioButtonGroup {
     const orientationButtonsContent = [
       {
         value: Orientation.HORIZONTAL,
-        createNode: tandem => new ArrowNode( -ARROW_ICON_LENGTH / 2, 0, ARROW_ICON_LENGTH / 2, 0, arrowIconOptions )
+        createNode: () => new ArrowNode( -ARROW_ICON_LENGTH / 2, 0, ARROW_ICON_LENGTH / 2, 0, arrowIconOptions )
       },
       {
         value: Orientation.VERTICAL,
-        createNode: tandem => new ArrowNode( 0, -ARROW_ICON_LENGTH / 2, 0, ARROW_ICON_LENGTH / 2, arrowIconOptions )
+        createNode: () => new ArrowNode( 0, -ARROW_ICON_LENGTH / 2, 0, ARROW_ICON_LENGTH / 2, arrowIconOptions )
       }
     ];
 
