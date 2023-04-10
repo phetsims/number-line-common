@@ -44,7 +44,7 @@ class NumberLineRangeSelector extends ComboBox {
     ranges.forEach( range => {
       rangeSelectionComboBoxItems.push( {
         value: range,
-        node: new Text(
+        createNode: () => new Text(
           StringUtils.fillIn( NumberLineCommonStrings.rangePattern, {
             lowValue: range.min,
             highValue: range.max
