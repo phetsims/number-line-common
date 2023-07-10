@@ -32,7 +32,8 @@ class NLCheckbox extends Checkbox {
       textOptions: {
         font: new PhetFont( 16 ),
         maxWidth: 200
-      }
+      },
+      isDisposable: false
     }, options );
 
     const content = new Text( contentString, options.textOptions );
@@ -40,14 +41,6 @@ class NLCheckbox extends Checkbox {
     super( property, content, options );
 
     this.touchArea = this.localBounds.dilated( TOUCH_AREA_DILATION );
-  }
-
-  /**
-   * @public
-   * @override
-   */
-  dispose() {
-    assert && assert( false, 'NLCheckbox does not support dispose' );
   }
 }
 

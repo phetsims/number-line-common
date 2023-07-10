@@ -26,18 +26,11 @@ class NLCheckboxGroup extends VBox {
       spacing: 12,
       align: 'left',
       left: NLCConstants.SCREEN_VIEW_X_MARGIN,
-      top: NLCConstants.SCREEN_VIEW_Y_MARGIN
+      top: NLCConstants.SCREEN_VIEW_Y_MARGIN,
+      isDisposable: false
     }, options );
 
     super( options );
-  }
-
-  /**
-   * @public
-   * @override
-   */
-  dispose() {
-    assert && assert( false, 'NLCheckboxGroup does not support dispose' );
   }
 }
 
