@@ -1,4 +1,4 @@
-// Copyright 2021, University of Colorado Boulder
+// Copyright 2021-2023, University of Colorado Boulder
 
 /**
  * NLCheckboxGroup is a convenience class for creating a group of checkboxes.
