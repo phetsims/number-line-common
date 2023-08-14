@@ -5,4 +5,4 @@ Number Line Common
 Number Line: Operations)
 
 ### License
-See the <a href="https://github.com/phetsims/number-line-common/blob/master/LICENSE" target="_blank">LICENSE</a>
+See the <a href="https://github.com/phetsims/number-line-common/blob/main/LICENSE" target="_blank">LICENSE</a>
