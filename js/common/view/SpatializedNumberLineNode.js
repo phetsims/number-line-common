@@ -7,6 +7,7 @@
  */
 
 import Multilink from '../../../../axon/js/Multilink.js';
+import StringProperty from '../../../../axon/js/StringProperty.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
@@ -75,7 +76,7 @@ class SpatializedNumberLineNode extends Node {
       tickMarkLabelPositionWhenHorizontal: 'below', // valid values are 'above' and 'below'
       color: 'black',
       pointRadius: 10,
-      numericalLabelTemplate: '{{value}}',
+      numericalLabelTemplate: new StringProperty( '{{value}}' ),
 
       // {boolean} - controls whether the absolute value span indicators, which are a little ways away from the number
       // line itself, are portrayed

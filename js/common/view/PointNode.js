@@ -7,11 +7,9 @@
  */
 
 import Multilink from '../../../../axon/js/Multilink.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
-import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
-import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Circle, Node } from '../../../../scenery/js/imports.js';
 import numberLineCommon from '../../numberLineCommon.js';
@@ -42,7 +40,7 @@ class PointNode extends Node {
       colorizeLabelBackground: false,
 
       // {string} - template to be used when displaying the label
-      labelTemplate: '{{number}}',
+      labelTemplate: new StringProperty( '{{value}}' ),
 
       // {Font}
       labelFont: new PhetFont( 18 ),
@@ -63,23 +61,12 @@ class PointNode extends Node {
     } );
     this.addChild( circle );
 
-    // Create the Property that will contain the label text.
-    const labelStringProperty = new StringProperty( '' );
-
-    // function for updating the label text
-    const updateLabelText = value => {
-      let stringValue = StringUtils.fillIn(
-        options.labelTemplate,
-        { value: Utils.roundSymmetric( Math.abs( value ) ) }
-      );
-      if ( value < 0 ) {
-        stringValue = MathSymbols.UNARY_MINUS + stringValue;
-      }
-      labelStringProperty.set( stringValue );
-    };
+const labelPatternStringProperty = new PatternStringProperty( options.labelTemplate, {
+      value: numberLinePoint.valueProperty
+    } );
 
     // Create a background and add the label text to it.
-    const pointLabelNode = new ColorizedReadoutNode( labelStringProperty, numberLinePoint.colorProperty, {
+    const pointLabelNode = new ColorizedReadoutNode( labelPatternStringProperty, numberLinePoint.colorProperty, {
       colorizeBackground: options.colorizeLabelBackground,
       colorizeText: options.usePointColorForLabelText,
       opacity: options.labelOpacity,
@@ -120,8 +107,7 @@ class PointNode extends Node {
           }
           circle.center = numberLine.valueToModelPosition( value );
 
-          // Update the point label text and position.
-          updateLabelText( value );
+          // Update the point position.
           if ( numberLine.isHorizontal ) {
             pointLabelNode.centerX = circle.centerX;
             pointLabelNode.bottom = circle.y - 20;
