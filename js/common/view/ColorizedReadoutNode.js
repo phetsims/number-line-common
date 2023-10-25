@@ -20,7 +20,7 @@ const DEFAULT_FONT = new PhetFont( 18 );
 class ColorizedReadoutNode extends BackgroundNode {
 
   /**
-   * @param {LocalizedStringProperty} stringProperty - a Property that encloses the value to display
+   * @param {StringProperty} stringProperty - a Property that encloses the value to display
    * @param {Property.<Color>} baseColorProperty - a Property that encloses a color from which the fill and stroke are
    * derived
    * @param {Object} [options]
