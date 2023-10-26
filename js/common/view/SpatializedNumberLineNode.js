@@ -7,12 +7,11 @@
  */
 
 import Multilink from '../../../../axon/js/Multilink.js';
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
-import MathSymbols from '../../../../scenery-phet/js/MathSymbols.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Color, HBox, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import Panel from '../../../../sun/js/Panel.js';
@@ -610,10 +609,7 @@ class SpatializedNumberLineNode extends Node {
     // create label
     let labelNode;
     if ( addLabel ) {
-      labelNode = StringUtils.fillIn( this.options.numericalLabelTemplate, { value: Math.abs( value ) } );
-      if ( value < 0 ) {
-        labelNode = MathSymbols.UNARY_MINUS + labelNode;
-      }
+      labelNode = new PatternStringProperty( this.options.numericalLabelTemplate, { value: value } );
     }
 
     let tickMark;

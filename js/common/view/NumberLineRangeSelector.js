@@ -7,9 +7,9 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
+import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import NumberLineCommonStrings from '../../../../number-line-common/js/NumberLineCommonStrings.js';
 import merge from '../../../../phet-core/js/merge.js';
-import StringUtils from '../../../../phetcommon/js/util/StringUtils.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Text } from '../../../../scenery/js/imports.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
@@ -45,7 +45,7 @@ class NumberLineRangeSelector extends ComboBox {
       rangeSelectionComboBoxItems.push( {
         value: range,
         createNode: () => new Text(
-          StringUtils.fillIn( NumberLineCommonStrings.rangePattern, {
+          new PatternStringProperty( NumberLineCommonStrings.rangePatternStringProperty, {
             lowValue: range.min,
             highValue: range.max
           } ),
