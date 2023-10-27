@@ -606,12 +606,6 @@ class SpatializedNumberLineNode extends Node {
     // Calculate the center position of the tick mark, scaled but not translated.
     const tmCenter = this.numberLine.valueToModelPosition( value ).minus( this.numberLine.centerPositionProperty.value );
 
-    // create label
-    let labelNode;
-    if ( addLabel ) {
-      labelNode = new PatternStringProperty( this.options.numericalLabelTemplate, { value: value } );
-    }
-
     let tickMark;
     let tickLabelOptions;
     if ( this.numberLine.isHorizontal ) {
@@ -645,10 +639,14 @@ class SpatializedNumberLineNode extends Node {
       }
     }
     parentNode.addChild( tickMark );
-    labelNode && parentNode.addChild( new Text(
-      labelNode,
-      merge( tickLabelOptions, this.options.tickMarkLabelOptions )
-    ) );
+
+    // create label
+    if ( addLabel ) {
+      parentNode.addChild( new Text(
+        new PatternStringProperty( this.options.numericalLabelTemplate, { value: value } ),
+        merge( tickLabelOptions, this.options.tickMarkLabelOptions )
+      ) );
+    }
   }
 
   /**
