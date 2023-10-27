@@ -13,7 +13,7 @@ import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Color, HBox, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
+import { Color, HBox, Line, ManualConstraint, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import Panel from '../../../../sun/js/Panel.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import NumberLineCommonStrings from '../../NumberLineCommonStrings.js';
@@ -70,7 +70,7 @@ class SpatializedNumberLineNode extends Node {
       tickMarkLength: 10,
       zeroTickMarkLineWidth: 2,
       zeroTickMarkLength: 16,
-      tickMarkLabelOptions: { font: new PhetFont( 16 ), maxWidth: 75 },
+      tickMarkLabelOptions: { font: new PhetFont( 16 ), maxWidth: 70 },
       tickMarkLabelPositionWhenVertical: 'right', // valid values are 'right' and 'left'
       tickMarkLabelPositionWhenHorizontal: 'below', // valid values are 'above' and 'below'
       color: 'black',
@@ -607,45 +607,43 @@ class SpatializedNumberLineNode extends Node {
     const tmCenter = this.numberLine.valueToModelPosition( value ).minus( this.numberLine.centerPositionProperty.value );
 
     let tickMark;
-    let tickLabelOptions;
     if ( this.numberLine.isHorizontal ) {
       tickMark = new Line( tmCenter.x, tmCenter.y - length, tmCenter.x, tmCenter.y + length, tickMarkOptions );
-      if ( this.options.tickMarkLabelPositionWhenHorizontal === 'above' ) {
-        tickLabelOptions = {
-          centerX: tickMark.centerX,
-          bottom: tickMark.top - TICK_MARK_LABEL_DISTANCE
-        };
-      }
-      else {
-        tickLabelOptions = {
-          centerX: tickMark.centerX,
-          top: tickMark.bottom + TICK_MARK_LABEL_DISTANCE
-        };
-      }
     }
     else {
       tickMark = new Line( tmCenter.x - length, tmCenter.y, tmCenter.x + length, tmCenter.y, tickMarkOptions );
-      if ( this.options.tickMarkLabelPositionWhenVertical === 'left' ) {
-        tickLabelOptions = {
-          right: tickMark.left - 5,
-          centerY: tickMark.centerY
-        };
-      }
-      else {
-        tickLabelOptions = {
-          left: tickMark.right + 5,
-          centerY: tickMark.centerY
-        };
-      }
     }
     parentNode.addChild( tickMark );
 
     // create label
     if ( addLabel ) {
-      parentNode.addChild( new Text(
+      const labelText = new Text(
         new PatternStringProperty( this.options.numericalLabelTemplate, { value: value } ),
-        merge( tickLabelOptions, this.options.tickMarkLabelOptions )
-      ) );
+        this.options.tickMarkLabelOptions
+      );
+      parentNode.addChild( labelText );
+
+      ManualConstraint.create( parentNode, [ tickMark, labelText ], ( tickProxy, labelProxy ) => {
+        if ( this.numberLine.isHorizontal ) {
+          labelProxy.centerX = tickProxy.centerX;
+          if ( this.options.tickMarkLabelPositionWhenHorizontal === 'above' ) {
+            labelProxy.bottom = tickProxy.top - TICK_MARK_LABEL_DISTANCE;
+          }
+          else {
+            labelProxy.top = tickProxy.bottom + TICK_MARK_LABEL_DISTANCE;
+          }
+        }
+        else {
+          labelProxy.centerY = tickProxy.centerY;
+          const xMargin = 5;
+          if ( this.options.tickMarkLabelPositionWhenVertical === 'left' ) {
+            labelProxy.right = tickProxy.left - xMargin;
+          }
+          else {
+            labelProxy.left = tickProxy.right + xMargin;
+          }
+        }
+      } );
     }
   }
 
