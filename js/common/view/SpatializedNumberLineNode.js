@@ -112,7 +112,7 @@ class SpatializedNumberLineNode extends Node {
     super();
 
     // @public (readonly) {Object} - make options visible to methods
-    this.options = _.cloneDeep( options );
+    this.options = options;
 
     // @private {NumberLine} - make the number line model available to methods
     this.numberLine = numberLine;
