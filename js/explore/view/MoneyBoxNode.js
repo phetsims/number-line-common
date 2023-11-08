@@ -9,21 +9,21 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
-import { Image, Node, Path } from '../../../../scenery/js/imports.js';
-import piggyBankNoDecoration_png from '../../../images/piggyBankNoDecoration_png.js';
-import piggyBankWithFlowers_png from '../../../images/piggyBankWithFlowers_png.js';
-import piggyBankWithLightning_png from '../../../images/piggyBankWithLightning_png.js';
+import { Color, Image, Node, Path } from '../../../../scenery/js/imports.js';
+import moneyBoxNoDecoration_png from '../../../images/moneyBoxNoDecoration_png.js';
+import moneyBoxWithFlowers_png from '../../../images/moneyBoxWithFlowers_png.js';
+import moneyBoxWithLightning_png from '../../../images/moneyBoxWithLightning_png.js';
 import numberLineCommon from '../../numberLineCommon.js';
-import PiggyBankDecoration from '../model/PiggyBankDecoration.js';
-import piggyBankShapes from './piggyBankShapes.js';
+import MoneyBoxDecoration from '../model/MoneyBoxDecoration.js';
+import MoneyBoxShapes from './MoneyBoxShapes.js';
 
 // constants
 const MAP_DECORATION_TYPE_TO_IMAGE_INFO = new Map();
-MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.NONE, piggyBankNoDecoration_png );
-MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.FLOWERS, piggyBankWithFlowers_png );
-MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( PiggyBankDecoration.LIGHTNING, piggyBankWithLightning_png );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyBoxDecoration.NONE, moneyBoxNoDecoration_png );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyBoxDecoration.FLOWERS, moneyBoxWithFlowers_png );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyBoxDecoration.LIGHTNING, moneyBoxWithLightning_png );
 
-class PiggyBankNode extends Node {
+class MoneyBoxNode extends Node {
 
   /**
    * @param {Object} [options]
@@ -34,12 +34,13 @@ class PiggyBankNode extends Node {
     options = merge( {
       fill: 'rgba( 0, 0, 0, 0 )', // initially transparent so that it is invisible but has size
       lineWidth: 0,
-      decorationType: PiggyBankDecoration.FLOWERS
+      decorationType: MoneyBoxDecoration.FLOWERS
     }, options );
 
-    const piggyBankOutlineNode = new Path( piggyBankShapes.MEDIUM_PIGGY_BANK_SHAPE, {
+    const piggyBankOutlineNode = new Path( MoneyBoxShapes.MEDIUM_MONEY_BOX_SHAPE, {
       fill: options.fill,
-      lineWidth: options.lineWidth,
+      lineWidth: 0.5,
+      stroke: Color.BLACK,
       center: Vector2.ZERO
     } );
     const overlayImage = new Image(
@@ -76,5 +77,5 @@ class PiggyBankNode extends Node {
   set fill( fill ) { this.setFill( fill ); }
 }
 
-numberLineCommon.register( 'PiggyBankNode', PiggyBankNode );
-export default PiggyBankNode;
+numberLineCommon.register( 'MoneyBoxNode', MoneyBoxNode );
+export default MoneyBoxNode;
