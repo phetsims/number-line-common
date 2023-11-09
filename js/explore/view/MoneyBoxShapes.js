@@ -1,4 +1,4 @@
-// Copyright 2020-2022, University of Colorado Boulder
+// Copyright 2020-2023, University of Colorado Boulder
 
 /**
  * singleton that provides the shape of a piggy bank, suitable for providing to a Scenery Path node
