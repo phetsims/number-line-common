@@ -61,8 +61,12 @@ class PointNode extends Node {
     } );
     this.addChild( circle );
 
-const labelPatternStringProperty = new PatternStringProperty( options.labelTemplate, {
+    const labelPatternStringProperty = new PatternStringProperty( options.labelTemplate, {
       value: numberLinePoint.valueProperty
+    }, {
+      maps: {
+        value: value => options.isDoppelganger ? -value : value
+      }
     } );
 
     // Create a background and add the label text to it.
