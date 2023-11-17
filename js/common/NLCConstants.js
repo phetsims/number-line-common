@@ -20,7 +20,7 @@ const NLCConstants = {
   // options used for most if not all label backgrounds, of type scenery-phet/BackgroundNode
   LABEL_BACKGROUND_OPTIONS: {
     rectangleOptions: {
-      opacity: 0.85,
+      opacity: 0.83,
       cornerRadius: LABEL_BACKGROUND_CORNER_RADIUS
     },
     xMargin: 3,
