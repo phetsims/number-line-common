@@ -9,6 +9,6 @@
 import EnumerationDeprecated from '../../../../phet-core/js/EnumerationDeprecated.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
-const MoneyBoxDecoration = EnumerationDeprecated.byKeys( [ 'NONE', 'LIGHTNING', 'FLOWERS' ] );
-numberLineCommon.register( 'MoneyBoxDecoration', MoneyBoxDecoration );
-export default MoneyBoxDecoration;
+const MoneyJarDecoration = EnumerationDeprecated.byKeys( [ 'NONE', 'LIGHTNING', 'FLOWERS' ] );
+numberLineCommon.register( 'MoneyJarDecoration', MoneyJarDecoration );
+export default MoneyJarDecoration;

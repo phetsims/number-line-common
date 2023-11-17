@@ -1,7 +1,7 @@
 // Copyright 2020-2023, University of Colorado Boulder
 
 /**
- * singleton that provides the shape of a piggy bank, suitable for providing to a Scenery Path node
+ * singleton that provides the shape of a money jar, suitable for providing to a Scenery Path node
  *
  * @author John Blanco (PhET Interactive Simulations)
  */
@@ -22,14 +22,10 @@ const MONEY_BOX_SVG_STRING =
   '\tc12.6,2,28.5,3.2,45.8,3.2c17.3,0,33.2-1.2,45.8-3.2c17.1-2.8,28.1-7,28.1-11.8v-3.9c11.5-6.4,19.4-15.3,24.3-22.6\n' +
   '\tc4.7-6.8,7.2-14.8,7.4-23C214.8,170.4,216.9,95,213.6,75.7z';
 
-// unscaled version of the piggy bank shape
-// NOTE: In late August 2019 we decided to reverse the orientation of the piggy banks to point to the right instead of
-// the left.  However, flipping the image in the AI file and then saving it as SVG didn't seem to work - it kept
-// throwing exceptions upon loading, so I (jbphet) worked around this by loading the left-facing version and flipping
-// it.  Hence the transformation on the next line.
-const MONEY_BOX_SHAPE = new Shape( MONEY_BOX_SVG_STRING );
+// unscaled version of the money jar shape
+const MONEY_JAR_SHAPE = new Shape( MONEY_BOX_SVG_STRING );
 
-class MoneyBoxShapes {
+class MoneyJarShapes {
 
   /**
    * @public
@@ -37,12 +33,12 @@ class MoneyBoxShapes {
   constructor() {
 
     // Scale the shape to be reasonably sized.
-    const mediumVersionScale = ( NLI_LAYOUT_BOUNDS.width / 8 ) / MONEY_BOX_SHAPE.bounds.width;
+    const mediumVersionScale = ( NLI_LAYOUT_BOUNDS.width / 8 ) / MONEY_JAR_SHAPE.bounds.width;
     const mediumScaleTransform = Matrix3.scale( mediumVersionScale, mediumVersionScale );
-    this.MEDIUM_MONEY_BOX_SHAPE = MONEY_BOX_SHAPE.transformed( mediumScaleTransform );
+    this.MEDIUM_MONEY_JAR_SHAPE = MONEY_JAR_SHAPE.transformed( mediumScaleTransform );
   }
 }
 
-const piggyBankShapes = new MoneyBoxShapes();
-numberLineCommon.register( 'piggyBankShapes', piggyBankShapes );
-export default piggyBankShapes;
+const moneyJarShapes = new MoneyJarShapes();
+numberLineCommon.register( 'moneyJarShapes', moneyJarShapes );
+export default moneyJarShapes;

@@ -14,16 +14,16 @@ import moneyBoxNoDecoration_png from '../../../images/moneyBoxNoDecoration_png.j
 import moneyBoxWithFlowers_png from '../../../images/moneyBoxWithFlowers_png.js';
 import moneyBoxWithLightning_png from '../../../images/moneyBoxWithLightning_png.js';
 import numberLineCommon from '../../numberLineCommon.js';
-import MoneyBoxDecoration from '../model/MoneyBoxDecoration.js';
-import MoneyBoxShapes from './MoneyBoxShapes.js';
+import MoneyJarDecoration from '../model/MoneyJarDecoration.js';
+import MoneyJarShapes from './MoneyJarShapes.js';
 
 // constants
 const MAP_DECORATION_TYPE_TO_IMAGE_INFO = new Map();
-MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyBoxDecoration.NONE, moneyBoxNoDecoration_png );
-MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyBoxDecoration.FLOWERS, moneyBoxWithFlowers_png );
-MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyBoxDecoration.LIGHTNING, moneyBoxWithLightning_png );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyJarDecoration.NONE, moneyBoxNoDecoration_png );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyJarDecoration.FLOWERS, moneyBoxWithFlowers_png );
+MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyJarDecoration.LIGHTNING, moneyBoxWithLightning_png );
 
-class MoneyBoxNode extends Node {
+class MoneyJarNode extends Node {
 
   /**
    * @param {Object} [options]
@@ -34,10 +34,10 @@ class MoneyBoxNode extends Node {
     options = merge( {
       fill: 'rgba( 0, 0, 0, 0 )', // initially transparent so that it is invisible but has size
       lineWidth: 0,
-      decorationType: MoneyBoxDecoration.FLOWERS
+      decorationType: MoneyJarDecoration.FLOWERS
     }, options );
 
-    const piggyBankOutlineNode = new Path( MoneyBoxShapes.MEDIUM_MONEY_BOX_SHAPE, {
+    const piggyBankOutlineNode = new Path( MoneyJarShapes.MEDIUM_MONEY_BOX_SHAPE, {
       fill: options.fill,
       lineWidth: 0.5,
       stroke: Color.BLACK,
@@ -77,5 +77,5 @@ class MoneyBoxNode extends Node {
   set fill( fill ) { this.setFill( fill ); }
 }
 
-numberLineCommon.register( 'MoneyBoxNode', MoneyBoxNode );
-export default MoneyBoxNode;
+numberLineCommon.register( 'MoneyJarNode', MoneyJarNode );
+export default MoneyJarNode;
