@@ -37,7 +37,7 @@ class MoneyJarNode extends Node {
       decorationType: MoneyJarDecoration.FLOWERS
     }, options );
 
-    const piggyBankOutlineNode = new Path( MoneyJarShapes.MEDIUM_MONEY_BOX_SHAPE, {
+    const moneyJarOutlineNode = new Path( MoneyJarShapes.MEDIUM_MONEY_JAR_SHAPE, {
       fill: options.fill,
       lineWidth: 0.5,
       stroke: Color.BLACK,
@@ -47,13 +47,13 @@ class MoneyJarNode extends Node {
       MAP_DECORATION_TYPE_TO_IMAGE_INFO.get( options.decorationType ),
       { opacity: 0.9 }
     );
-    overlayImage.setScaleMagnitude( piggyBankOutlineNode.width / overlayImage.width );
+    overlayImage.setScaleMagnitude( moneyJarOutlineNode.width / overlayImage.width );
     overlayImage.center = Vector2.ZERO;
-    options.children = [ piggyBankOutlineNode, overlayImage ];
+    options.children = [ moneyJarOutlineNode, overlayImage ];
     super( options );
 
     // @private
-    this.outline = piggyBankOutlineNode;
+    this.outline = moneyJarOutlineNode;
   }
 
   /**
