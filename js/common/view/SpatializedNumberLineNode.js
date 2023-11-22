@@ -22,7 +22,7 @@ import AbsoluteValueSpanNode from './AbsoluteValueSpanNode.js';
 import PointNode from './PointNode.js';
 import PointsOffScaleCondition from './PointsOffScaleCondition.js';
 
-const pointsOffScaleString = NumberLineCommonStrings.pointsOffScale;
+const pointsOffScaleString = NumberLineCommonStrings.pointsOffScaleStringProperty;
 
 // constants
 const TICK_MARK_LABEL_DISTANCE = 5;

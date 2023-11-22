@@ -20,10 +20,10 @@ class NLCheckbox extends Checkbox {
 
   /**
    * @param {BooleanProperty} property - Property that will be controlled by the checkbox
-   * @param {string} contentString - the string that will be used as the label for the checkbox
+   * @param {LocalizedStringProperty} contentStringProperty - the string that will be used as the label for the checkbox
    * @param {Object} [options]
    */
-  constructor( property, contentString, options ) {
+  constructor( property, contentStringProperty, options ) {
 
     options = merge( {
       boxWidth: BOX_WIDTH,
@@ -36,7 +36,7 @@ class NLCheckbox extends Checkbox {
       isDisposable: false
     }, options );
 
-    const content = new Text( contentString, options.textOptions );
+    const content = new Text( contentStringProperty, options.textOptions );
 
     super( property, content, options );
 

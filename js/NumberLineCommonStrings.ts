@@ -9,9 +9,7 @@ import type LocalizedStringProperty from '../../chipper/js/LocalizedStringProper
 import numberLineCommon from './numberLineCommon.js';
 
 type StringsType = {
-  'rangePattern': string;
   'rangePatternStringProperty': LocalizedStringProperty;
-  'pointsOffScale': string;
   'pointsOffScaleStringProperty': LocalizedStringProperty;
 };
 
