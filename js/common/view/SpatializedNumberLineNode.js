@@ -117,6 +117,14 @@ class SpatializedNumberLineNode extends Node {
     // @private {NumberLine} - make the number line model available to methods
     this.numberLine = numberLine;
 
+    // @private {Array} - An array of ManualConstraints that need to be disposed when the orientation
+    // or range of the numberline changes
+    this.manualConstraints = [];
+
+    // @private {Array} - An array of PatternStringProperties that need to be disposed when the orientation
+    // or range of the numberline changes
+    this.patternStringProperties = [];
+
     // Assemble the options that control the appearance of the main number into one place.
     const numberLineNodeOptions = {
       doubleHead: true,
@@ -358,6 +366,10 @@ class SpatializedNumberLineNode extends Node {
         );
 
         // Remove previous middle and end tickmarks.
+        this.manualConstraints.forEach( manualConstraint => { manualConstraint.dispose(); } );
+        this.manualConstraints.length = 0;
+        this.patternStringProperties.forEach( patternString => { patternString.dispose(); } );
+        this.patternStringProperties.length = 0;
         middleTickMarksRootNode.removeAllChildren();
         endTickMarksRootNode.removeAllChildren();
 
@@ -617,13 +629,15 @@ class SpatializedNumberLineNode extends Node {
 
     // create label
     if ( addLabel ) {
+      const patternStringProperty = new PatternStringProperty( this.options.numericalLabelTemplate, { value: value } );
+      this.patternStringProperties.push( patternStringProperty );
       const labelText = new Text(
-        new PatternStringProperty( this.options.numericalLabelTemplate, { value: value } ),
+        patternStringProperty,
         this.options.tickMarkLabelOptions
       );
       parentNode.addChild( labelText );
 
-      ManualConstraint.create( parentNode, [ tickMark, labelText ], ( tickProxy, labelProxy ) => {
+      this.manualConstraints.push( ManualConstraint.create( parentNode, [ tickMark, labelText ], ( tickProxy, labelProxy ) => {
         if ( this.numberLine.isHorizontal ) {
           labelProxy.centerX = tickProxy.centerX;
           if ( this.options.tickMarkLabelPositionWhenHorizontal === 'above' ) {
@@ -643,7 +657,7 @@ class SpatializedNumberLineNode extends Node {
             labelProxy.left = tickProxy.right + xMargin;
           }
         }
-      } );
+      } ) );
     }
   }
 
