@@ -33,14 +33,14 @@ class NLCheckbox extends Checkbox {
         font: new PhetFont( 16 ),
         maxWidth: 200
       },
-      isDisposable: false
+      isDisposable: false,
+      touchAreaXDilation: TOUCH_AREA_DILATION,
+      touchAreaYDilation: TOUCH_AREA_DILATION
     }, options );
 
     const content = new Text( contentStringProperty, options.textOptions );
 
     super( property, content, options );
-
-    this.touchArea = this.localBounds.dilated( TOUCH_AREA_DILATION );
   }
 }
 
