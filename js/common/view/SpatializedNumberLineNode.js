@@ -45,6 +45,7 @@ const OFF_SCALE_ARROW_OPTIONS = {
 };
 const OFF_SCALE_INDICATOR_INSET = 25;
 const OFF_SCALE_TEXT_MAX_WIDTH = 100;
+const OFF_SCALE_TEXT_MAX_HEIGHT = 50;
 
 // convenience function to calculate distance of an absolute value span node from the number line
 const getIndicatorDistanceFromNL = ( numberLine, count ) => {
@@ -471,6 +472,7 @@ class SpatializedNumberLineNode extends Node {
       const offScaleToRightText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
         maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
+        maxHeight: OFF_SCALE_TEXT_MAX_HEIGHT,
         align: 'left'
       } );
       const offScaleToRightArrow = new ArrowNode( 0, 0, OFF_SCALE_ARROW_LENGTH, 0, OFF_SCALE_ARROW_OPTIONS );
@@ -486,6 +488,7 @@ class SpatializedNumberLineNode extends Node {
       const offScaleToLeftText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
         maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
+        maxHeight: OFF_SCALE_TEXT_MAX_HEIGHT,
         align: 'right'
       } );
       const offScaleToLeftArrow = new ArrowNode( 0, 0, -OFF_SCALE_ARROW_LENGTH, 0, OFF_SCALE_ARROW_OPTIONS );
@@ -501,6 +504,7 @@ class SpatializedNumberLineNode extends Node {
       const offScaleToTopText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
         maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
+        maxHeight: OFF_SCALE_TEXT_MAX_HEIGHT,
         align: 'center'
       } );
       const offScaleToTopArrow = new ArrowNode( 0, 0, 0, -OFF_SCALE_ARROW_LENGTH, OFF_SCALE_ARROW_OPTIONS );
@@ -516,6 +520,7 @@ class SpatializedNumberLineNode extends Node {
       const offScaleToBottomText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
         maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
+        maxHeight: OFF_SCALE_TEXT_MAX_HEIGHT,
         align: 'center'
       } );
       const offScaleToBottomArrow = new ArrowNode( 0, 0, 0, OFF_SCALE_ARROW_LENGTH, OFF_SCALE_ARROW_OPTIONS );
@@ -581,7 +586,9 @@ class SpatializedNumberLineNode extends Node {
 
       // Hook up the listener that will update the points-off-scale indicators.
       Multilink.multilink(
-        [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty, numberLine.orientationProperty ],
+        [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty, numberLine.orientationProperty,
+          offScaleToRightText.boundsProperty, offScaleToLeftText.boundsProperty, offScaleToTopText.boundsProperty,
+          offScaleToBottomText.boundsProperty ],
         updatePointsOffScaleIndicators
       );
 
