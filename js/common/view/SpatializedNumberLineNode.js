@@ -7,13 +7,12 @@
  */
 
 import Multilink from '../../../../axon/js/Multilink.js';
-import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js';
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Color, HBox, Line, ManualConstraint, Node, RichText, Text } from '../../../../scenery/js/imports.js';
+import { Color, HBox, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import Panel from '../../../../sun/js/Panel.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import NumberLineCommonStrings from '../../NumberLineCommonStrings.js';
@@ -117,14 +116,6 @@ class SpatializedNumberLineNode extends Node {
 
     // @private {NumberLine} - make the number line model available to methods
     this.numberLine = numberLine;
-
-    // @private {Array} - An array of ManualConstraints that need to be disposed when the orientation
-    // or range of the numberline changes
-    this.manualConstraints = [];
-
-    // @private {Array} - An array of PatternStringProperties that need to be disposed when the orientation
-    // or range of the numberline changes
-    this.patternStringProperties = [];
 
     // Assemble the options that control the appearance of the main number into one place.
     const numberLineNodeOptions = {
@@ -367,12 +358,8 @@ class SpatializedNumberLineNode extends Node {
         );
 
         // Remove previous middle and end tickmarks.
-        this.manualConstraints.forEach( manualConstraint => { manualConstraint.dispose(); } );
-        this.manualConstraints.length = 0;
-        this.patternStringProperties.forEach( patternString => { patternString.dispose(); } );
-        this.patternStringProperties.length = 0;
-        middleTickMarksRootNode.removeAllChildren();
-        endTickMarksRootNode.removeAllChildren();
+        middleTickMarksRootNode.children.forEach( child => { child.dispose(); } );
+        endTickMarksRootNode.children.forEach( child => { child.dispose(); } );
 
         // Derive the tick mark spacing from the range.  This mapping was taken from the various Number Line Suite
         // design specs, and could be made into a optional mapping function if more flexibility is needed.
@@ -636,35 +623,31 @@ class SpatializedNumberLineNode extends Node {
 
     // create label
     if ( addLabel ) {
-      const patternStringProperty = new PatternStringProperty( this.options.numericalLabelTemplate, { value: value } );
-      this.patternStringProperties.push( patternStringProperty );
       const labelText = new Text(
-        patternStringProperty,
+        value,
         this.options.tickMarkLabelOptions
       );
       parentNode.addChild( labelText );
 
-      this.manualConstraints.push( ManualConstraint.create( parentNode, [ tickMark, labelText ], ( tickProxy, labelProxy ) => {
-        if ( this.numberLine.isHorizontal ) {
-          labelProxy.centerX = tickProxy.centerX;
-          if ( this.options.tickMarkLabelPositionWhenHorizontal === 'above' ) {
-            labelProxy.bottom = tickProxy.top - TICK_MARK_LABEL_DISTANCE;
-          }
-          else {
-            labelProxy.top = tickProxy.bottom + TICK_MARK_LABEL_DISTANCE;
-          }
+      if ( this.numberLine.isHorizontal ) {
+        labelText.centerX = tickMark.centerX;
+        if ( this.options.tickMarkLabelPositionWhenHorizontal === 'above' ) {
+          labelText.bottom = tickMark.top - TICK_MARK_LABEL_DISTANCE;
         }
         else {
-          labelProxy.centerY = tickProxy.centerY;
-          const xMargin = 5;
-          if ( this.options.tickMarkLabelPositionWhenVertical === 'left' ) {
-            labelProxy.right = tickProxy.left - xMargin;
-          }
-          else {
-            labelProxy.left = tickProxy.right + xMargin;
-          }
+          labelText.top = tickMark.bottom + TICK_MARK_LABEL_DISTANCE;
         }
-      } ) );
+      }
+      else {
+        labelText.centerY = tickMark.centerY;
+        const xMargin = 5;
+        if ( this.options.tickMarkLabelPositionWhenVertical === 'left' ) {
+          labelText.right = tickMark.left - xMargin;
+        }
+        else {
+          labelText.left = tickMark.right + xMargin;
+        }
+      }
     }
   }
 
