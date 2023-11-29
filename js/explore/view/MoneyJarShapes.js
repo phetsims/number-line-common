@@ -14,7 +14,9 @@ import numberLineCommon from '../../numberLineCommon.js';
 // constants
 const NLI_LAYOUT_BOUNDS = ScreenView.DEFAULT_LAYOUT_BOUNDS;
 
-const MONEY_BOX_SVG_STRING =
+// SVG string from money-jar-outline.svg (bank-artwork.ai). If compared directly, one of vector points was duplicated
+// in the original string, and removed below to make the shape valid. There was no visible change to the shape in the sim.
+const MONEY_JAR_SVG_STRING =
   'M213.6,75.7c-3.4-20.2-25.6-27.8-31.5-29.9c0,0-1.2-1.7-0.5-3.1c0.6-1.2,1.8-1.8,2.1-2.8\n' +
   '\tc0.1-0.3,0.1-0.6,0.1-0.9v-5.3c0-1.1-0.6-2.2-1.7-3.3V15.9c0-8.3-33.1-15-73.9-15s-73.9,6.7-73.9,15V30c-1.5,1.2-2.3,2.5-2.3,3.8\n' +
   '\tv5.3c0,0.4,0.1,0.8,0.2,1.1c0.3,0.8,1.3,1.3,1.7,2.3c0.7,1.6,0.4,3.6,0.4,3.7C27.7,48.4,5.8,56.1,2.4,75.7\n' +
@@ -23,7 +25,7 @@ const MONEY_BOX_SVG_STRING =
   '\tc4.7-6.8,7.2-14.8,7.4-23C214.8,170.4,216.9,95,213.6,75.7z';
 
 // unscaled version of the money jar shape
-const MONEY_JAR_SHAPE = new Shape( MONEY_BOX_SVG_STRING );
+const MONEY_JAR_SHAPE = new Shape( MONEY_JAR_SVG_STRING );
 
 class MoneyJarShapes {
 
