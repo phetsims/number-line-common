@@ -62,7 +62,7 @@ class ColorizedReadoutNode extends BackgroundNode {
     // @private - dispose function
     this.disposeColorizedReadoutNode = () => {
       baseColorProperty.unlink( updateColors );
-      stringProperty.dispose();
+      !stringProperty.isDisposed && stringProperty.dispose();
     };
   }
 
@@ -71,6 +71,7 @@ class ColorizedReadoutNode extends BackgroundNode {
    * @override
    */
   dispose() {
+    // debugger;
     this.disposeColorizedReadoutNode();
     super.dispose();
   }
