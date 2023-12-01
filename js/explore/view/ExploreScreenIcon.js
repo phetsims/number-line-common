@@ -10,8 +10,8 @@
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
 import ScreenIcon from '../../../../joist/js/ScreenIcon.js';
-import numberLineIntegers from '../../../../number-line-integers/js/numberLineIntegers.js';
 import { Node, Image } from '../../../../scenery/js/imports.js';
+import numberLineCommon from '../../numberLineCommon.js';
 
 export default class ExploreScreenIcon extends ScreenIcon {
 
@@ -37,5 +37,4 @@ export default class ExploreScreenIcon extends ScreenIcon {
     super( screenIconNode, { maxIconWidthProportion: 1, maxIconHeightProportion: 1 } );
   }
 }
-
-numberLineIntegers.register( 'ExploreScreenIcon', ExploreScreenIcon );
+numberLineCommon.register( 'ExploreScreenIcon', ExploreScreenIcon );
