@@ -16,13 +16,13 @@ import numberLineCommon from '../../numberLineCommon.js';
 export default class ExploreScreenIcon extends ScreenIcon {
 
   /**
-   * @param { Array<NumberLineCharacterSet> }characterSets
+   * @param { Array<NumberLinePortrayal> }portrayalSets
    * @param { Property<RegionAndCulturePortrayal> }regionAndCulturePortrayalProperty
    * @param { 'nav' | 'home' }iconType
    */
-  constructor( characterSets, regionAndCulturePortrayalProperty, iconType ) {
+  constructor( portrayalSets, regionAndCulturePortrayalProperty, iconType ) {
 
-    const exploreScreenImages = characterSets.map( set => {
+    const exploreScreenImages = portrayalSets.map( set => {
       const screenImage = iconType === 'nav' ? set.screenNavIcon : set.screenHomeIcon;
       return new Image( screenImage, {
         visibleProperty: new DerivedProperty( [ regionAndCulturePortrayalProperty ], portrayal => {

@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * NumberLineCharacterSet defines the common properties for each character set in the Number Line Suite.
+ * NumberLinePortrayal defines the common properties for each character set in the Number Line Suite.
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  *
@@ -11,7 +11,7 @@ import RegionAndCulturePortrayal from '../../../../joist/js/preferences/RegionAn
 import numberLineCommon from '../../numberLineCommon.js';
 
 
-export default class NumberLineCharacterSet extends RegionAndCulturePortrayal {
+export default class NumberLinePortrayal extends RegionAndCulturePortrayal {
 
   /**
    *
@@ -28,4 +28,4 @@ export default class NumberLineCharacterSet extends RegionAndCulturePortrayal {
   }
 }
 
-numberLineCommon.register( 'NumberLineCharacterSet', NumberLineCharacterSet );
+numberLineCommon.register( 'NumberLinePortrayal', NumberLinePortrayal );
