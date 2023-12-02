@@ -138,6 +138,7 @@ class PointNode extends Node {
       updatePointRepresentationMultilink.dispose();
       moveToFrontMultilink.dispose();
       pointLabelNode.dispose();
+      labelPatternStringProperty.dispose();
     };
   }
 
