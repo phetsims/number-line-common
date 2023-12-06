@@ -9,11 +9,12 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
-import { Color, Image, Node, Path } from '../../../../scenery/js/imports.js';
+import { Color, Image, Path } from '../../../../scenery/js/imports.js';
 import moneyBoxNoDecoration_png from '../../../images/moneyBoxNoDecoration_png.js';
 import moneyBoxWithFlowers_png from '../../../images/moneyBoxWithFlowers_png.js';
 import moneyBoxWithLightning_png from '../../../images/moneyBoxWithLightning_png.js';
 import numberLineCommon from '../../numberLineCommon.js';
+import FillableBackgroundNode from '../../view/FillableBackgroundNode.js';
 import MoneyJarDecoration from '../model/MoneyJarDecoration.js';
 import MoneyJarShapes from './MoneyJarShapes.js';
 
@@ -23,7 +24,7 @@ MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyJarDecoration.NONE, moneyBoxNoDecora
 MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyJarDecoration.FLOWERS, moneyBoxWithFlowers_png );
 MAP_DECORATION_TYPE_TO_IMAGE_INFO.set( MoneyJarDecoration.LIGHTNING, moneyBoxWithLightning_png );
 
-class MoneyJarNode extends Node {
+class MoneyJarNode extends FillableBackgroundNode {
 
   /**
    * @param {Object} [options]
@@ -50,31 +51,8 @@ class MoneyJarNode extends Node {
     overlayImage.setScaleMagnitude( moneyJarOutlineNode.width / overlayImage.width );
     overlayImage.center = Vector2.ZERO;
     options.children = [ moneyJarOutlineNode, overlayImage ];
-    super( options );
-
-    // @private
-    this.outline = moneyJarOutlineNode;
+    super( moneyJarOutlineNode, options );
   }
-
-  /**
-   * @returns {ColorDef} the color of this piggy bank's fill
-   * @public
-   */
-  getFill() {
-    return this.outline.fill;
-  }
-
-  get fill() { return this.getFill(); }
-
-  /**
-   * @param {ColorDef} fill
-   * @public
-   */
-  setFill( fill ) {
-    this.outline.fill = fill;
-  }
-
-  set fill( fill ) { this.setFill( fill ); }
 }
 
 numberLineCommon.register( 'MoneyJarNode', MoneyJarNode );
