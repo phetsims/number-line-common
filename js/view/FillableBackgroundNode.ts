@@ -13,7 +13,7 @@ import numberLineOperations from '../../../number-line-operations/js/numberLineO
 
 export default class FillableBackgroundNode extends Node {
 
-  protected outline: Path;
+  private readonly outline: Path;
   public constructor( outline: Path, providedOptions: NodeOptions ) {
    super( providedOptions );
 
