@@ -99,7 +99,8 @@ class PointNode extends Node {
         numberLine.showOppositesProperty,
         numberLine.displayedRangeProperty,
         numberLine.centerPositionProperty,
-        numberLine.orientationProperty
+        numberLine.orientationProperty,
+        pointLabelNode.boundsProperty
       ],
       ( value, oppositesVisible, displayedRange ) => {
 
