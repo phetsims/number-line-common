@@ -14,7 +14,7 @@ import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
 const BOX_WIDTH = 17;
-const TOUCH_AREA_DILATION = 5;
+const POINTER_AREA_DILATION = 5;
 
 class NLCheckbox extends Checkbox {
 
@@ -34,8 +34,10 @@ class NLCheckbox extends Checkbox {
         maxWidth: 200
       },
       isDisposable: false,
-      touchAreaXDilation: TOUCH_AREA_DILATION,
-      touchAreaYDilation: TOUCH_AREA_DILATION
+      touchAreaXDilation: POINTER_AREA_DILATION,
+      touchAreaYDilation: POINTER_AREA_DILATION,
+      mouseAreaXDilation: POINTER_AREA_DILATION,
+      mouseAreaYDilation: POINTER_AREA_DILATION
     }, options );
 
     const content = new Text( contentStringProperty, options.textOptions );
