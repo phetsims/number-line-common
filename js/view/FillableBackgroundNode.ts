@@ -9,15 +9,16 @@
  */
 
 import { Node, NodeOptions, Path, TPaint } from '../../../scenery/js/imports.js';
-import numberLineOperations from '../../../number-line-operations/js/numberLineOperations.js';
+import numberLineCommon from '../numberLineCommon.js';
 
 export default class FillableBackgroundNode extends Node {
 
   private readonly outline: Path;
-  public constructor( outline: Path, providedOptions: NodeOptions ) {
-   super( providedOptions );
 
-   this.outline = outline;
+  public constructor( outline: Path, providedOptions: NodeOptions ) {
+    super( providedOptions );
+
+    this.outline = outline;
   }
 
   public getFill(): TPaint {
@@ -34,4 +35,4 @@ export default class FillableBackgroundNode extends Node {
 
 }
 
-numberLineOperations.register( 'FillableBackgroundNode', FillableBackgroundNode );
+numberLineCommon.register( 'FillableBackgroundNode', FillableBackgroundNode );
