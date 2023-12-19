@@ -169,6 +169,10 @@ class PointControllerNode extends Node {
       let pointOffset;
       this.addInputListener( new DragListener( {
 
+        // So that the transforms and tracked bounds are correct for the DragListener and for pan/zoom
+        // behaviors while dragging.
+        targetNode: this.draggableNode,
+
         dragBoundsProperty: new Property( this.layoutBounds ),
 
         start: event => {
