@@ -1,7 +1,7 @@
 // Copyright 2023, University of Colorado Boulder
 
 /**
- * NumberLinePortrayal defines the common properties for each character set in the Number Line Suite.
+ * NumberLinePortrayal defines the common properties for each portrayal in the Number Line Suite.
  *
  * @author Marla Schulz (PhET Interactive Simulations)
  *
