@@ -10,18 +10,15 @@
 import RegionAndCulturePortrayal from '../../../../joist/js/preferences/RegionAndCulturePortrayal.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
-
 export default class NumberLinePortrayal extends RegionAndCulturePortrayal {
 
   /**
-   *
-   * @param { LocalizedStringProperty } label
+   * @param {RegionAndCulture} regionAndCulture
    * @param { HTMLImageElement } screenHomeIcon
    * @param { HTMLImageElement } screenNavIcon
-   * @param { string } queryParameterValue
    */
-  constructor( label, screenHomeIcon, screenNavIcon, queryParameterValue ) {
-   super( label, queryParameterValue, {} );
+  constructor( regionAndCulture, screenHomeIcon, screenNavIcon ) {
+   super( regionAndCulture );
 
     this.screenHomeIcon = screenHomeIcon;
     this.screenNavIcon = screenNavIcon;
