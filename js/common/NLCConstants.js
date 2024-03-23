@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2024, University of Colorado Boulder
 
 /**
  * NLCConstants (Number Line Common Constants) contains constants that are used by the common code and/or more than one
