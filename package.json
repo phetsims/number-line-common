@@ -25,7 +25,7 @@
         ],
         "parserOptions": {
           "project": [
-            "../number-line-common/tsconfig.json"
+            "../chipper/tsconfig/eslint-all/tsconfig.json"
           ]
         }
       }
