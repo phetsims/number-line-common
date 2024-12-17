@@ -13,11 +13,9 @@ import Orientation from '../../../../phet-core/js/Orientation.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import OffScaleIndicatorNode from '../../../../scenery-phet/js/OffScaleIndicatorNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Color, HBox, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
-import Panel from '../../../../sun/js/Panel.js';
+import { Line, Node, Text } from '../../../../scenery/js/imports.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import NumberLineCommonStrings from '../../NumberLineCommonStrings.js';
-import NLCConstants from '../NLCConstants.js';
 import AbsoluteValueSpanNode from './AbsoluteValueSpanNode.js';
 import PointNode from './PointNode.js';
 import PointsOffScaleCondition from './PointsOffScaleCondition.js';
@@ -35,20 +33,7 @@ const ABSOLUTE_VALUE_SPAN_NL_DISTANCE_Y = 55;
 const ABSOLUTE_VALUE_SPAN_SPACING_Y = 40;
 const ABSOLUTE_VALUE_SPAN_NL_DISTANCE_X = 105;
 const ABSOLUTE_VALUE_SPAN_SPACING_X = 95;
-const OFF_SCALE_INDICATOR_FONT = new PhetFont( 14 );
-const COMMON_OFF_SCALE_PANEL_OPTIONS = {
-  fill: Color.WHITE,
-  stroke: Color.BLACK,
-  cornerRadius: NLCConstants.LABEL_BACKGROUND_CORNER_RADIUS
-};
-const OFF_SCALE_HBOX_SPACING = 5;
-const OFF_SCALE_ARROW_LENGTH = 25;
-const OFF_SCALE_ARROW_OPTIONS = {
-  tailWidth: 2
-};
 const OFF_SCALE_INDICATOR_INSET = 25;
-const OFF_SCALE_TEXT_MAX_WIDTH = 100;
-const OFF_SCALE_TEXT_MAX_HEIGHT = 50;
 
 // convenience function to calculate distance of an absolute value span node from the number line
 const getIndicatorDistanceFromNL = ( numberLine, count ) => {
@@ -487,38 +472,6 @@ class SpatializedNumberLineNode extends Node {
       this.addChild( pointsOffScaleToTopIndicator );
       this.addChild( pointsOffScaleToBottomIndicator );
 
-      const offScaleToTopText = new RichText( pointsOffScaleString, {
-        font: OFF_SCALE_INDICATOR_FONT,
-        maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
-        maxHeight: OFF_SCALE_TEXT_MAX_HEIGHT,
-        align: 'center'
-      } );
-      const offScaleToTopArrow = new ArrowNode( 0, 0, 0, -OFF_SCALE_ARROW_LENGTH, OFF_SCALE_ARROW_OPTIONS );
-      const pointsOffScaleToTopIndicator = new Panel(
-        new HBox( {
-          children: [ offScaleToTopArrow, offScaleToTopText ],
-          spacing: OFF_SCALE_HBOX_SPACING
-        } ),
-        merge( {}, COMMON_OFF_SCALE_PANEL_OPTIONS )
-      );
-      this.addChild( pointsOffScaleToTopIndicator );
-
-      const offScaleToBottomText = new RichText( pointsOffScaleString, {
-        font: OFF_SCALE_INDICATOR_FONT,
-        maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
-        maxHeight: OFF_SCALE_TEXT_MAX_HEIGHT,
-        align: 'center'
-      } );
-      const offScaleToBottomArrow = new ArrowNode( 0, 0, 0, OFF_SCALE_ARROW_LENGTH, OFF_SCALE_ARROW_OPTIONS );
-      const pointsOffScaleToBottomIndicator = new Panel(
-        new HBox( {
-          children: [ offScaleToBottomArrow, offScaleToBottomText ],
-          spacing: OFF_SCALE_HBOX_SPACING
-        } ),
-        merge( {}, COMMON_OFF_SCALE_PANEL_OPTIONS )
-      );
-      this.addChild( pointsOffScaleToBottomIndicator );
-
       // function closure to update the position and visibility of each of the points-off-scale indicators
       const updatePointsOffScaleIndicators = () => {
 
@@ -572,8 +525,7 @@ class SpatializedNumberLineNode extends Node {
 
       // Hook up the listener that will update the points-off-scale indicators.
       Multilink.multilink(
-        [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty, numberLine.orientationProperty,
-          offScaleToTopText.boundsProperty, offScaleToBottomText.boundsProperty ],
+        [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty, numberLine.orientationProperty ],
         updatePointsOffScaleIndicators
       );
 
