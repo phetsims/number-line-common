@@ -11,6 +11,7 @@ import StringProperty from '../../../../axon/js/StringProperty.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
+import OffScaleIndicatorNode from '../../../../scenery-phet/js/OffScaleIndicatorNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import { Color, HBox, Line, Node, RichText, Text } from '../../../../scenery/js/imports.js';
 import Panel from '../../../../sun/js/Panel.js';
@@ -21,6 +22,9 @@ import AbsoluteValueSpanNode from './AbsoluteValueSpanNode.js';
 import PointNode from './PointNode.js';
 import PointsOffScaleCondition from './PointsOffScaleCondition.js';
 
+// This uses the same string as the common code component, but keep using the sim specific
+// string to maintain existing translations.
+// See https://github.com/phetsims/scenery-phet/issues/893#issuecomment-2537458442.
 const pointsOffScaleString = NumberLineCommonStrings.pointsOffScaleStringProperty;
 
 // constants
@@ -456,37 +460,32 @@ class SpatializedNumberLineNode extends Node {
     if ( options.pointsOffScaleCondition !== PointsOffScaleCondition.NEVER ) {
 
       // indicators for when all points are off the scale
-      const offScaleToRightText = new RichText( pointsOffScaleString, {
-        font: OFF_SCALE_INDICATOR_FONT,
-        maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
-        maxHeight: OFF_SCALE_TEXT_MAX_HEIGHT,
-        align: 'left'
+      const pointsOffScaleToRightIndicator = new OffScaleIndicatorNode( 'right', {
+        offScaleStringProperty: pointsOffScaleString
       } );
-      const offScaleToRightArrow = new ArrowNode( 0, 0, OFF_SCALE_ARROW_LENGTH, 0, OFF_SCALE_ARROW_OPTIONS );
-      const pointsOffScaleToRightIndicator = new Panel(
-        new HBox( {
-          children: [ offScaleToRightText, offScaleToRightArrow ],
-          spacing: OFF_SCALE_HBOX_SPACING
-        } ),
-        merge( {}, COMMON_OFF_SCALE_PANEL_OPTIONS )
-      );
-      this.addChild( pointsOffScaleToRightIndicator );
+      const pointsOffScaleToLeftIndicator = new OffScaleIndicatorNode( 'left', {
+        offScaleStringProperty: pointsOffScaleString,
+        richTextOptions: {
+          align: 'right'
+        }
+      } );
+      const pointsOffScaleToTopIndicator = new OffScaleIndicatorNode( 'up', {
+        offScaleStringProperty: pointsOffScaleString,
+        richTextOptions: {
+          align: 'center'
+        }
+      } );
+      const pointsOffScaleToBottomIndicator = new OffScaleIndicatorNode( 'down', {
+        offScaleStringProperty: pointsOffScaleString,
+        richTextOptions: {
+          align: 'center'
+        }
+      } );
 
-      const offScaleToLeftText = new RichText( pointsOffScaleString, {
-        font: OFF_SCALE_INDICATOR_FONT,
-        maxWidth: OFF_SCALE_TEXT_MAX_WIDTH,
-        maxHeight: OFF_SCALE_TEXT_MAX_HEIGHT,
-        align: 'right'
-      } );
-      const offScaleToLeftArrow = new ArrowNode( 0, 0, -OFF_SCALE_ARROW_LENGTH, 0, OFF_SCALE_ARROW_OPTIONS );
-      const pointsOffScaleToLeftIndicator = new Panel(
-        new HBox( {
-          children: [ offScaleToLeftArrow, offScaleToLeftText ],
-          spacing: OFF_SCALE_HBOX_SPACING
-        } ),
-        merge( {}, COMMON_OFF_SCALE_PANEL_OPTIONS )
-      );
+      this.addChild( pointsOffScaleToRightIndicator );
       this.addChild( pointsOffScaleToLeftIndicator );
+      this.addChild( pointsOffScaleToTopIndicator );
+      this.addChild( pointsOffScaleToBottomIndicator );
 
       const offScaleToTopText = new RichText( pointsOffScaleString, {
         font: OFF_SCALE_INDICATOR_FONT,
@@ -574,8 +573,7 @@ class SpatializedNumberLineNode extends Node {
       // Hook up the listener that will update the points-off-scale indicators.
       Multilink.multilink(
         [ numberLine.displayedRangeProperty, numberLine.centerPositionProperty, numberLine.orientationProperty,
-          offScaleToRightText.boundsProperty, offScaleToLeftText.boundsProperty, offScaleToTopText.boundsProperty,
-          offScaleToBottomText.boundsProperty ],
+          offScaleToTopText.boundsProperty, offScaleToBottomText.boundsProperty ],
         updatePointsOffScaleIndicators
       );
 
