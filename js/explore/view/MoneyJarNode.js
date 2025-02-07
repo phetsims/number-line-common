@@ -9,7 +9,9 @@
 
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
-import { Color, Image, Path } from '../../../../scenery/js/imports.js';
+import Image from '../../../../scenery/js/nodes/Image.js';
+import Path from '../../../../scenery/js/nodes/Path.js';
+import Color from '../../../../scenery/js/util/Color.js';
 import moneyBoxNoDecoration_png from '../../../images/moneyBoxNoDecoration_png.js';
 import moneyBoxWithFlowers_png from '../../../images/moneyBoxWithFlowers_png.js';
 import moneyBoxWithLightning_png from '../../../images/moneyBoxWithLightning_png.js';

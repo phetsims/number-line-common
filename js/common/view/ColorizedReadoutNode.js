@@ -10,7 +10,7 @@
 import merge from '../../../../phet-core/js/merge.js';
 import BackgroundNode from '../../../../scenery-phet/js/BackgroundNode.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import NLCConstants from '../NLCConstants.js';
 

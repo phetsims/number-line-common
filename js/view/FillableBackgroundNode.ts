@@ -8,7 +8,9 @@
  *
  */
 
-import { Node, NodeOptions, Path, TPaint } from '../../../scenery/js/imports.js';
+import Node, { NodeOptions } from '../../../scenery/js/nodes/Node.js';
+import Path from '../../../scenery/js/nodes/Path.js';
+import TPaint from '../../../scenery/js/util/TPaint.js';
 import numberLineCommon from '../numberLineCommon.js';
 
 export default class FillableBackgroundNode extends Node {

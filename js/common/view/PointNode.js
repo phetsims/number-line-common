@@ -11,7 +11,8 @@ import PatternStringProperty from '../../../../axon/js/PatternStringProperty.js'
 import StringProperty from '../../../../axon/js/StringProperty.js';
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
-import { Circle, Node } from '../../../../scenery/js/imports.js';
+import Circle from '../../../../scenery/js/nodes/Circle.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import numberLineCommon from '../../numberLineCommon.js';
 import ColorizedReadoutNode from './ColorizedReadoutNode.js';
 

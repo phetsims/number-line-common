@@ -13,7 +13,9 @@ import LockToNumberLine from '../../../../number-line-common/js/common/model/Loc
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
-import { DragListener, Line, Node } from '../../../../scenery/js/imports.js';
+import DragListener from '../../../../scenery/js/listeners/DragListener.js';
+import Line from '../../../../scenery/js/nodes/Line.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
 import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
