@@ -1,4 +1,4 @@
-// Copyright 2023, University of Colorado Boulder
+// Copyright 2023-2025, University of Colorado Boulder
 
 /**
  * Base class for the MoneyJarNode and FillableBagNode. This class provides access to the outlines

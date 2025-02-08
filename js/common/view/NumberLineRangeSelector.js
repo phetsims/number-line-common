@@ -1,4 +1,4 @@
-// Copyright 2020-2023, University of Colorado Boulder
+// Copyright 2020-2025, University of Colorado Boulder
 
 /**
  * NumberLineRangeSelector is a ComboBox specialization that can be used to select from a set of ranges that are then
