@@ -13,7 +13,6 @@ import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Circle from '../../../../scenery/js/nodes/Circle.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import numberLineCommon from '../../numberLineCommon.js';
 import ColorizedReadoutNode from './ColorizedReadoutNode.js';
 
 // constants
@@ -154,5 +153,4 @@ class PointNode extends Node {
   }
 }
 
-numberLineCommon.register( 'PointNode', PointNode );
 export default PointNode;

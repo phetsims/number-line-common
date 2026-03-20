@@ -16,7 +16,6 @@ import ShadedSphereNode from '../../../../scenery-phet/js/ShadedSphereNode.js';
 import DragListener from '../../../../scenery/js/listeners/DragListener.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
-import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
 const SPHERE_RADIUS = 10; // in screen coords, radius of sphere that is used if no controller node is provided
@@ -260,5 +259,4 @@ class PointControllerNode extends Node {
   }
 }
 
-numberLineCommon.register( 'PointControllerNode', PointControllerNode );
 export default PointControllerNode;

@@ -16,7 +16,6 @@ import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import numberLineCommon from '../../numberLineCommon.js';
 import NumberLineCommonStrings from '../../NumberLineCommonStrings.js';
 import AbsoluteValueSpanNode from './AbsoluteValueSpanNode.js';
 import PointNode from './PointNode.js';
@@ -613,5 +612,4 @@ class SpatializedNumberLineNode extends Node {
   }
 }
 
-numberLineCommon.register( 'SpatializedNumberLineNode', SpatializedNumberLineNode );
 export default SpatializedNumberLineNode;

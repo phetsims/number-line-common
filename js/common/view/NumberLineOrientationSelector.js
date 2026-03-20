@@ -10,7 +10,6 @@ import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
 import ArrowNode from '../../../../scenery-phet/js/ArrowNode.js';
 import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
-import numberLineCommon from '../../numberLineCommon.js';
 
 const ARROW_ICON_LENGTH = 40;
 const ORIENTATION_BUTTON_DILATION = 2;
@@ -63,5 +62,4 @@ class NumberLineOrientationSelector extends RectangularRadioButtonGroup {
 
 }
 
-numberLineCommon.register( 'NumberLineOrientationSelector', NumberLineOrientationSelector );
 export default NumberLineOrientationSelector;

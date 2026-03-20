@@ -23,7 +23,6 @@ import NumberLinePoint from '../../../../number-line-common/js/common/model/Numb
 import merge from '../../../../phet-core/js/merge.js';
 import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
-import numberLineCommon from '../../numberLineCommon.js';
 import LockToNumberLine from './LockToNumberLine.js';
 
 // constants
@@ -443,5 +442,4 @@ class PointController {
   }
 }
 
-numberLineCommon.register( 'PointController', PointController );
 export default PointController;

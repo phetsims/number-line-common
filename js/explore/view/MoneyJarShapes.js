@@ -9,7 +9,6 @@
 import Matrix3 from '../../../../dot/js/Matrix3.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import Shape from '../../../../kite/js/Shape.js';
-import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
 const NLI_LAYOUT_BOUNDS = ScreenView.DEFAULT_LAYOUT_BOUNDS;
@@ -42,5 +41,4 @@ class MoneyJarShapes {
 }
 
 const moneyJarShapes = new MoneyJarShapes();
-numberLineCommon.register( 'moneyJarShapes', moneyJarShapes );
 export default moneyJarShapes;

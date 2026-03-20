@@ -8,7 +8,6 @@
 
 import Utils from '../../../../dot/js/Utils.js';
 import Color from '../../../../scenery/js/util/Color.js';
-import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
 
@@ -113,5 +112,4 @@ class TemperatureToColorMapper {
   }
 }
 
-numberLineCommon.register( 'TemperatureToColorMapper', TemperatureToColorMapper );
 export default TemperatureToColorMapper;

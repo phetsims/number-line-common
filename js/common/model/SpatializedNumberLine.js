@@ -21,7 +21,6 @@ import { Line } from '../../../../kite/js/segments/Segment.js';
 import NumberLine from '../../../../number-line-common/js/common/model/NumberLine.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Orientation from '../../../../phet-core/js/Orientation.js';
-import numberLineCommon from '../../numberLineCommon.js';
 
 class SpatializedNumberLine extends NumberLine {
 
@@ -311,5 +310,4 @@ class SpatializedNumberLine extends NumberLine {
   }
 }
 
-numberLineCommon.register( 'SpatializedNumberLine', SpatializedNumberLine );
 export default SpatializedNumberLine;

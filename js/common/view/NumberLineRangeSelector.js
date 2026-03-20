@@ -13,7 +13,6 @@ import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
-import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
 const FONT = new PhetFont( 16 );
@@ -58,5 +57,4 @@ class NumberLineRangeSelector extends ComboBox {
   }
 }
 
-numberLineCommon.register( 'NumberLineRangeSelector', NumberLineRangeSelector );
 export default NumberLineRangeSelector;

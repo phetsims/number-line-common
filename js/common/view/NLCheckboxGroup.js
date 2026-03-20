@@ -8,7 +8,6 @@
 
 import merge from '../../../../phet-core/js/merge.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
-import numberLineCommon from '../../numberLineCommon.js';
 import NLCConstants from '../NLCConstants.js';
 
 class NLCheckboxGroup extends VBox {
@@ -34,5 +33,4 @@ class NLCheckboxGroup extends VBox {
   }
 }
 
-numberLineCommon.register( 'NLCheckboxGroup', NLCheckboxGroup );
 export default NLCheckboxGroup;

@@ -10,7 +10,6 @@ import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Checkbox from '../../../../sun/js/Checkbox.js';
-import numberLineCommon from '../../numberLineCommon.js';
 
 // constants
 const BOX_WIDTH = 17;
@@ -46,5 +45,4 @@ class NLCheckbox extends Checkbox {
   }
 }
 
-numberLineCommon.register( 'NLCheckbox', NLCheckbox );
 export default NLCheckbox;

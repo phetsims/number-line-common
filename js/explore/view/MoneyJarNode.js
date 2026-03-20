@@ -15,7 +15,6 @@ import Color from '../../../../scenery/js/util/Color.js';
 import moneyBoxNoDecoration_png from '../../../images/moneyBoxNoDecoration_png.js';
 import moneyBoxWithFlowers_png from '../../../images/moneyBoxWithFlowers_png.js';
 import moneyBoxWithLightning_png from '../../../images/moneyBoxWithLightning_png.js';
-import numberLineCommon from '../../numberLineCommon.js';
 import FillableBackgroundNode from '../../view/FillableBackgroundNode.js';
 import MoneyJarDecoration from '../model/MoneyJarDecoration.js';
 import MoneyJarShapes from './MoneyJarShapes.js';
@@ -57,5 +56,4 @@ class MoneyJarNode extends FillableBackgroundNode {
   }
 }
 
-numberLineCommon.register( 'MoneyJarNode', MoneyJarNode );
 export default MoneyJarNode;

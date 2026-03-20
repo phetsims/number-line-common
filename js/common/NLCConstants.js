@@ -7,8 +7,6 @@
  * @author John Blanco (PhET Interactive Simulations)
  */
 
-import numberLineCommon from '../numberLineCommon.js';
-
 // constants
 const LABEL_BACKGROUND_CORNER_RADIUS = 3;
 
@@ -47,5 +45,4 @@ const NLCConstants = {
   }
 };
 
-numberLineCommon.register( 'NLCConstants', NLCConstants );
 export default NLCConstants;

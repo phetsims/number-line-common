@@ -12,7 +12,6 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Color from '../../../../scenery/js/util/Color.js';
 import PaintColorProperty from '../../../../scenery/js/util/PaintColorProperty.js';
-import numberLineCommon from '../../numberLineCommon.js';
 
 class NumberLinePoint {
 
@@ -122,5 +121,4 @@ class NumberLinePoint {
   }
 }
 
-numberLineCommon.register( 'NumberLinePoint', NumberLinePoint );
 export default NumberLinePoint;

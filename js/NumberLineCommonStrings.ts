@@ -18,6 +18,4 @@ type StringsType = {
 
 const NumberLineCommonStrings = getStringModule( 'NUMBER_LINE_COMMON' ) as StringsType;
 
-numberLineCommon.register( 'NumberLineCommonStrings', NumberLineCommonStrings );
-
 export default NumberLineCommonStrings;

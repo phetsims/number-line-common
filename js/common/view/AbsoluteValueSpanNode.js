@@ -16,7 +16,6 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import Animation from '../../../../twixt/js/Animation.js';
 import Easing from '../../../../twixt/js/Easing.js';
-import numberLineCommon from '../../numberLineCommon.js';
 import NLCConstants from '../NLCConstants.js';
 import AbsoluteValueLine from './AbsoluteValueLine.js';
 
@@ -229,5 +228,4 @@ class AbsoluteValueSpanNode extends Node {
   }
 }
 
-numberLineCommon.register( 'AbsoluteValueSpanNode', AbsoluteValueSpanNode );
 export default AbsoluteValueSpanNode;

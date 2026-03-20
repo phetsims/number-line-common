@@ -10,7 +10,6 @@
 import Vector2 from '../../../../dot/js/Vector2.js';
 import merge from '../../../../phet-core/js/merge.js';
 import Line from '../../../../scenery/js/nodes/Line.js';
-import numberLineCommon from '../../numberLineCommon.js';
 
 class AbsoluteValueLine extends Line {
 
@@ -25,5 +24,4 @@ class AbsoluteValueLine extends Line {
   }
 }
 
-numberLineCommon.register( 'AbsoluteValueLine', AbsoluteValueLine );
 export default AbsoluteValueLine;

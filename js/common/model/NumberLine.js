@@ -13,7 +13,6 @@
 import createObservableArray from '../../../../axon/js/createObservableArray.js';
 import Utils from '../../../../dot/js/Utils.js';
 import merge from '../../../../phet-core/js/merge.js';
-import numberLineCommon from '../../numberLineCommon.js';
 import NumberLinePoint from './NumberLinePoint.js';
 
 class NumberLine {
@@ -190,5 +189,4 @@ class NumberLine {
   }
 }
 
-numberLineCommon.register( 'NumberLine', NumberLine );
 export default NumberLine;
